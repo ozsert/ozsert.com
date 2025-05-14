@@ -195,6 +195,46 @@ section:nth-of-type(odd) { /* Alternate background colors (optional) */
     margin-bottom: 8px;
 }
 
+/* --- Latest AI News Section --- */
+#latest-ai-news {
+    padding: 30px 0;
+}
+
+#latest-ai-news h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#ai-news-list {
+    list-style: none;
+    padding: 0;
+    max-width: 700px; /* Limit width for readability */
+    margin: 0 auto; /* Center the list */
+}
+
+#ai-news-list li {
+    background-color: var(--light-gray);
+    border: 1px solid var(--border-color);
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+#ai-news-list li a {
+    text-decoration: none;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+#ai-news-list li a:hover {
+    color: var(--accent-color);
+}
+
+#ai-news-list p { /* For the loading message */
+    text-align: center;
+    color: var(--secondary-color);
+}
+
 
 /* --- Footer --- */
 footer {
