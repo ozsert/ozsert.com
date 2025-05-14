@@ -213,21 +213,72 @@ section:nth-of-type(odd) { /* Alternate background colors (optional) */
 }
 
 #ai-news-list li {
-    background-color: var(--light-gray);
     border: 1px solid var(--border-color);
-    padding: 15px;
-    margin-bottom: 10px;
-    border-radius: 5px;
+    border-radius: 8px; /* Rounded corners like screenshot */
+    margin-bottom: 20px; /* Increased space between items */
+    position: relative; /* For positioning the content overlay */
+    background-size: cover; /* Ensure background image covers the area */
+    background-position: center; /* Center the background image */
+    min-height: 250px; /* Minimum height for items, adjust as needed */
+    display: flex; /* Use flex to help with content alignment */
+    flex-direction: column; /* Stack content vertically */
+    justify-content: flex-end; /* Align content to the bottom */
+    padding: 0; /* Remove padding from li, will add to content box */
+    overflow: hidden; /* Ensure content doesn't spill out */
+    color: white; /* Default text color for items, assuming dark overlay/images */
 }
 
-#ai-news-list li a {
+#ai-news-list li::before { /* Add a dark overlay for text readability */
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
+    z-index: 1; /* Ensure overlay is above background image */
+    border-radius: inherit; /* Inherit border-radius from parent li */
+}
+
+.ai-news-content {
+    position: relative; /* Position content above the overlay */
+    z-index: 2;
+    padding: 20px; /* Padding for the content inside the list item */
+    /* background-color: rgba(0,0,0,0.5); /* Optional: Dark semi-transparent background for content area */
+    /* border-radius: 0 0 8px 8px; /* Rounded bottom corners if content is at the bottom */
+}
+
+.ai-news-image { /* This class is no longer used for a separate img tag, but kept if needed elsewhere */
+    display: none; /* Hide the separate image tag as it's now a background */
+}
+
+#ai-news-list li h3 {
+    font-size: 1.5em; /* Larger title */
+    margin-bottom: 0.5em;
+    color: #fff; /* White color for title */
+}
+
+#ai-news-list li p {
+    font-size: 0.9em;
+    margin-bottom: 1em;
+    color: #f0f0f0; /* Light gray for description */
+}
+
+#ai-news-list li a.read-more-link {
     text-decoration: none;
-    color: var(--primary-color);
+    color: #fff; /* White color for link */
     font-weight: bold;
+    display: inline-block; /* To allow padding and better click area */
+    padding: 8px 12px;
+    border: 1px solid #fff; /* White border for the link */
+    border-radius: 4px;
+    transition: background-color 0.3s, color 0.3s;
 }
 
-#ai-news-list li a:hover {
-    color: var(--accent-color);
+#ai-news-list li a.read-more-link:hover {
+    background-color: #fff; /* White background on hover */
+    color: var(--primary-color); /* Dark text on hover */
+    text-decoration: none;
 }
 
 #ai-news-list p { /* For the loading message */

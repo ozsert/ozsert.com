@@ -25,13 +25,53 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 items.forEach((item, index) => {
                     // Limiting to 5 posts, adjust as needed
-                    if (index < 5) { 
+                    if (index < 5) {
                         const title = item.title;
                         const link = item.link;
-                        // const description = item.description; // Optional: if you want to show a snippet
-                        // const pubDate = item.pubDate ? new Date(item.pubDate).toLocaleDateString() : ''; // Optional
+                        let imageUrl = null;
+                        let description = item.description || item.content_text || ''; // Get description
 
-                        html += `<li><a href="${link}" target="_blank" rel="noopener noreferrer">${title}</a></li>`;
+                        // Strip HTML tags from description and truncate
+                        const tempDiv = document.createElement('div');
+                        tempDiv.innerHTML = description;
+                        description = tempDiv.textContent || tempDiv.innerText || "";
+                        const maxDescLength = 100; // Max length for description snippet
+                        let descriptionSnippet = description.substring(0, maxDescLength);
+                        if (description.length > maxDescLength) {
+                            descriptionSnippet += "...";
+                        }
+
+                        // Extract image URL from enclosure or thumbnail
+                        if (item.enclosure) {
+                            if (Array.isArray(item.enclosure)) {
+                                const imageEnclosure = item.enclosure.find(enc => enc.type && enc.type.startsWith('image/'));
+                                if (imageEnclosure) {
+                                    imageUrl = imageEnclosure.link;
+                                }
+                            } else if (typeof item.enclosure === 'object' && item.enclosure.link) {
+                                if (item.enclosure.type && item.enclosure.type.startsWith('image/')) {
+                                    imageUrl = item.enclosure.link;
+                                } else if (!item.enclosure.type) { // If type is not specified, but link exists
+                                    imageUrl = item.enclosure.link;
+                                }
+                            }
+                        }
+
+                        // Fallback to thumbnail if enclosure didn't provide an image
+                        if (!imageUrl && item.thumbnail) {
+                            imageUrl = item.thumbnail;
+                        }
+
+                        // Prepare inline style for background image
+                        const styleAttribute = imageUrl ? `style="background-image: url('${imageUrl}');"` : 'style="background-color: var(--light-gray);"'; // Fallback background color
+
+                        html += `<li ${styleAttribute}>
+                                    <div class="ai-news-content">
+                                        <h3>${title}</h3>
+                                        <p>${descriptionSnippet}</p>
+                                        <a href="${link}" target="_blank" rel="noopener noreferrer" class="read-more-link">Read more &rarr;</a>
+                                    </div>
+                                 </li>`;
                     }
                 });
                 newsList.innerHTML = html;
