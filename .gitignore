@@ -1,0 +1,17 @@
+# General ignore
+.DS_Store
+Thumbs.db
+
+# Node.js specific (if you use any Node.js tools)
+node_modules/
+package-lock.json
+yarn.lock
+
+# IDE specific (adjust as needed)
+.idea/
+.vscode/
+
+# OS generated files
+*.swp
+*.swo
+._*

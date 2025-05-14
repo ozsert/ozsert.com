@@ -1,0 +1,284 @@
+/* --- Basic Reset & Box Sizing --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* --- Variables (Optional, but recommended) --- */
+:root {
+    --primary-color: #333;    /* Dark gray for text */
+    --secondary-color: #555;  /* Lighter gray */
+    --accent-color: #007bff;   /* Example blue accent */
+    --background-color: #fff; /* White background */
+    --light-gray: #f4f4f4;     /* Light gray for backgrounds */
+    --border-color: #eee;      /* Light border color */
+    --container-max-width: 1100px;
+    --base-font-family: sans-serif; /* Basic fallback font */
+    --base-font-size: 16px;
+    --base-line-height: 1.6;
+}
+
+/* --- General Body Styling --- */
+body {
+    font-family: var(--base-font-family);
+    font-size: var(--base-font-size);
+    line-height: var(--base-line-height);
+    color: var(--primary-color);
+    background-color: var(--background-color);
+}
+
+img {
+    max-width: 100%; /* Make images responsive by default */
+    height: auto;
+    display: block; /* Remove extra space below images */
+}
+
+a {
+    color: var(--accent-color);
+    text-decoration: none; /* Remove underlines */
+}
+
+a:hover {
+    text-decoration: underline; /* Add underline on hover */
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin-bottom: 0.75em;
+    line-height: 1.3;
+}
+
+h1 { font-size: 2.2em; }
+h2 { font-size: 1.8em; }
+h3 { font-size: 1.4em; }
+
+p {
+    margin-bottom: 1em;
+}
+
+ul {
+    list-style: none; /* Remove default bullets */
+}
+
+/* --- Utility Classes --- */
+.container {
+    width: 90%; /* Padding on mobile */
+    max-width: var(--container-max-width); /* Max width on desktop */
+    margin: 0 auto; /* Center the container */
+    padding: 20px 0; /* Vertical padding */
+}
+
+.text-center {
+    text-align: center;
+}
+
+/* --- Header --- */
+header {
+    background-color: var(--background-color);
+    border-bottom: 1px solid var(--border-color);
+    padding: 10px 0;
+}
+
+.header-flex {
+    display: flex;
+    flex-direction: column; /* Stack items vertically on mobile */
+    align-items: center; /* Center items on mobile */
+    gap: 15px; /* Space between items */
+}
+
+.logo a {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.main-nav ul {
+    display: flex;
+    flex-wrap: wrap; /* Allow items to wrap on small screens */
+    justify-content: center; /* Center nav items on mobile */
+    gap: 10px 15px; /* Vertical and horizontal gap */
+}
+
+.main-nav a {
+    color: var(--secondary-color);
+    padding: 5px;
+}
+
+.main-nav a:hover,
+.main-nav a.active { /* Style for active page link */
+    color: var(--primary-color);
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.language-toggle a {
+    margin: 0 3px;
+    color: var(--secondary-color);
+}
+
+.language-toggle a.lang-active { /* Style for active language */
+    color: var(--primary-color);
+    font-weight: bold;
+    text-decoration: none;
+    cursor: default;
+}
+
+/* --- Main Content Sections --- */
+main {
+    min-height: 60vh; /* Ensure footer doesn't jump up on short pages */
+}
+
+section {
+    padding: 30px 0; /* Vertical padding between sections */
+}
+
+section:nth-of-type(odd) { /* Alternate background colors (optional) */
+    background-color: var(--background-color);
+}
+
+/* --- Hero Carousel Section --- */
+#hero-carousel .container {
+    padding-top: 10px; /* Less padding at the top */
+}
+
+.slide-grid {
+    display: flex;
+    flex-direction: column; /* Stack columns on mobile */
+    gap: 20px;
+    align-items: center; /* Center items when stacked */
+    text-align: center; /* Center text on mobile */
+}
+
+.content-box {
+    /* Styles for the text box */
+}
+
+.photo-box {
+    /* Styles for the image box */
+    max-width: 400px; /* Limit photo size */
+    margin: 0 auto; /* Center photo */
+}
+
+.photo-box img {
+    border-radius: 8px; /* Slightly rounded corners for image */
+}
+
+
+/* --- Substack Sections --- */
+#substack-subscribe .substack-embed-wrapper {
+    margin: 20px auto; /* Center the wrapper */
+    max-width: 480px; /* Match iframe width */
+    overflow: hidden; /* Hide potential horizontal scroll */
+}
+
+#substack-subscribe iframe {
+    display: block; /* Ensure it behaves like a block element */
+    margin: 0 auto; /* Center iframe if wrapper is wider */
+    max-width: 100%; /* Ensure it scales down */
+}
+
+#substack-latest .newsletter-list-placeholder {
+    background-color: #fff;
+    border: 1px dashed var(--border-color);
+    padding: 20px;
+    text-align: center;
+    color: var(--secondary-color);
+}
+#substack-latest ul {
+    margin-top: 15px;
+    padding-left: 0; /* remove default padding */
+    text-align: left; /* Align list items left */
+    display: inline-block; /* make ul only as wide as content */
+}
+#substack-latest ul li {
+    margin-bottom: 8px;
+}
+
+
+/* --- Footer --- */
+footer {
+    background-color: var(--background-color);
+    color: var(--primary-color);
+    padding: 15px 0;
+    margin-top: 30px; /* Space above footer */
+}
+
+.footer-flex {
+    display: flex;
+    flex-direction: column; /* Stack on mobile */
+    align-items: center; /* Center on mobile */
+    text-align: center;
+    gap: 10px;
+}
+
+.footer-links a {
+    color: var(--primary-color);
+    margin: 0 8px;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+}
+
+/* --- Responsiveness --- */
+
+/* Medium screens (Tablets and larger) */
+@media (min-width: 768px) {
+    .container {
+        width: 85%;
+    }
+
+    .header-flex {
+        flex-direction: row; /* Align header items horizontally */
+        justify-content: space-between; /* Space out logo, nav, lang */
+    }
+
+    .main-nav ul {
+        justify-content: flex-end; /* Align nav items to the right */
+    }
+
+    .slide-grid {
+        flex-direction: row; /* Place columns side-by-side */
+        text-align: left; /* Align text left */
+        align-items: flex-start; /* Align items to the top */
+    }
+
+    .slide-grid .content-box {
+        flex: 1; /* Allow content box to take available space */
+        padding-right: 20px; /* Add space between content and photo */
+    }
+
+    .slide-grid .photo-box {
+        flex-basis: 40%; /* Suggest a width for the photo column */
+        max-width: 400px; /* Maintain max width */
+        margin: 0; /* Reset mobile margin */
+    }
+
+    .footer-flex {
+        flex-direction: row; /* Align footer items horizontally */
+        justify-content: space-between; /* Space out copyright and links */
+        text-align: left;
+    }
+}
+
+/* Large screens (Desktops) */
+@media (min-width: 992px) {
+    :root {
+        --base-font-size: 17px; /* Slightly larger font on desktop */
+    }
+
+    .container {
+        width: 80%;
+    }
+
+     .slide-grid .content-box {
+        padding-right: 40px; /* More space on larger screens */
+    }
+}
+
+/* Extra Large screens (Large Desktops) */
+@media (min-width: 1200px) {
+    /* Potential adjustments for very wide screens if needed */
+    /* e.g., increase --container-max-width if desired */
+}

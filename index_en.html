@@ -1,0 +1,119 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Placeholder: Welcome to C. Murad Özsert's personal website. Learn more about..."> <!-- SEO: Update with real content -->
+
+    <title>C. Murad Özsert - Home</title> <!-- SEO: Title -->
+
+    <link rel="stylesheet" href="style.css"> <!-- Link to CSS -->
+
+    <!-- Optional Favicons -->
+    <!-- <link rel="icon" href="/favicon.ico" sizes="any"> -->
+</head>
+<body>
+
+    <header>
+        <div class="container header-flex"> <!-- Flex container for layout -->
+            <div class="logo">
+                <!-- Link the logo/name to the home page of the current language -->
+                <a href="index_en.html"><strong>C. Murad Özsert</strong></a>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <!-- Update hrefs when other pages are created -->
+                    <li><a href="about_en.html">About</a></li>
+                    <li><a href="speaking_en.html">Speaking</a></li> <!-- Assuming "Etkinlik Davet" translates best to Speaking/Events -->
+                    <li><a href="#substack-subscribe">AI Newsletter</a></li> <!-- Link to the subscribe section for now -->
+                    <li><a href="contact_en.html">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="language-toggle">
+                <a href="index_en.html" class="lang-active">EN</a> | <a href="index_tr.html">TR</a>
+            </div>
+            <!-- Optional: Mobile Menu Button (hidden by default, shown on mobile via CSS) -->
+            <!-- <button class="mobile-menu-toggle" aria-label="Open navigation menu">☰</button> -->
+        </div>
+    </header>
+
+    <main>
+        <!-- Section 1: Carousel (Structure for one slide) -->
+        <section id="hero-carousel" aria-label="Introduction Carousel">
+            <div class="container">
+                <!-- Carousel Wrapper (for JS later) -->
+                <div class="carousel-wrapper">
+                    <!-- Slide 1 -->
+                    <div class="carousel-slide active-slide">
+                        <div class="slide-grid"> <!-- Use Grid or Flexbox for 2 columns -->
+                            <div class="content-box">
+                                <h2></h2>
+                                <p>Merhaba,</p>
+                                <p>Boğaziçi Üniversitesi Bilgisayar Mühendisliği’nden mezun olduktan sonra teknolojiye olan merakım beni önce kurumsal dünyaya, ardından girişimciliğe taşıdı. Finans, telekom ve lojistik sektörlerinde, milyonlarca insanın hayatına dokunan ürünler geliştirdim.</p>
+                                <p>Girişimcilik yolculuğum, pandeminin hemen başında kurduğumuz Yolda.com ile başladı. Türkiye ve Almanya’da aktif olarak faaliyet gösteren Yolda.com, lojistik sektörünü teknolojiyle dönüştürme hedefiyle yola çıktı ve 10 milyon doların üzerinde yatırım aldı. Bu süreç, bana hızlı büyümenin, karar almanın ve belirsizlikler içinde ayakta kalmanın ne anlama geldiğini öğretti.</p>
+                                <p>Yolda.com’u Türkiye’nin en büyük lojistik şirketlerinden birine devrettikten sonra odağımı yapay zekâya çevirdim. Bugün, girişimlere ve kurumsal yapılara yapay zekâ tabanlı iş modelleri ve sistemler konusunda danışmanlık veriyor; teknoloji ile insanı bir araya getiren yenilikçi çözümler geliştiriyorum.</p>
+                                <p>Yapay zekâyı doğru anlayıp işine entegre edebilenlerin fark yaratacağı, edemeyenlerin ise zorlanacağı bir dönemin başındayız. İnsan kaynağı olarak küçük ama yarattığı etki olarak büyük ekiplerin çoğalacağı bu yeni dünya düzenini birlikte düşünmek ve takip etmek istersen, haftalık yapay zeka bültenime abone olabilirsin.</p>
+                                <!-- Add more content as needed -->
+                            </div>
+                            <div class="photo-box">
+                                <img src="images/Yolda_318sb.jpg" alt="Placeholder for personal photograph" style="width:100%; max-width:400px; height:auto; background:#ccc;">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Add more <div class="carousel-slide">...</div> elements here for more slides later -->
+                </div>
+                 <!-- Optional: Carousel controls (dots/arrows) - need JS -->
+                 <!-- <div class="carousel-controls"> -->
+                 <!--   <button class="prev">Prev</button> -->
+                 <!--   <button class="next">Next</button> -->
+                 <!-- </div> -->
+            </div>
+        </section>
+
+        <!-- Section 2: Substack Subscribe -->
+        <section id="substack-subscribe" class="container text-center"> <!-- Added text-center for potential centering -->
+             <h2>Join the AI Newsletter</h2> <!-- English version of "AI Bülten'e Üye Ol" -->
+             <div class="substack-embed-wrapper">
+                <!-- The iframe provided by the user -->
+                <iframe src="https://yapayzeka101.substack.com/embed" width="480" height="320" style="border:1px solid #EEE; background:white; max-width: 100%;" frameborder="0" scrolling="no" title="Subscribe to Yapay Zeka 101 Newsletter"></iframe>
+             </div>
+        </section>
+
+        <!-- Section 3: Substack Latest Posts (Placeholder) -->
+        <section id="substack-latest" class="container">
+            <h2>Latest AI Newsletters</h2> <!-- English version of "AI Bültenleri" -->
+            <div class="newsletter-list-placeholder">
+                <p>Placeholder section where the latest newsletter posts will be listed.</p>
+                <p><em>(Content to be added manually or via JavaScript fetching Substack RSS feed later)</em></p>
+                <ul>
+                    <li><a href="#">Placeholder: Newsletter Title 1</a> - Date</li>
+                    <li><a href="#">Placeholder: Newsletter Title 2</a> - Date</li>
+                    <li><a href="#">Placeholder: Newsletter Title 3</a> - Date</li>
+                </ul>
+                <!-- Maybe a link to the Substack archive -->
+                <p><a href="https://yapayzeka101.substack.com/" target="_blank" rel="noopener noreferrer">View all newsletters</a></p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container footer-flex"> <!-- Flex container for layout -->
+            <div class="copyright">
+                <p>© 2025 C. Murad Özsert</p> <!-- Wireframe says 2025, adjust if needed -->
+            </div>
+            <div class="footer-links">
+                <a href="contact_en.html">Contact</a> <!-- Link to Contact page -->
+                <a href="YOUR_LINKEDIN_URL_HERE" target="_blank" rel="noopener noreferrer">LinkedIn</a> <!-- Add your real LinkedIn URL -->
+                <!-- Add X/Twitter link if desired -->
+                <!-- <a href="YOUR_X_URL_HERE" target="_blank" rel="noopener noreferrer">X</a> -->
+            </div>
+        </div>
+    </footer>
+
+    <!-- Link JavaScript file -->
+    <script src="script.js"></script>
+</body>
+</html>
