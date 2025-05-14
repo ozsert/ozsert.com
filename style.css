@@ -246,7 +246,7 @@ section:nth-of-type(odd) { /* Alternate background colors (optional) */
 }
 
 #ai-news-list li h3 {
-    font-size: 1.5em; /* Larger title */
+    font-size: 1.4em; /* Larger title */
     margin-bottom: 0.5em;
     color: #fff; /* White color for title */
 }
