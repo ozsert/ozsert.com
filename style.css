@@ -168,7 +168,7 @@ section:nth-of-type(odd) { /* Alternate background colors (optional) */
 /* --- Substack Sections --- */
 #substack-subscribe .substack-embed-wrapper {
     margin: 20px auto; /* Center the wrapper */
-    max-width: 480px; /* Match iframe width */
+    /*max-width: 480px; /* Match iframe width */
     overflow: hidden; /* Hide potential horizontal scroll */
 }
 
@@ -178,21 +178,9 @@ section:nth-of-type(odd) { /* Alternate background colors (optional) */
     max-width: 100%; /* Ensure it scales down */
 }
 
-#substack-latest .newsletter-list-placeholder {
-    background-color: #fff;
-    border: 1px dashed var(--border-color);
-    padding: 20px;
+#substack-subscribe h2 {
     text-align: center;
-    color: var(--secondary-color);
-}
-#substack-latest ul {
-    margin-top: 15px;
-    padding-left: 0; /* remove default padding */
-    text-align: left; /* Align list items left */
-    display: inline-block; /* make ul only as wide as content */
-}
-#substack-latest ul li {
-    margin-bottom: 8px;
+    margin-bottom: 20px;
 }
 
 /* --- Latest AI News Section --- */
@@ -266,6 +254,7 @@ section:nth-of-type(odd) { /* Alternate background colors (optional) */
 #ai-news-list li p {
     font-size: 0.9em;
     margin-bottom: 1em;
+    text-align: left;
     color: #f0f0f0; /* Light gray for description */
 }
 
