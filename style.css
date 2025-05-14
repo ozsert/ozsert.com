@@ -75,7 +75,7 @@ ul {
 /* --- Header --- */
 header {
     background-color: var(--background-color);
-    border-bottom: 1px solid var(--border-color);
+    /*border-bottom: 1px solid var(--border-color);*/
     padding: 10px 0;
 }
 
@@ -222,7 +222,7 @@ section:nth-of-type(odd) { /* Alternate background colors (optional) */
 }
 
 #ai-news-list li::before { /* Add a dark overlay for text readability */
-    content: "";
+    content: "Yapay Zeka'nın Gücü Adına!";
     position: absolute;
     top: 0;
     left: 0;
@@ -231,6 +231,8 @@ section:nth-of-type(odd) { /* Alternate background colors (optional) */
     background-color: rgba(0, 0, 0, 0.2); /* Semi-transparent black overlay */
     z-index: 1; /* Ensure overlay is above background image */
     border-radius: inherit; /* Inherit border-radius from parent li */
+    padding: 5px;
+    font-size: 0.5em;
 }
 
 .ai-news-content {
