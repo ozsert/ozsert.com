@@ -222,8 +222,8 @@ section:nth-of-type(odd) { /* Alternate background colors (optional) */
     position: relative; /* For positioning the content overlay */
     background-size: cover; /* Ensure background image covers the area */
     background-position: center; /* Center the background image */
-    width: 400px; /* Updated width as per user example */
-    height: 600px; /* Updated height as per user example */
+    width: 350px; /* Updated width as per user example */
+    height: 475px; /* Updated height as per user example */
     display: flex; /* Use flex to help with content alignment */
     flex-direction: column; /* Stack content vertically */
     justify-content: flex-end; /* Align content to the bottom */
@@ -240,7 +240,7 @@ section:nth-of-type(odd) { /* Alternate background colors (optional) */
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
+    background-color: rgba(0, 0, 0, 0.2); /* Semi-transparent black overlay */
     z-index: 1; /* Ensure overlay is above background image */
     border-radius: inherit; /* Inherit border-radius from parent li */
 }
