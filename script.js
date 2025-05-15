@@ -75,6 +75,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 });
                 newsList.innerHTML = html;
+                console.log("",html);
             })
             .catch(error => {
                 console.error('Error fetching or processing RSS feed with RSS2JSON:', error);

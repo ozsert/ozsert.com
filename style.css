@@ -7,7 +7,7 @@
 
 /* --- Variables (Optional, but recommended) --- */
 :root {
-    --primary-color: #333;    /* Dark gray for text */
+    --primary-color: #333333;    /* Dark gray for text */
     --secondary-color: #555;  /* Lighter gray */
     --accent-color: #007bff;   /* Example blue accent */
     --background-color: #fff; /* White background */
@@ -48,8 +48,8 @@ h1, h2, h3, h4, h5, h6 {
     line-height: 1.3;
 }
 
-h1 { font-size: 2.2em; }
-h2 { font-size: 1.8em; }
+h1 { font-size: 2.6em; }
+h2 { font-size: 1.6em; }
 h3 { font-size: 1.4em; }
 
 p {
@@ -282,6 +282,111 @@ section:nth-of-type(odd) { /* Alternate background colors (optional) */
     color: var(--secondary-color);
 }
 
+/* --- Topics Section --- */
+
+#ai-topics {
+    padding: 30px 0;
+}
+
+#ai-topics h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#ai-topics h3 {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+#ai-topics-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto; /* Center the list container if it has a max-width, otherwise not strictly needed for flex */
+    display: flex; /* Enable flexbox for horizontal layout */
+    overflow-x: auto; /* Allow horizontal scrolling */
+    padding-bottom: 20px; /* Add some padding for the scrollbar */
+}
+
+#ai-topics-list li {
+    border: 1px solid var(--border-color);
+    border-radius: 8px; /* Rounded corners like screenshot */
+    margin-right: 20px; /* Space between items */
+    margin-bottom: 0; /* Remove bottom margin as items are side-by-side */
+    position: relative; /* For positioning the content overlay */
+    background-size: cover; /* Ensure background image covers the area */
+    background-position: center; /* Center the background image */
+    width: 350px; /* Updated width as per user example */
+    height: 475px; /* Updated height as per user example */
+    display: flex; /* Use flex to help with content alignment */
+    flex-direction: column; /* Stack content vertically */
+    justify-content: flex-end; /* Align content to the bottom */
+    padding: 0; /* Remove padding from li, will add to content box */
+    overflow: hidden; /* Ensure content doesn't spill out */
+    color: white; /* Default text color for items, assuming dark overlay/images */
+    flex-shrink: 0; /* Prevent items from shrinking */
+}
+
+#ai-topics-list li::before { /* Add a dark overlay for text readability */
+    content: "Düşünce Egzersizleri Serisi";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.2); /* Semi-transparent black overlay */
+    z-index: 1; /* Ensure overlay is above background image */
+    border-radius: inherit; /* Inherit border-radius from parent li */
+    padding: 5px;
+    font-size: 0.5em;
+}
+
+.ai-topics-content {
+    position: relative; /* Position content above the overlay */
+    z-index: 2;
+    padding: 20px; /* Padding for the content inside the list item */
+    /* background-color: rgba(0,0,0,0.5); /* Optional: Dark semi-transparent background for content area */
+    /* border-radius: 0 0 8px 8px; /* Rounded bottom corners if content is at the bottom */
+}
+
+.ai-topics-image { /* This class is no longer used for a separate img tag, but kept if needed elsewhere */
+    display: none; /* Hide the separate image tag as it's now a background */
+}
+
+#ai-topics-list li h3 {
+    font-size: 1.4em; /* Larger title */
+    margin-bottom: 0.5em;
+    color: #fff; /* White color for title */
+}
+
+#ai-topics-list li p {
+    font-size: 0.9em;
+    margin-bottom: 1em;
+    text-align: left;
+    color: #f0f0f0; /* Light gray for description */
+}
+
+#ai-topics-list li a.read-more-link {
+    text-decoration: none;
+    color: #fff; /* White color for link */
+    font-weight: bold;
+    display: inline-block; /* To allow padding and better click area */
+    padding: 8px 12px;
+    border: 1px solid #fff; /* White border for the link */
+    border-radius: 4px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+#ai-topics-list li a.read-more-link:hover {
+    background-color: #fff; /* White background on hover */
+    color: var(--primary-color); /* Dark text on hover */
+    text-decoration: none;
+}
+
+#ai-topics-list p { /* For the loading message */
+    text-align: center;
+    color: var(--secondary-color);
+}
+
 
 /* --- Footer --- */
 footer {
@@ -328,6 +433,10 @@ footer {
 
 /* Medium screens (Tablets and larger) */
 @media (min-width: 768px) {
+    :root {
+        --base-font-size: 11px; /* Slightly larger font on desktop */
+    }
+    
     .container {
         width: 85%;
     }
@@ -368,7 +477,7 @@ footer {
 /* Large screens (Desktops) */
 @media (min-width: 992px) {
     :root {
-        --base-font-size: 17px; /* Slightly larger font on desktop */
+        --base-font-size: 13px; /* Slightly larger font on desktop */
     }
 
     .container {
@@ -384,4 +493,7 @@ footer {
 @media (min-width: 1200px) {
     /* Potential adjustments for very wide screens if needed */
     /* e.g., increase --container-max-width if desired */
+        :root {
+        --base-font-size: 17px; /* Slightly larger font on desktop */
+    }
 }
