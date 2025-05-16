@@ -70,12 +70,53 @@ document.addEventListener('DOMContentLoaded', function() {
                                         <h3>${title}</h3>
                                         <p>${descriptionSnippet}</p>
                                         <a href="${link}" target="_blank" rel="noopener noreferrer" class="read-more-link">Read more &rarr;</a>
+                                        <div class="modal-text" style="display:none;">${description}</div>
                                     </div>
                                  </li>`;
                     }
                 });
                 newsList.innerHTML = html;
                 console.log("",html);
+
+                // Modal functionality
+                const modal = document.getElementById('imageModal');
+                const modalImage = document.getElementById('modalImage');
+                const modalTextContent = document.getElementById('modalTextContent');
+                const closeButton = document.querySelector('.close-button');
+
+                document.querySelectorAll('.read-more-link').forEach(link => {
+                    link.addEventListener('click', function (event) {
+                        event.preventDefault(); // Prevent default link behavior
+
+                        const listItem = this.closest('li');
+                        const backgroundImage = listItem.style.backgroundImage.slice(4, -1).replace(/'/g, "").replace(/"/g, ""); // Get image URL
+                        const textForModal = listItem.querySelector('.modal-text').innerHTML; // Changed from textContent to innerHTML
+
+                        modalImage.src = backgroundImage;
+                        modalTextContent.innerHTML = textForModal; // Changed from textContent to innerHTML
+                        modal.style.display = 'block';
+                    });
+                });
+
+                if (closeButton) {
+                    closeButton.onclick = function () {
+                        modal.style.display = 'none';
+                    }
+                }
+
+                window.onclick = function (event) {
+                    if (event.target == modal) {
+                        modal.style.display = 'none';
+                    }
+                }
+
+                // Optional: Close modal with Escape key
+                document.addEventListener('keydown', function(event) {
+                    if (event.key === "Escape") {
+                        modal.style.display = 'none';
+                    }
+                });
+
             })
             .catch(error => {
                 console.error('Error fetching or processing RSS feed with RSS2JSON:', error);

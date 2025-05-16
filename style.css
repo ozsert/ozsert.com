@@ -387,6 +387,68 @@ section:nth-of-type(odd) { /* Alternate background colors (optional) */
     color: var(--secondary-color);
 }
 
+/* Modal styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.8); /* Black w/ opacity */
+    padding-top: 60px; /* Location of the box */
+}
+
+.modal-content-container {
+    position: relative;
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+}
+
+.modal-content-image {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.modal-text-display {
+    position: absolute;
+    bottom: 20px; /* Adjust as needed */
+    left: 20px; /* Adjust as needed */
+    right: 20px; /* Adjust as needed */
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background for text */
+    color: white;
+    padding: 15px;
+    text-align: center;
+    font-size: 1em;
+    border-radius: 5px;
+}
+
+.close-button {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Hide the modal text in the list items by default */
+.ai-topics-content .modal-text {
+    display: none;
+}
 
 /* --- Footer --- */
 footer {
@@ -496,4 +558,14 @@ footer {
         :root {
         --base-font-size: 17px; /* Slightly larger font on desktop */
     }
+}
+
+/* Extra Large screens (Large Desktops) */
+@media (min-width: 3000px) {
+    /* Potential adjustments for very wide screens if needed */
+    /* e.g., increase --container-max-width if desired */
+    :root {
+        --base-font-size: 20px; /* Slightly larger font on desktop */
+        --container-max-width: 1600px;
+    }    
 }
