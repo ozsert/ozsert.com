@@ -424,7 +424,7 @@ section:nth-of-type(odd) { /* Alternate background colors (optional) */
     color: white;
     padding: 15px;
     text-align: center;
-    font-size: 1em;
+   /* font-size: 0.8em; */
     border-radius: 5px;
 }
 
@@ -496,7 +496,7 @@ footer {
 /* Medium screens (Tablets and larger) */
 @media (min-width: 768px) {
     :root {
-        --base-font-size: 11px; /* Slightly larger font on desktop */
+        --base-font-size: 15px; /* Slightly larger font on desktop */
     }
     
     .container {
@@ -539,7 +539,7 @@ footer {
 /* Large screens (Desktops) */
 @media (min-width: 992px) {
     :root {
-        --base-font-size: 13px; /* Slightly larger font on desktop */
+        --base-font-size: 15px; /* Slightly larger font on desktop */
     }
 
     .container {
