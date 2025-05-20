@@ -1,37 +1,88 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // i18next initialization
-    i18next.init({
-        lng: 'tr', // default language
-        debug: true,
-        resources: {
-            tr: {
-                translation: {}
-            }
-        }
-    }, function(err, t) {
-        if (err) return console.error(err);
-        // Load translations from tr.json
-        fetch('/locales/tr.json')
-            .then(response => response.json())
+document.addEventListener('DOMContentLoaded', function () {
+    const defaultLang = 'tr';
+    let currentLang = localStorage.getItem('language') || defaultLang;
+
+    // Function to fetch and apply translations
+    function loadTranslations(lang) {
+        return fetch(`/locales/${lang}.json`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Failed to load ${lang}.json`);
+                }
+                return response.json();
+            })
             .then(data => {
-                i18next.addResourceBundle('tr', 'translation', data, true, true);
-                updateContent(); // Initial content update
+                if (!i18next.hasResourceBundle(lang, 'translation')) {
+                    i18next.addResourceBundle(lang, 'translation', data, true, true);
+                }
+                i18next.changeLanguage(lang, (err, t) => {
+                    if (err) return console.error('something went wrong loading', err);
+                    updateContent();
+                    updateLanguageToggle(lang);
+                    document.documentElement.lang = lang; // Update HTML lang attribute
+                    localStorage.setItem('language', lang); // Save language preference
+                });
             })
             .catch(error => console.error('Error loading translation file:', error));
+    }
+
+    // i18next initialization
+    i18next.init({
+        lng: currentLang, // Set language based on stored preference or default
+        fallbackLng: defaultLang, // Fallback language if currentLang's files are missing
+        debug: true,
+        resources: {} // Initialize with empty resources, will be loaded dynamically
+    }, function (err, t) {
+        if (err) return console.error(err);
+        // Load initial language
+        loadTranslations(currentLang);
     });
 
     function updateContent() {
         document.querySelectorAll('[data-i18n]').forEach(element => {
             const key = element.getAttribute('data-i18n');
-            element.innerHTML = i18next.t(key);
+            // Handle attributes like 'content' for meta tags
+            if (key.startsWith('[content]')) {
+                const attrKey = key.substring(9); // Remove '[content]'
+                element.setAttribute('content', i18next.t(attrKey));
+            } else {
+                element.innerHTML = i18next.t(key);
+            }
         });
-        // Update title separately as it's not part of innerHTML
+        // Update title separately
         const titleElement = document.querySelector('title[data-i18n]');
         if (titleElement) {
             const titleKey = titleElement.getAttribute('data-i18n');
             document.title = i18next.t(titleKey);
         }
     }
+
+    function updateLanguageToggle(lang) {
+        const langTr = document.getElementById('lang-tr');
+        const langEn = document.getElementById('lang-en');
+        if (lang === 'tr') {
+            langTr.style.fontWeight = 'bold';
+            langEn.style.fontWeight = 'normal';
+        } else {
+            langEn.style.fontWeight = 'bold';
+            langTr.style.fontWeight = 'normal';
+        }
+    }
+
+    // Language toggle event listeners
+    document.getElementById('lang-tr')?.addEventListener('click', (event) => {
+        event.preventDefault();
+        if (currentLang !== 'tr') {
+            loadTranslations('tr').then(() => currentLang = 'tr');
+        }
+    });
+
+    document.getElementById('lang-en')?.addEventListener('click', (event) => {
+        event.preventDefault();
+        if (currentLang !== 'en') {
+            loadTranslations('en').then(() => currentLang = 'en');
+        }
+    });
 
     const newsList = document.getElementById('ai-news-list');
     const rssFeedUrl = 'https://yapayzeka101.substack.com/feed';
