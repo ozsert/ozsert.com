@@ -78,44 +78,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 newsList.innerHTML = html;
                 console.log("",html);
 
-                // Modal functionality
-                const modal = document.getElementById('imageModal');
-                const modalImage = document.getElementById('modalImage');
-                const modalTextContent = document.getElementById('modalTextContent');
-                const closeButton = document.querySelector('.close-button');
-
-                document.querySelectorAll('.read-more-link').forEach(link => {
-                    link.addEventListener('click', function (event) {
-                        event.preventDefault(); // Prevent default link behavior
-
-                        const listItem = this.closest('li');
-                        const backgroundImage = listItem.style.backgroundImage.slice(4, -1).replace(/'/g, "").replace(/"/g, ""); // Get image URL
-                        const textForModal = listItem.querySelector('.modal-text').innerHTML; // Changed from textContent to innerHTML
-
-                        modalImage.src = backgroundImage;
-                        modalTextContent.innerHTML = textForModal; // Changed from textContent to innerHTML
-                        modal.style.display = 'block';
-                    });
-                });
-
-                if (closeButton) {
-                    closeButton.onclick = function () {
-                        modal.style.display = 'none';
-                    }
-                }
-
-                window.onclick = function (event) {
-                    if (event.target == modal) {
-                        modal.style.display = 'none';
-                    }
-                }
-
-                // Optional: Close modal with Escape key
-                document.addEventListener('keydown', function(event) {
-                    if (event.key === "Escape") {
-                        modal.style.display = 'none';
-                    }
-                });
+  
 
             })
             .catch(error => {
@@ -127,4 +90,48 @@ document.addEventListener('DOMContentLoaded', function() {
     } else {
         console.log("#ai-news-list element not found.");
     }
+
+        // Modal functionality
+    const modal = document.getElementById('imageModal');
+    if (modal) {
+        const modalImage = document.getElementById('modalImage');
+        const modalTextContent = document.getElementById('modalTextContent');
+        const closeButton = document.querySelector('.close-button');
+    
+        document.querySelectorAll('.read-more-link').forEach(link => {
+            link.addEventListener('click', function (event) {
+                event.preventDefault(); // Prevent default link behavior
+    
+                const listItem = this.closest('li');
+                const backgroundImage = listItem.style.backgroundImage.slice(4, -1).replace(/'/g, "").replace(/"/g, ""); // Get image URL
+                const textForModal = listItem.querySelector('.modal-text').innerHTML; // Changed from textContent to innerHTML
+    
+                modalImage.src = backgroundImage;
+                modalTextContent.innerHTML = textForModal; // Changed from textContent to innerHTML
+                modal.style.display = 'block';
+            });
+        });
+    
+        if (closeButton) {
+            closeButton.onclick = function () {
+                modal.style.display = 'none';
+            }
+        }
+    
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+    
+        // Optional: Close modal with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === "Escape") {
+                modal.style.display = 'none';
+            }
+        });
+    }else {
+        console.log("imageModal element not found.");
+    }
+    
 });
