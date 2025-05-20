@@ -1,16 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Placeholder: Welcome to C. Murad Özsert's personal website. Learn more about..."> <!-- SEO: Update with real content -->
-
-    <title>C. Murad Özsert - Home</title> <!-- SEO: Title -->
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link rel="stylesheet" href="style.css"> <!-- Link to CSS -->
-
-    <!-- Optional Favicons -->
-    <!-- <link rel="icon" href="/favicon.ico" sizes="any"> -->
+    <title data-i18n="index.title"></title>
+    <meta data-i18n="[content]index.meta_description" name="description">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <script src="https://unpkg.com/i18next/dist/umd/i18next.min.js"></script>
+    <script src="script.js"></script>
 </head>
 <body>
 
@@ -18,19 +16,19 @@
         <div class="container header-flex"> <!-- Flex container for layout -->
             <div class="logo">
                 <!-- Link the logo/name to the home page of the current language -->
-                <a href="index_tr.html"><strong>C. Murad Özsert</strong></a>
+                <a href="index.html"><strong data-i18n="common_header.logo_text"></strong></a>
             </div>
             <nav class="main-nav">
                 <ul>
                     <!-- Update hrefs when other pages are created -->
-                    <li><a href="about_tr.html">Hakkımda</a></li>
-                    <li><a href="topics_tr.html">Konuşma Konuları</a></li> 
-                    <li><a href="blog_tr.html">Blog</a></li> 
-                    <li><a href="contact_tr.html">İletişim</a></li>
+                    <li><a href="about.html" data-i18n="common_header.nav_about"></a></li>
+                    <li><a href="topics.html" data-i18n="common_header.nav_topics"></a></li> 
+                    <li><a href="blog.html" data-i18n="common_header.nav_blog"></a></li> 
+                    <li><a href="contact.html" data-i18n="common_header.nav_contact"></a></li>
                 </ul>
             </nav>
             <div class="language-toggle">
-                <a href="index_tr.html" class="lang-active">TR</a> | <a href="index_en.html">EN</a>
+                <a href="index.html" class="lang-active" data-i18n="common_header.lang_tr"></a> | <a href="index_en.html" data-i18n="common_header.lang_en"></a>
             </div>
             <!-- Optional: Mobile Menu Button (hidden by default, shown on mobile via CSS) -->
             <!-- <button class="mobile-menu-toggle" aria-label="Open navigation menu">☰</button> -->
@@ -48,11 +46,11 @@
                         <div class="slide-grid"> <!-- Use Grid or Flexbox for 2 columns -->
                             <div class="content-box">
                                 <h2></h2>
-                                <p>Merhaba,</p>
-                                <p>Boğaziçi Üniversitesi Bilgisayar Mühendisliği’nden mezun olduktan sonra teknolojiye olan merakım beni önce kurumsal dünyaya, ardından girişimciliğe taşıdı. Finans, telekom ve lojistik sektörlerinde, milyonlarca insanın hayatına dokunan ürünler geliştirdim.</p>
-                                <p>Girişimcilik yolculuğum, pandeminin hemen başında kurduğumuz Yolda.com ile başladı. Türkiye ve Almanya’da aktif olarak faaliyet gösteren Yolda.com, lojistik sektörünü teknolojiyle dönüştürme hedefiyle yola çıktı ve 10 milyon doların üzerinde yatırım aldı. Bu süreç, bana hızlı büyümenin, karar almanın ve belirsizlikler içinde ayakta kalmanın ne anlama geldiğini öğretti.</p>
-                                <p>Yolda.com’u Türkiye’nin en büyük lojistik şirketlerinden birine devrettikten sonra odağımı yapay zekâya çevirdim. Bugün, girişimlere ve kurumsal yapılara yapay zekâ tabanlı iş modelleri ve sistemler konusunda danışmanlık veriyor; teknoloji ile insanı bir araya getiren yenilikçi çözümler geliştiriyorum.</p>
-                                <p>Yapay zekâyı doğru anlayıp işine entegre edebilenlerin fark yaratacağı, edemeyenlerin ise zorlanacağı bir dönemin başındayız. İnsan kaynağı olarak küçük ama yarattığı etki olarak büyük ekiplerin çoğalacağı bu yeni dünya düzenini birlikte düşünmek ve takip etmek istersen, haftalık yapay zeka bültenime abone olabilirsin.</p>
+                                <p data-i18n="index.slide1_greeting"></p>
+                                <p data-i18n="index.slide1_paragraph1"></p>
+                                <p data-i18n="index.slide1_paragraph2"></p>
+                                <p data-i18n="index.slide1_paragraph3"></p>
+                                <p data-i18n="index.slide1_paragraph4"></p>
                                 <!-- Add more content as needed -->
                             </div>
                             <div class="photo-box">
@@ -72,15 +70,15 @@
 
         <!-- Section 2: Latest AI News -->
         <section id="latest-ai-news" class="container">
-            <h2>Son Yazılar</h2>
+            <h2 data-i18n="common_latest_posts.latest_posts_title"></h2>
             <ul id="ai-news-list">
-                <p>Loading latest news...</p> <!-- Placeholder text -->
+                <p data-i18n="common_latest_posts.loading_latest_news"></p> <!-- Placeholder text -->
             </ul>
         </section>
 
         <!-- Section 3: Substack Subscribe -->
         <section id="substack-subscribe" class="container text-center"> <!-- Added text-center for potential centering -->
-             <h2>Haftalık Bülten'e Üye Ol</h2> <!-- English version of "AI Bülten'e Üye Ol" -->
+             <h2 data-i18n="common_newsletter.newsletter_signup_title"></h2> <!-- English version of "AI Bülten'e Üye Ol" -->
              <div class="substack-embed-wrapper">
                 <!-- The iframe provided by the user -->
                 <iframe src="https://yapayzeka101.substack.com/embed" width="400" height="320" style="background:white; max-width: 100%;" frameborder="0" scrolling="no" title="Subscribe to Yapay Zeka 101 Newsletter"></iframe>
@@ -92,15 +90,14 @@
     <footer>
         <div class="container footer-flex"> <!-- Flex container for layout -->
             <div class="copyright">
-                <p>© 2025 C. Murad Özsert</p> <!-- Wireframe says 2025, adjust if needed -->
+                <p data-i18n="common_footer.copyright_text"></p> <!-- Wireframe says 2025, adjust if needed -->
             </div>
             <div class="footer-links">
-                <a href="contact_tr.html">İletişim</a> <!-- Link to Contact page -->
+                <a href="contact.html" data-i18n="common_footer.footer_contact_link"></a> <!-- Link to Contact page -->
             </div>
         </div>
     </footer>
 
     <!-- Link JavaScript file -->
-    <script src="script.js"></script>
 </body>
 </html>

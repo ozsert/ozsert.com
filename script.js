@@ -1,4 +1,38 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // i18next initialization
+    i18next.init({
+        lng: 'tr', // default language
+        debug: true,
+        resources: {
+            tr: {
+                translation: {}
+            }
+        }
+    }, function(err, t) {
+        if (err) return console.error(err);
+        // Load translations from tr.json
+        fetch('/locales/tr.json')
+            .then(response => response.json())
+            .then(data => {
+                i18next.addResourceBundle('tr', 'translation', data, true, true);
+                updateContent(); // Initial content update
+            })
+            .catch(error => console.error('Error loading translation file:', error));
+    });
+
+    function updateContent() {
+        document.querySelectorAll('[data-i18n]').forEach(element => {
+            const key = element.getAttribute('data-i18n');
+            element.innerHTML = i18next.t(key);
+        });
+        // Update title separately as it's not part of innerHTML
+        const titleElement = document.querySelector('title[data-i18n]');
+        if (titleElement) {
+            const titleKey = titleElement.getAttribute('data-i18n');
+            document.title = i18next.t(titleKey);
+        }
+    }
+
     const newsList = document.getElementById('ai-news-list');
     const rssFeedUrl = 'https://yapayzeka101.substack.com/feed';
     // Using RSS2JSON API to fetch and convert the RSS feed to JSON
