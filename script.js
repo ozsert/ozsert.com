@@ -161,7 +161,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     }
                 });
                 newsList.innerHTML = html;
-                console.log("",html);
+               // console.log("",html);
 
   
 
@@ -219,4 +219,70 @@ document.addEventListener('DOMContentLoaded', function () {
         console.log("imageModal element not found.");
     }
     
+    // Carousel dot navigation functionality
+    function initializeCarouselDots() {
+        // Get all carousel sections
+        document.querySelectorAll('section#ai-topics').forEach((section, sectionIndex) => {
+            const carousel = section.querySelector('#ai-topics-list');
+            const dots = section.querySelectorAll('.carousel-dots .dot');
+            
+            if (!carousel || !dots.length) return;
+            
+            // Add click event to each dot
+            dots.forEach(dot => {
+                dot.addEventListener('click', () => {
+                    const index = parseInt(dot.getAttribute('data-index'));
+                    const items = carousel.querySelectorAll('li');
+                    
+                    if (items[index]) {
+                        // Calculate the scroll position
+                        const scrollLeft = items[index].offsetLeft - carousel.offsetLeft;
+                        
+                        // Smooth scroll to the target item
+                        carousel.scrollTo({
+                            left: scrollLeft,
+                            behavior: 'smooth'
+                        });
+                        
+                        // Update active dot
+                        dots.forEach(d => d.classList.remove('active'));
+                        dot.classList.add('active');
+                    }
+                });
+            });
+            
+            // Update active dot on scroll
+            carousel.addEventListener('scroll', () => {
+                const scrollPosition = carousel.scrollLeft;
+                const items = carousel.querySelectorAll('li');
+                
+                // Find the closest item to the current scroll position
+                let closestIndex = 0;
+                let closestDistance = Infinity;
+                
+                items.forEach((item, idx) => {
+                    const distance = Math.abs(item.offsetLeft - carousel.offsetLeft - scrollPosition);
+                    if (distance < closestDistance) {
+                        closestDistance = distance;
+                        closestIndex = idx;
+                    }
+                });
+                
+                // Update active dot
+                dots.forEach(d => d.classList.remove('active'));
+                if (dots[closestIndex]) {
+                    dots[closestIndex].classList.add('active');
+                }
+            });
+        });
+    }
+    
+    // Initialize carousel dots after content is loaded
+    initializeCarouselDots();
+    
+    // Reinitialize after language change to ensure functionality
+    i18next.on('languageChanged', function() {
+        setTimeout(initializeCarouselDots, 100); // Small delay to ensure DOM is updated
+    });
+
 });
