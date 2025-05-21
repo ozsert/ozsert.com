@@ -565,7 +565,44 @@ footer {
     /* Potential adjustments for very wide screens if needed */
     /* e.g., increase --container-max-width if desired */
     :root {
-        --base-font-size: 18px; /* Slightly larger font on desktop */
+        --base-font-size: 20px; /* Slightly larger font on desktop */
         --container-max-width: 1600px;
     }    
+}
+
+/* Photo hover transition styles */
+.photo-hover-container {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+}
+.main-photo {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: auto;
+    transition: opacity 0.5s ease;
+    display: block;
+}
+.main-photo-front {
+    z-index: 2;
+    opacity: 1;
+}
+.main-photo-back {
+    z-index: 1;
+    opacity: 0;
+}
+/* Show Main_2.jpg on hover or when .scrolled-in is present */
+.photo-hover-container:hover .main-photo-front,
+.photo-hover-container.scrolled-in .main-photo-front {
+    opacity: 0;
+}
+.photo-hover-container:hover .main-photo-back,
+.photo-hover-container.scrolled-in .main-photo-back {
+    opacity: 1;
+}
+.photo-hover-container {
+    height: auto;
 }
