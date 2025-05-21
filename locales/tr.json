@@ -8,6 +8,10 @@
     "lang_tr": "TR",
     "lang_en": "EN"
   },
+  "common_banner": {
+    "ai_built_by": "Kodlar Yapay Zekâdan, İçerik İnsanlardan — Sevgiyle hazırlandı.",
+    "ai_human_words": "ChatGPT o3, Claude 3.7 Sonnet, Gemini 2.5 Pro, GitHub Copilot"
+  },
   "common_footer": {
     "copyright_text": "© 2025 C. Murad Özsert",
     "footer_contact_link": "İletişim"
