@@ -305,6 +305,12 @@ section:nth-of-type(odd) { /* Alternate background colors (optional) */
     display: flex; /* Enable flexbox for horizontal layout */
     overflow-x: auto; /* Allow horizontal scrolling */
     padding-bottom: 20px; /* Add some padding for the scrollbar */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+}
+
+#ai-topics-list::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
 }
 
 #ai-topics-list li {
