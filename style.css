@@ -545,7 +545,7 @@ footer {
 /* Large screens (Desktops) */
 @media (min-width: 992px) {
     :root {
-        --base-font-size: 15px; /* Slightly larger font on desktop */
+        --base-font-size: 13px; /* Slightly larger font on desktop */
     }
 
     .container {
@@ -567,7 +567,7 @@ footer {
 }
 
 /* Extra Large screens (Large Desktops) */
-@media (min-width: 2560px) {
+@media (min-width: 3000px) {
     /* Potential adjustments for very wide screens if needed */
     /* e.g., increase --container-max-width if desired */
     :root {
