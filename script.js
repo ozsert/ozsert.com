@@ -2,6 +2,36 @@ document.addEventListener('DOMContentLoaded', function () {
     const defaultLang = 'tr';
     let currentLang = localStorage.getItem('language') || defaultLang;
 
+    // AI Credits Banner Animation
+    const aiCreditsBanner = document.querySelector('.ai-credits-banner');
+    if (aiCreditsBanner) {
+        // Add subtle hover effect
+        aiCreditsBanner.addEventListener('mouseover', function() {
+            this.style.transform = 'scale(1.01)';
+            this.style.transition = 'transform 0.3s ease';
+        });
+        
+        aiCreditsBanner.addEventListener('mouseout', function() {
+            this.style.transform = 'scale(1)';
+            this.style.transition = 'transform 0.3s ease';
+        });
+        
+        // Intersection Observer for scroll-based animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                } else {
+                    entry.target.style.opacity = '0';
+                    entry.target.style.transform = 'translateY(20px)';
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        observer.observe(aiCreditsBanner);
+    }
+
     // Function to fetch and apply translations
     function loadTranslations(lang) {
         return fetch(`/locales/${lang}.json`)
