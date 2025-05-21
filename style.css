@@ -34,14 +34,16 @@
     margin: 0;
     padding: 15px 30px;
     border-radius: 14px;
-    background: rgba(255, 255, 255, 0.05); 
+    background: rgba(255, 255, 255, 0.08); 
     background: linear-gradient(90deg, 
-        rgba(188, 85, 216, 0.11) 0%, 
-        rgba(78, 150, 240, 0.11) 50%, 
-        rgba(240, 180, 60, 0.11) 100%);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+        rgba(188, 85, 216, 0.15) 0%, 
+        rgba(78, 150, 240, 0.15) 50%, 
+        rgba(240, 180, 60, 0.15) 100%);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08),
+                0 0 20px rgba(188, 85, 216, 0.15),
+                0 0 30px rgba(78, 150, 240, 0.15);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -51,6 +53,8 @@
     text-align: center;
     overflow: hidden;
     transition: all 0.5s ease;
+    animation: neonPulse 3s infinite alternate;
+    border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
 .ai-credits-banner::before {
@@ -69,6 +73,7 @@
     mask-composite: exclude; 
     pointer-events: none;
     opacity: 0.9;
+    animation: gradientShift 8s ease infinite;
 }
 
 .ai-icon {
@@ -143,7 +148,19 @@
     }
 }
 
-
+@keyframes neonPulse {
+    0% {
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08),
+                    0 0 15px rgba(188, 85, 216, 0.12),
+                    0 0 20px rgba(78, 150, 240, 0.12);
+    }
+    100% {
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.10),
+                    0 0 20px rgba(188, 85, 216, 0.25),
+                    0 0 35px rgba(78, 150, 240, 0.25),
+                    0 0 15px rgba(240, 180, 60, 0.15);
+    }
+}
 
 /* --- General Body Styling --- */
 body {
