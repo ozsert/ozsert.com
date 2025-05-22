@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Function to fetch and apply translations
     function loadTranslations(lang) {
-        return fetch(`/locales/${lang}.json`)
+        return fetch(`locales/${lang}.json`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error(`Failed to load ${lang}.json`);
