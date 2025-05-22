@@ -8,5 +8,5 @@ I'm an entrepreneur with a passion for building things. I enjoy working on chall
 
 ## Contact
 
-*   Email: [m@ozsert.com](mailto:m@ozsert.com)
+*   Email: [m@ozsert.com](mailto:hello@ozsert.com)
 *   LinkedIn: [Murad Özsert](https://www.linkedin.com/in/ozsert)
