@@ -620,7 +620,7 @@ section:nth-of-type(odd) { /* Alternate background colors (optional) */
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.2); /* Semi-transparent black overlay */
+    background-color: rgba(0, 0, 0, 0.3); /* Semi-transparent black overlay */
     z-index: 1; /* Ensure overlay is above background image */
     border-radius: inherit; /* Inherit border-radius from parent li */
     padding: 5px;
