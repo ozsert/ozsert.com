@@ -9,7 +9,7 @@
     "lang_en": "EN"
   },
   "common_banner": {
-    "ai_built_by": "Kodlar Yapay Zekâdan, İçerik İnsanlardan — Sevgiyle hazırlandı.",
+    "ai_built_by": "Yapay Zekâ Asistanları ile Geliştirildi.",
     "ai_human_words": "ChatGPT o3, Claude 3.7 Sonnet, Gemini 2.5 Pro, GitHub Copilot"
   },
   "common_footer": {
@@ -23,38 +23,39 @@
     "latest_posts_title": "Son Yazılar",
     "loading_latest_news": "Loading latest news..."
   },
-  "about": {
-    "title": "C. Murad Özsert - Hakkımda",
-    "meta_description": "C. Murad Özsert'in kişisel web sitesine hoş geldiniz. Hakkında daha fazla bilgi edinin...",
-    "slide1_greeting": "Merhaba,",
-    "slide1_paragraph1": "2003 yılında Boğaziçi Üniversitesi Bilgisayar Mühendisliği'ne adım attığımda, aslında sadece bir bölüme değil, uzun bir yolculuğa başlıyordum. Teknolojiye olan merakımın peşine düşmüştüm — fakat o günlerde bu merakın beni önce kurumsal dünyanın düzenli ritmine, daha sonra da girişimcilik sahnesinin inişli çıkışlı yollarına götüreceğini bilmiyordum.",
-    "slide1_paragraph2": "İlk yıllarımı büyük kurumsal şirketler için yazılım geliştirerek, ürünler tasarlayarak ve sistemler kurarak geçirdim. Daha sonra orta ölçekli şirketlerde daha çevik ortamlarda çalıştım. Bu bana hız, esneklik ve doğrudan etki etmenin ne demek olduğunu öğretti. Bu süreçte, finans, telekom ve lojistik gibi farklı sektörlerde çalışarak milyonlarca insanın hayatına doğrudan dokunan ürünler geliştirme şansı buldum. Her farklı ürün, her farklı sektör, yeni bir bakış açısı ve öğrenme alanıydı benim için.",
-    "slide1_paragraph3": "Daha sonra, \"Artık kendi yolunu çizmenin vakti geldi\" diyerek çok deneyimlemek istediğim girişimcilik yoluna atıldım. Bu motivasyon uzun bir araştırma döneminden sonra Yolda.com hikayesine dönüştü. Beraber etki yaratabilecek bir girişim kurmak için tanıştığım (sonradan dostluğa dönüşmüş olsa da) Volkan Özkan ile beraber girişimcilik dünyasında bulmuştuk kendimizi.",
-    "slide2_paragraph1": "Yolda.com, lojistik sektörünü teknolojiyle dönüştürme hayaliyle doğdu. 2 yıl içinde Türkiye'den Almanya’ya ve Avrupa'ya açılan girişim, 10 milyon doların üzerinde yatırım aldı. Bu sayede alanında öncü ve global yatırımcılarla birlikte çalışma fırsatı yakaladım. Hızlı büyüyen girişimlerin fark yaratan kurucularından oluşan Endeavor ailesine seçildim. Bu girişimcilik yolculuğu, beni konfor alanımın dışına çıkararak her gün yeni bir krizle, başka bir belirsizlikle başa çıkmayı öğretti. (Şirketi kurduğumuz ilk ay pandemi'nin tüm dünyayı etkilemesi, girişimcilik yolculuğumun ne kadar zor geçeceğini işaret etmişti aslında.)",
-    "slide2_paragraph2": "Yatırım ekosisteminin girişimlere bakış açısındaki keskin değişimler, yerel ve küresel ekonomik dalgalanmalar içinde geçen bu zorlu süreç (2020-2024), kimi zaman heyecan verici, kimi zaman ise stresliydi — ama her yönüyle son derece öğretici ve dönüştürücüydü. Tüm bu iniş çıkışların içinde her zaman yola ve yolda kalırken gelişmeye, değer üretmeye ve fark yaratmaya odaklandım.",
-    "slide2_paragraph3": "Yolda.com iş modelinin sermaye ihtiyacının yüksek olması ve yatırım dünyasının para politikalarını sıkılaştırması, şirketi kurarken hedeflediğimiz yüksek yatırım almamızı imkansız hale getirdi. Bütün bu gelişmeler ışığında Türkiye’nin önde gelen lojistik şirketlerinden birine devrettikten sonra, artık yeni bir kavşaktaydım. Odağımı yapay zekâya ve onun iş dünyasındaki dönüştürücü gücünü anlamaya, anlatmaya ve yapay zeka destekli ürünler geliştirmeye çevirdim.",
-    "slide3_paragraph1": "Bugün, teknolojiyle insanı harmanlayan yenilikçi sistemler ve iş modelleri üzerine çalışmaya devam ediyorum. Girişimlere ve Kurumsal şirketlere ilgilendiğim ve üzerine düşündüğüm bu konularda  danışmanlık veriyorum. Yapay zekânın hayatımızı her anlamda dönüştüren etkilerine ek olarak, düşünce yapılarımızı ve çalışma biçimlerimizi - kısacası insanı - yeniden şekillendiren bir potansiyel taşıdığına inanıyorum. Bu potansiyeli kendi işine uyarlayabileceklerin hayatta kalmaya devam edeceği bir gelecek hiç te uzak değil.",
-    "slide3_paragraph2": "Dünya da olup biten önemli konuları, yenilikleri ve kafa yorduğum teknoloji gelişmelerini takip etmek için haftalık yapay zeka yazılarıma abone olabilirsin. "
-  },
-  "index": {
+    "index": {
     "title": "C. Murad Özsert - Ana Sayfa",
     "meta_description": "C. Murad Özsert'in kişisel web sitesine hoş geldiniz. Kişisel blog yazılarını okuyun, yapay zeka konularında düşüncelerimi takip edin ve iletişime geçin.",
     "slide1_greeting": "",
     "slide1_paragraph1": "Boğaziçi Üniversitesi Bilgisayar Mühendisliği’nden mezun olduktan sonra teknolojiye olan merakım beni önce kurumsal dünyaya, ardından girişimciliğe taşıdı. Finans, telekom ve lojistik sektörlerinde, milyonlarca insanın hayatına dokunan ürünler geliştirdim.",
     "slide1_paragraph2": "Girişimcilik yolculuğum, pandeminin hemen başında kurduğumuz Yolda.com ile başladı. Türkiye ve Almanya’da aktif olarak faaliyet gösteren Yolda.com, lojistik sektörünü teknolojiyle dönüştürme hedefiyle yola çıktı ve 10 milyon doların üzerinde yatırım aldı. Bu süreç, bana hızlı büyümenin, karar almanın ve belirsizlikler içinde ayakta kalmanın ne anlama geldiğini öğretti.",
-    "slide1_paragraph3": "Yolda.com’u Türkiye’nin önde gelen lojistik şirketlerinden birine devrettikten sonra odağımı yapay zekâya çevirdim. Bugün, teknolojiyle insanı harmanlayan yenilikçi sistemler ve iş modelleri üzerine çalışmaya devam ediyorum. Girişimlere ve Kurumsal şirketlere ilgilendiğim ve üzerine düşündüğüm bu konularda  danışmanlık veriyorum. ",
-    "slide1_paragraph4": "Yapay zekânın hayatımızı her anlamda dönüştüren etkilerine ek olarak, düşünce yapılarımızı ve çalışma biçimlerimizi - kısacası insanı - yeniden şekillendiren bir potansiyel taşıdığına inanıyorum. Bu potansiyeli kendi işine uyarlayabileceklerin hayatta kalmaya devam edeceği bir gelecek hiç te uzak değil. İnsan kaynağı olarak küçük ama yarattığı etki olarak büyük ekiplerin çoğalacağı bu yeni dünya düzenini birlikte takip etmek istersen, haftalık yapay zeka bültenime abone olabilirsin."
+    "slide1_paragraph3": "Yolda.com’dan sonra odağımı yapay zekâya çevirdim. Bugün, teknolojiyle insanı harmanlayan yenilikçi sistemler üzerine çalışmaya devam ediyorum. Girişimlere ve kurumsal şirketlere ilgilendiğim ve üzerine düşündüğüm bu konularda danışmanlık veriyorum. ",
+    "slide1_paragraph4": "Yapay zekânın hayatımızı her anlamda dönüştüren etkilerinini yanında, düşünce yapılarımızı ve çalışma biçimlerimizi - kısacası insanı tümüyle - yeniden şekillendiren bir potansiyel taşıdığına inanıyorum. Bu potansiyeli kendi işine uyarlayabileceklerin hayatta kalmaya devam edeceği bir gelecek o kadar da uzak değil artık. Kişi sayısı olarak küçük ama yarattığı etki olarak büyük ekiplerin çoğalacağı bu yeni dünya düzenini birlikte takip etmek istersen, haftalık yapay zeka bültenime abone olabilirsin."
   },
+  "about": {
+    "title": "C. Murad Özsert - Hakkımda",
+    "meta_description": "C. Murad Özsert'in kişisel web sitesine hoş geldiniz. Hakkında daha fazla bilgi edinin...",
+    "slide1_greeting": "Merhaba,",
+    "slide1_paragraph1": "2003 yılında Boğaziçi Üniversitesi Bilgisayar Mühendisliği'ne adım attığımda, aslında sadece bir okula değil, uzun bir yolculuğa başlıyordum. Teknolojiye olan merakımın peşine düşmüştüm — fakat o günlerde bu merakın beni önce kurumsal dünyanın düzenli ritmine, daha sonra da girişimcilik sahnesinin inişli çıkışlı yollarına götüreceğini bilmiyordum.",
+    "slide1_paragraph2": "İlk yıllarımı büyük kurumsal şirketler için yazılım geliştirerek, ürünler tasarlayarak ve sistemler kurarak geçirdim. Daha sonra orta ölçekli şirketlerde daha çevik ortamlarda çalıştım. Bu bana hız, esneklik ve doğrudan etki etmenin ne demek olduğunu öğretti. Bu süreçte, finans, telekom ve lojistik gibi farklı sektörlerde çalışarak milyonlarca insanın hayatına doğrudan dokunan ürünler geliştirme şansı buldum. Her farklı ürün, her farklı sektör, yeni bir bakış açısı ve öğrenme alanıydı benim için.",
+    "slide1_paragraph3": "Dünya'da Girişimciliğin yarattığı etkiyi fark etmem ile yönümü bu dünya'yı anlamaya çevirdim. İçimdeki motivasyon ve değer yaratma isteği uzun bir araştırma döneminden sonra Yolda.com hikayesine dönüştü. Beraber bir şeyler yapabilir miyiz? diye tanıştığım Volkan Özkan (sonradan dostluğa dönüşmüş olsa da) ile beraber girişimcilik dünyasında bulmuştuk kendimizi.",
+    "slide2_paragraph1": "Yolda.com, lojistik sektörünü teknolojiyle dönüştürme hayaliyle doğdu. 2 yıl içinde Türkiye'den Almanya’ya ve Avrupa'ya açılan girişim, 10 milyon doların üzerinde yatırım aldı. Bu sayede alanında öncü ve global yatırımcılarla birlikte çalışma fırsatı yakaladım. Hızlı büyüyen girişimlerin fark yaratan kurucularından oluşan Endeavor ailesine seçildim. Bu yolculuk, beni konfor alanımın dışına çıkararak her gün yeni bir krizle, yeni bir belirsizlikle nasıl başa çıkacağımı öğretti. (Şirketi kurduğumuz ilk ay pandemi'nin tüm dünyayı etkilemesi, girişimcilik yolculuğumun ne kadar zor geçeceğini işaret etmişti aslında.)",
+    "slide2_paragraph2": "Yatırım ekosisteminin girişimlere bakış açısındaki keskin değişimler, yerel ve küresel ekonomik dalgalanmalar içinde geçen bu zorlu süreç, kimi zaman heyecan verici, kimi zaman ise stresliydi — ama her yönüyle son derece öğretici ve dönüştürücüydü. Tüm bu iniş ve çıkışların içinde her zaman yola ve yolda kalırken gelişmeye, değer üretmeye ve fark yaratmaya odaklandım.",
+    "slide2_paragraph3": "Yolda.com iş modelinin sermaye ihtiyacının yüksek olması ve yatırım dünyasının para politikalarını sıkılaştırması, şirketi kurarken hedeflediğimiz yüksek yatırım almamızı imkansız hale getirdi. Bütün bu gelişmeler ışığında Türkiye’nin önde gelen lojistik şirketlerinden birine devrettikten sonra, artık yeni bir kavşaktaydım. Odağımı yapay zekâya ve onun iş dünyasındaki dönüştürücü gücünü anlamaya, anlatmaya ve yapay zeka destekli ürünler geliştirmeye çevirdim.",
+    "slide3_paragraph1": "Bugün, teknolojiyle insanı harmanlayan yenilikçi sistemler üzerine çalışmaya devam ediyorum. Girişimlere ve Kurumsal şirketlere ilgilendiğim ve üzerine düşündüğüm bu konularda danışmanlık veriyorum. Yapay zekânın hayatımızı her anlamda dönüştüren etkilerine ek olarak, düşünce yapılarımızı ve çalışma biçimlerimizi - kısacası insanı tümüyle - yeniden şekillendiren bir potansiyel taşıdığına inanıyorum. Bu potansiyeli kendi işine uyarlayabileceklerin hayatta kalmaya devam edeceği bir gelecek o kadar da uzak değil.",
+    "slide3_paragraph2": "Dünya da olup biten bu önemli konuları, yenilikleri ve ışık hızında olan AI gelişmelerini takip etmek istersen haftalık yapay zeka yazılarıma abone olabilirsin. "
+  },
+
   "blog": {
     "title": "C. Murad Özsert - Blog",
-    "meta_description": "C. Murad Özsert'in kişisel web sitesine hoş geldiniz. Blog yazılarını okuyun..."
+    "meta_description": "C. Murad Özsert'in kişisel web sitesine hoş geldiniz. Blog yazılarını okuyun."
   },
   "contact": {
     "title": "C. Murad Özsert - İletişim",
     "meta_description": "C. Murad Özsert ile iletişime geçin.",
     "contact_intro1": "Etkinlik katılımı, konuşma daveti ve diğer konular için e-posta ile ulaşabilirsiniz.",
-    "contact_intro2": "Biraz gecikme ile de olsa cevap dönmeye çalışıyorum.",
-    "contact_email_info": "İletişim için E-posta: hello@ozsert.com"
+    "contact_intro2": "",
+    "contact_email_info": "E-posta: hello@ozsert.com"
   },
   "topics": {
     "title": "C. Murad Özsert - Konuşma Konuları",
