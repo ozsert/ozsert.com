@@ -54,7 +54,9 @@
     "meta_description": "Get in touch with C. Murad Özsert.",
     "contact_intro1": "You can reach out via email for event participation, speaking invitations, and other inquiries.",
     "contact_intro2": "I try to respond, albeit with some delay.",
-    "contact_email_info": "Contact Email: hello@ozsert.com"
+    "contact_email_instruction": "Contact Email: ",
+    "contact_email_user": "hello",
+    "contact_email_domain": "ozsert.com"
   },
   "topics": {
     "title": "C. Murad Özsert - Speaking Topics",

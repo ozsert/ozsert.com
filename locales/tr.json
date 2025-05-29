@@ -55,7 +55,9 @@
     "meta_description": "C. Murad Özsert ile iletişime geçin.",
     "contact_intro1": "Etkinlik katılımı, konuşma daveti ve diğer konular için e-posta ile ulaşabilirsiniz.",
     "contact_intro2": "",
-    "contact_email_info": "E-posta: hello@ozsert.com"
+    "contact_email_instruction": "E-posta: ",
+    "contact_email_user": "hello",
+    "contact_email_domain": "ozsert.com"
   },
   "topics": {
     "title": "C. Murad Özsert - Konuşma Konuları",

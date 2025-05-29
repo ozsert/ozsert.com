@@ -85,6 +85,24 @@ document.addEventListener('DOMContentLoaded', function () {
             const titleKey = titleElement.getAttribute('data-i18n');
             document.title = i18next.t(titleKey);
         }
+
+        // Construct and display email address
+        const emailLinkElement = document.getElementById('email-link');
+        if (emailLinkElement) {
+            const user = i18next.t('contact.contact_email_user');
+            const domain = i18next.t('contact.contact_email_domain');
+            
+            // Check if translations are loaded and not default keys
+            if (user && domain && user !== 'contact.contact_email_user' && domain !== 'contact.contact_email_domain') {
+                const email = user + '@' + domain;
+                emailLinkElement.href = 'mailto:' + email;
+                emailLinkElement.textContent = email; // Display the email as text of the link
+            } else {
+                // Fallback or error logging if keys are not found
+                emailLinkElement.textContent = ''; // Clear if email parts are not properly translated
+                console.warn('Email parts not translated or missing. User:', user, 'Domain:', domain);
+            }
+        }
     }
 
     function updateLanguageToggle(lang) {
