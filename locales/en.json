@@ -10,7 +10,7 @@
   },
   "common_banner": {
     "ai_built_by": "Built by AI, Content by Humans — Crafted with Love.",
-    "ai_human_words": "ChatGPT o3, Claude 3.7 Sonnet, Gemini 2.5 Pro, GitHub Copilot"
+    "ai_human_words": "ChatGPT o3, Claude 3.7 Sonnet, Gemini 2.5 Pro, <span class=\"strikethrough\">GitHub Copilot</span> Claude Code"
   },
   "common_footer": {
     "copyright_text": "© 2025 C. Murad Özsert",
