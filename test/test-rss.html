@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RSS Feed Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .test-result { padding: 10px; margin: 10px 0; border-radius: 5px; }
+        .success { background-color: #d4edda; border: 1px solid #c3e6cb; color: #155724; }
+        .error { background-color: #f8d7da; border: 1px solid #f5c6cb; color: #721c24; }
+        .loading { background-color: #d1ecf1; border: 1px solid #bee5eb; color: #0c5460; }
+        .feed-item { border: 1px solid #ddd; margin: 10px 0; padding: 15px; border-radius: 5px; }
+        .feed-item h3 { margin-top: 0; color: #333; }
+        .feed-item a { color: #007bff; text-decoration: none; }
+        .feed-item a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <h1>RSS Feed Test: airadartr.substack.com</h1>
+    
+    <div id="test-status" class="test-result loading">
+        Testing RSS feed connection...
+    </div>
+    
+    <div id="feed-results"></div>
+
+    <script>
+        const rssFeedUrl = 'https://airadartr.substack.com/feed';
+        const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssFeedUrl)}`;
+        const statusDiv = document.getElementById('test-status');
+        const resultsDiv = document.getElementById('feed-results');
+
+        console.log('Testing RSS feed URL:', rssFeedUrl);
+        console.log('RSS2JSON API URL:', apiUrl);
+
+        fetch(apiUrl)
+            .then(response => {
+                console.log('Response status:', response.status);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('RSS2JSON response:', data);
+                
+                if (data.status !== 'ok') {
+                    throw new Error(`RSS2JSON error: ${data.message || 'Unknown error'}`);
+                }
+
+                if (!data.items || data.items.length === 0) {
+                    throw new Error('No items found in RSS feed');
+                }
+
+                // Success!
+                statusDiv.className = 'test-result success';
+                statusDiv.innerHTML = `
+                    ✅ RSS feed is working!<br>
+                    <strong>Feed title:</strong> ${data.feed?.title || 'N/A'}<br>
+                    <strong>Feed description:</strong> ${data.feed?.description || 'N/A'}<br>
+                    <strong>Items found:</strong> ${data.items.length}
+                `;
+
+                // Display first 3 items
+                let html = '<h2>Latest Posts:</h2>';
+                data.items.slice(0, 3).forEach((item, index) => {
+                    const title = item.title || 'No title';
+                    const link = item.link || '#';
+                    const pubDate = item.pubDate || 'No date';
+                    let description = item.description || item.content_text || 'No description';
+                    
+                    // Strip HTML and truncate
+                    const tempDiv = document.createElement('div');
+                    tempDiv.innerHTML = description;
+                    description = tempDiv.textContent || tempDiv.innerText || "";
+                    if (description.length > 200) {
+                        description = description.substring(0, 200) + "...";
+                    }
+
+                    html += `
+                        <div class="feed-item">
+                            <h3><a href="${link}" target="_blank">${title}</a></h3>
+                            <p><strong>Published:</strong> ${new Date(pubDate).toLocaleDateString()}</p>
+                            <p>${description}</p>
+                        </div>
+                    `;
+                });
+                
+                resultsDiv.innerHTML = html;
+            })
+            .catch(error => {
+                console.error('Error testing RSS feed:', error);
+                statusDiv.className = 'test-result error';
+                statusDiv.innerHTML = `
+                    ❌ RSS feed test failed!<br>
+                    <strong>Error:</strong> ${error.message}<br>
+                    <strong>Feed URL:</strong> ${rssFeedUrl}
+                `;
+            });
+    </script>
+</body>
+</html>

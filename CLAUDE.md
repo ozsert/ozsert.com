@@ -73,7 +73,7 @@ The site uses a sophisticated i18next setup:
 - Images follow numbered system (Topics_1.1.jpeg, Topics_1.2.jpeg, etc.)
 
 **RSS Integration:**
-- Fetches latest AI newsletter content from Substack
+- Fetches latest AI newsletter content from Substack (currently: `airadartr.substack.com`)
 - Uses RSS2JSON service for CORS handling
 - Displays recent posts on homepage
 
@@ -91,3 +91,19 @@ Email addresses are constructed from translation parts to prevent scraping:
 - Split into `email_user` and `email_domain` in translations
 - JavaScript combines them on page load
 - Maintains functionality while reducing spam
+
+## Testing
+
+**Test Directory:** `/test/`
+
+**RSS Feed Testing:**
+- Use `test/test-rss.html` to verify RSS2JSON API integration
+- Tests current Substack feed URL and displays sample posts
+- Helpful for debugging RSS feed issues or validating new feed URLs
+- Open directly in browser (no server required)
+
+**Testing RSS Feed Changes:**
+1. Update RSS feed URL in `script.js` 
+2. Open `test/test-rss.html` in browser to verify new feed works
+3. Check for successful API response and sample post display
+4. Test on actual site to ensure proper integration
