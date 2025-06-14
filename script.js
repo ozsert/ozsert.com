@@ -133,7 +133,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     const newsList = document.getElementById('ai-news-list');
-    const rssFeedUrl = 'https://yapayzeka101.substack.com/feed';
+    const rssFeedUrl = 'https://airadartr.substack.com/feed';
     // Using RSS2JSON API to fetch and convert the RSS feed to JSON
     const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssFeedUrl)}`;
 
