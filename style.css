@@ -900,24 +900,67 @@ footer {
 
     /* AI Credits Banner mobile styling */
     .ai-credits-banner {
-        padding: 8px 15px;
-        font-size: 0.85rem;
+        padding: 6px 12px;
+        font-size: 0.75rem;
         flex-direction: column;
-        gap: 4px;
+        gap: 3px;
+        max-width: 95%;
+        margin: 10px 0;
     }
     
     .ai-credits-banner img.lucide {
-        width: 18px;
-        height: 18px;
+        width: 16px;
+        height: 16px;
     }
     
     .ai-text-container {
         align-items: center;
         text-align: center;
+        gap: 1px;
+    }
+    
+    .ai-text-bold {
+        font-size: 0.75rem;
+        line-height: 1.2;
+    }
+    
+    .ai-text-regular {
+        font-size: 0.7rem;
+        line-height: 1.2;
     }
 
     .modal-text-display {
         display: none; /* Hide modal text on smaller screens */
+    }
+}
+
+/* Extra small screens (small phones) */
+@media (max-width: 480px) {
+    .ai-credits-banner {
+        padding: 4px 8px;
+        font-size: 0.65rem;
+        max-width: 98%;
+        margin: 8px 0;
+        gap: 2px;
+    }
+    
+    .ai-credits-banner img.lucide {
+        width: 14px;
+        height: 14px;
+    }
+    
+    .ai-text-bold {
+        font-size: 0.65rem;
+        line-height: 1.1;
+    }
+    
+    .ai-text-regular {
+        font-size: 0.6rem;
+        line-height: 1.1;
+    }
+    
+    .banner-wrapper {
+        margin: 8px 0;
     }
 }
 
@@ -961,6 +1004,42 @@ footer {
         flex-direction: row; /* Align footer items horizontally */
         justify-content: space-between; /* Space out copyright and links */
         text-align: left;
+    }
+    
+    /* AI Credits Banner tablet styling */
+    .ai-credits-banner {
+        padding: 10px 25px;
+        font-size: 0.92rem;
+        flex-direction: row;
+        gap: 8px;
+        max-width: 850px;
+        margin: 15px 0;
+    }
+    
+    .ai-credits-banner img.lucide {
+        width: 21px;
+        height: 21px;
+    }
+    
+    .ai-text-container {
+        align-items: flex-start;
+        text-align: left;
+        gap: 3px;
+    }
+    
+    .ai-text-bold {
+        font-size: 0.92rem;
+        line-height: 1.3;
+        font-weight: 600;
+    }
+    
+    .ai-text-regular {
+        font-size: 0.88rem;
+        line-height: 1.3;
+    }
+    
+    .banner-wrapper {
+        margin: 15px 0;
     }
 }
 
