@@ -156,6 +156,18 @@ document.addEventListener('DOMContentLoaded', function () {
                 const items = data.items;
                 let html = "";
 
+                // Define bento layout patterns for different numbers of items
+                const bentoPatterns = {
+                    1: ['bento-large'],
+                    2: ['bento-large', 'bento-tall'],
+                    3: ['bento-wide', 'bento-regular', 'bento-regular'],
+                    4: ['bento-large', 'bento-regular', 'bento-regular', 'bento-tall'],
+                    5: ['bento-large', 'bento-wide', 'bento-regular', 'bento-regular', 'bento-tall']
+                };
+
+                const itemCount = Math.min(items.length, 5);
+                const pattern = bentoPatterns[itemCount] || bentoPatterns[5];
+
                 items.forEach((item, index) => {
                     // Limiting to 5 posts, adjust as needed
                     if (index < 5) {
@@ -197,8 +209,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
                         // Prepare inline style for background image
                         const styleAttribute = imageUrl ? `style="background-image: url('${imageUrl}');"` : 'style="background-color: var(--light-gray);"'; // Fallback background color
+                        
+                        // Get bento class for this item
+                        const bentoClass = pattern[index] || 'bento-regular';
 
-                        html += `<li ${styleAttribute}>
+                        html += `<li class="${bentoClass}" ${styleAttribute}>
                                     <div class="ai-news-content">
                                         <h3>${title}</h3>
                                         <p>${descriptionSnippet}</p>

@@ -468,39 +468,51 @@ section:nth-of-type(odd) { /* Alternate background colors (optional) */
 #ai-news-list {
     list-style: none;
     padding: 0;
-    margin: 0 auto; /* Center the list container */
-    display: flex; /* Enable flexbox for horizontal layout */
-    overflow-x: auto; /* Allow horizontal scrolling */
-    padding-bottom: 20px; /* Add some padding for the scrollbar */
-    scroll-behavior: smooth;
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE and Edge */
-    gap: 22px; /* Consistent spacing between items */
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-auto-rows: 200px;
+    gap: 16px;
+    padding-bottom: 20px;
+    max-width: 1200px;
 }
 
-#ai-news-list::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera */
+/* Bento layout size variations */
+#ai-news-list li.bento-large {
+    grid-column: span 2;
+    grid-row: span 2;
+}
+
+#ai-news-list li.bento-wide {
+    grid-column: span 2;
+    grid-row: span 1;
+}
+
+#ai-news-list li.bento-tall {
+    grid-column: span 1;
+    grid-row: span 2;
+}
+
+#ai-news-list li.bento-regular {
+    grid-column: span 1;
+    grid-row: span 1;
 }
 
 #ai-news-list li {
     border: 1px solid var(--border-color);
-    border-radius: var(--border-radius-md); /* Consistent rounded corners */
-    margin-right: 0; /* Using gap instead */
-    margin-bottom: 0;
+    border-radius: var(--border-radius-md);
     position: relative;
     background-size: cover;
     background-position: center;
-    width: 350px;
-    height: 475px;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     padding: 0;
     overflow: hidden;
     color: white;
-    flex-shrink: 0;
     box-shadow: var(--shadow-sm);
     transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+    min-height: 200px;
 }
 
 #ai-news-list li::before { /* Add a dark overlay for text readability */
@@ -853,19 +865,39 @@ footer {
 
 /* --- Responsiveness --- */
 
+@media (max-width: 1023px) and (min-width: 768px) {
+    #ai-news-list {
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        grid-auto-rows: 180px;
+    }
+    
+    /* Limit spans on tablet */
+    #ai-news-list li.bento-large {
+        grid-column: span 2;
+        grid-row: span 2;
+    }
+    
+    #ai-news-list li.bento-wide {
+        grid-column: span 2;
+        grid-row: span 1;
+    }
+}
+
 @media (max-width: 767px) {
     #ai-news-list {
-        flex-direction: column;
-        align-items: center;
-        overflow-x: visible; /* Disable horizontal scroll for vertical stacking */
+        grid-template-columns: 1fr;
+        grid-auto-rows: 250px;
+        max-width: 100%;
+        padding: 0 10px 20px;
     }
 
-    #ai-news-list li {
-        width: 90%; /* Responsive width for mobile */
-        max-width: 400px; /* Cap the width */
-        height: auto; /* Auto height for responsiveness */
-        margin-right: 0; /* Remove right margin */
-        margin-bottom: 20px; /* Add space between stacked items */
+    /* Override all bento classes on mobile for single column */
+    #ai-news-list li.bento-large,
+    #ai-news-list li.bento-wide,
+    #ai-news-list li.bento-tall,
+    #ai-news-list li.bento-regular {
+        grid-column: span 1;
+        grid-row: span 1;
     }
     
     #ai-topics-list {
