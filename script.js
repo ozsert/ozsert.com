@@ -157,12 +157,13 @@ document.addEventListener('DOMContentLoaded', function () {
                 let html = "";
 
                 // Define bento layout patterns for different numbers of items
+                // First item is always 2x2 (handled by CSS :first-child)
                 const bentoPatterns = {
                     1: ['bento-large'],
-                    2: ['bento-large', 'bento-tall'],
-                    3: ['bento-wide', 'bento-regular', 'bento-regular'],
-                    4: ['bento-large', 'bento-regular', 'bento-regular', 'bento-tall'],
-                    5: ['bento-large', 'bento-wide', 'bento-regular', 'bento-regular', 'bento-tall']
+                    2: ['bento-large', 'bento-regular'],
+                    3: ['bento-large', 'bento-regular', 'bento-regular'],
+                    4: ['bento-large', 'bento-regular', 'bento-regular', 'bento-regular'],
+                    5: ['bento-large', 'bento-regular', 'bento-regular', 'bento-regular', 'bento-regular']
                 };
 
                 const itemCount = Math.min(items.length, 5);
