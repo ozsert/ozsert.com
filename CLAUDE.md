@@ -73,7 +73,7 @@ The site uses a sophisticated i18next setup:
 - Images follow numbered system (Topics_1.1.jpeg, Topics_1.2.jpeg, etc.)
 
 **RSS Integration:**
-- Fetches latest AI newsletter content from Substack (currently: `airadartr.substack.com`)
+- Fetches latest AI newsletter content from Substack (currently: `thenextsignalnewsletter.substack.com`)
 - Uses RSS2JSON service for CORS handling
 - Displays recent posts on homepage
 
