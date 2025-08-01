@@ -17,7 +17,13 @@
     "footer_contact_link": "İletişim"
   },
   "common_newsletter": {
-    "newsletter_signup_title": "Haftalık Yapay Zeka Bülten'ine Üye Ol"
+    "newsletter_signup_title": "Haftalık Yapay Zeka Bülten'ine Üye Ol",
+    "section_title": "Haftalık Bülten",
+    "newsletter_name": "The Next SignAl",
+    "newsletter_description": "Finding the next signal in AI & Tech - Beyond the noise",
+    "newsletter_author": "C. Murad Özsert",
+    "subscribe_linkedin": "LinkedIn'de Takip Et",
+    "subscribe_substack": "Substack'te Takip Et"
   },
   "common_latest_posts": {
     "latest_posts_title": "Son Yazılar",

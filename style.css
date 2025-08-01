@@ -437,22 +437,110 @@ section:nth-of-type(odd) { /* Alternate background colors (optional) */
 }
 
 
-/* --- Substack Sections --- */
-#substack-subscribe .substack-embed-wrapper {
-    margin: 20px auto; /* Center the wrapper */
-    /*max-width: 480px; /* Match iframe width */
-    overflow: hidden; /* Hide potential horizontal scroll */
+/* --- Newsletter Subscribe Section --- */
+#newsletter-subscribe {
+    padding: 60px 0;
+    background-color: var(--background-light);
 }
 
-#substack-subscribe iframe {
-    display: block; /* Ensure it behaves like a block element */
-    margin: 0 auto; /* Center iframe if wrapper is wider */
-    max-width: 100%; /* Ensure it scales down */
-}
-
-#substack-subscribe h2 {
+#newsletter-subscribe h2 {
     text-align: center;
     margin-bottom: 20px;
+}
+
+.newsletter-card {
+    background: white;
+    border-radius: 16px;
+    padding: 40px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.newsletter-logo {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 20px;
+    display: block;
+    border-radius: 8px;
+}
+
+.newsletter-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin: 0 0 12px 0;
+}
+
+.newsletter-description {
+    font-size: 1rem;
+    color: var(--text-medium);
+    line-height: 1.5;
+    margin: 0 0 8px 0;
+}
+
+.newsletter-author {
+    font-size: 0.875rem;
+    color: var(--text-light);
+    margin: 0 0 30px 0;
+    font-style: italic;
+}
+
+.newsletter-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+}
+
+.newsletter-button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 12px 20px;
+    text-align: center;
+    outline: none;
+    text-decoration: none !important;
+    color: #ffffff !important;
+    width: 280px;
+    height: 44px;
+    border-radius: 22px;
+    font-family: "SF Pro Text", Helvetica, sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.linkedin-button {
+    background-color: #0A66C2;
+}
+
+.linkedin-button:hover {
+    background-color: #085699;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(10, 102, 194, 0.3);
+}
+
+.substack-button {
+    background-color: #FF6719;
+}
+
+.substack-button:hover {
+    background-color: #E55A16;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 103, 25, 0.3);
+}
+
+@media (min-width: 600px) {
+    .newsletter-buttons {
+        flex-direction: row;
+        justify-content: center;
+        gap: 16px;
+    }
 }
 
 /* --- Latest AI News Section --- */
