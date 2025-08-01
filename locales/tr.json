@@ -3,7 +3,7 @@
     "logo_text": "C. Murad Özsert",
     "nav_about": "Hakkında",
     "nav_topics": "Konuşma Başlıkları",
-    "nav_blog": "Blog",
+    "nav_blog": "Bülten",
     "nav_contact": "İletişim",
     "lang_tr": "TR",
     "lang_en": "EN"
@@ -21,7 +21,7 @@
     "section_title": "Haftalık Bülten",
     "newsletter_name": "The Next SignAl",
     "newsletter_description": "Finding the next signal in AI & Tech - Beyond the noise",
-    "newsletter_author": "C. Murad Özsert",
+    "newsletter_author": "By C. Murad Özsert",
     "subscribe_linkedin": "LinkedIn'de Takip Et",
     "subscribe_substack": "Substack'te Takip Et"
   },
