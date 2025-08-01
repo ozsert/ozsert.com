@@ -17,7 +17,13 @@
     "footer_contact_link": "Contact"
   },
   "common_newsletter": {
-    "newsletter_signup_title": "Subscribe to the Weekly AI Newsletter"
+    "newsletter_signup_title": "Subscribe to the Weekly AI Newsletter",
+    "section_title": "Weekly Newsletter",
+    "newsletter_name": "The Next SignAl",
+    "newsletter_description": "Finding the next signal in AI & Tech - Beyond the noise",
+    "newsletter_author": "By C. Murad Özsert",
+    "subscribe_linkedin": "Subscribe on LinkedIn",
+    "subscribe_substack": "Subscribe on Substack"
   },
   "common_latest_posts": {
     "latest_posts_title": "Latest Posts",
