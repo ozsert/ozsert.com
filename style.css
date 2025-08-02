@@ -902,8 +902,8 @@ footer {
     display: inline-block;
     width: 100%;
     max-width: 400px;
-    /* Add a min-height to prevent collapse */
-    min-height: 400px;
+    /* Responsive min-height instead of fixed */
+    min-height: auto;
 }
 .main-photo {
     position: absolute;
@@ -912,6 +912,8 @@ footer {
     height: auto;
     transition: opacity 0.5s ease;
     display: block;
+    object-fit: cover;
+    border-radius: var(--border-radius-md);
 }
 .main-photo-front {
     z-index: 2;
@@ -989,6 +991,31 @@ footer {
         grid-auto-rows: 300px;
         max-width: 100%;
         padding: 0 10px 20px;
+    }
+    
+    /* Fix photo display on mobile - disable hover effects */
+    .photo-hover-container {
+        position: static;
+        max-width: 100%;
+        width: 100%;
+    }
+    
+    .main-photo {
+        position: static;
+        width: 100%;
+        height: auto;
+        display: block;
+        margin: 0 auto;
+    }
+    
+    /* Hide back photo on mobile, only show front */
+    .main-photo-back {
+        display: none;
+    }
+    
+    .main-photo-front {
+        opacity: 1 !important;
+        position: static;
     }
 
     /* Override all bento classes on mobile for single column */
@@ -1196,6 +1223,19 @@ footer {
     /* e.g., increase --container-max-width if desired */
         :root {
         --base-font-size: 17px; /* Slightly larger font on desktop */
+    }
+}
+
+/* Index page specific spacing */
+.index-page #hero-carousel {
+    margin-bottom: 50px;
+}
+
+/* Large screens (1440px and above) */
+@media (min-width: 1440px) {
+    /* Add more spacing after index page hero carousel */
+    .index-page #hero-carousel {
+        margin-bottom: 120px;
     }
 }
 
