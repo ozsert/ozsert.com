@@ -75,9 +75,10 @@ Personal motif: **a signal** ( *finding the signal beyond the noise*).
 - en: Finding the signal. Building what's next.
 
 ### hero.role
-> Generic definition, no job title. Accent-highlight "enterprises" and "measurable impact".
-- tr: Büyük kurumların yapay zekâyı fikirden ölçülebilir iş etkisine taşımasına yardım ediyorum; şu an Deka Tech'te, Türkiye'nin en büyük kurumlarıyla.
-- en: I help large enterprises turn AI from a concept into measurable impact, currently at Deka Tech, working with some of the largest enterprises.
+> Generic definition, no job title, no employer. The whole spectrum, startups to large enterprises.
+> Accent-highlight the phrases in `hero.role_highlights`.
+- tr: Startup'lardan Türkiye'nin en büyük kurumlarına kadar, ekiplerin teknoloji ve yapay zekâyla ölçülebilir değer üretmesine yardım ediyorum.
+- en: From startups to some of the largest enterprises, I help teams turn technology and AI into measurable value.
 
 ### hero.previously_label
 > Small mono label in front of `hero.previously` (a mono "PREVIOUSLY"-style label).
@@ -95,8 +96,8 @@ Personal motif: **a signal** ( *finding the signal beyond the noise*).
 ### hero.role_highlights
 > Phrases in `hero.role` to highlight (marker wash / accent ink). Separated by `|`.
 > Each one MUST appear exactly in `hero.role` Not shown on their own.
-- tr: Büyük kurumların|ölçülebilir iş etkisine
-- en: large enterprises|measurable impact
+- tr: Startup'lardan|en büyük kurumlarına|ölçülebilir değer
+- en: startups|largest enterprises|measurable value
 
 ### hero.manifesto_circle
 > Words in `hero.manifesto` to circle by hand (an oval drawn around each), `|`-separated.

@@ -22,7 +22,7 @@ Pure static site on GitHub Pages: no framework, no bundler.
 | Pages | Homepage (one per model), `/talks/`, `/projects/<slug>/` (7 projects), `/models/` timeline, `404.html`. |
 | Built by models | Homepage, talks page and project pages. Built by Claude, outside the experiment: `/models/`, 404, shared code. |
 | Style | Field Notebook; Istanbul accent palette (6 colours, each with its own hero scene); 📡 mark. |
-| Identity | No job title in the hero ("I help large enterprises…"). Deka Tech is named; clients never are. |
+| Identity | No job title or employer in the hero: startups → largest enterprises. Deka Tech only in Experience/Now; clients never named. |
 | Sections | 01 Workbench (enterprise + personal projects) · 02 Founder's road (Yolda) · 03 Talks · 04 Newsletter · 05 Experience. |
 | Root `/` | The released homepage with the highest `order` (or `pinned` in `content/models.json`). |
 | Public vs internal | `specs/` is public (deployed and shown in the specs window). This file and `tools/` are not; builds live outside the repo. |
