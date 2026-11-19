@@ -8,7 +8,7 @@ the public part of the project is `specs/`.
 
 ozsert.com is C. Murad Özsert's site, in Turkish (default) and English, in the **Field Notebook** style
 (`specs/design.md`). It does two things:
-1. **Personal site:** enterprise AI work, Yolda.com (zero to exit), talks, the newsletter, experience.
+1. **Personal site:** enterprise AI work, Yolda.com (founder's journey), talks, the newsletter, experience.
 2. **Living benchmark:** several Claude models each build the site from the same public spec, one shot.
    Visitors switch versions in the top bar, and `/models/` shows quality improving over time.
 
@@ -22,7 +22,7 @@ Pure static site on GitHub Pages: no framework, no bundler.
 | Pages | Homepage (one per model), `/talks/`, `/projects/<slug>/` (7 projects), `/models/` timeline, `404.html`. |
 | Built by models | Homepage, talks page and project pages. Built by Claude, outside the experiment: `/models/`, 404, shared code. |
 | Style | Field Notebook; Istanbul accent palette (6 colours, each with its own hero scene); 📡 mark. |
-| Identity | No job title or employer in the hero: startups → largest enterprises. Deka Tech only in Experience/Now; clients never named. |
+| Identity | No job title or employer in the hero: startups → largest enterprises. Deka Tech only in Experience/Now; clients never named. Yolda is a founder's journey: no exit or acquisition. |
 | Sections | 01 Workbench (enterprise + personal projects) · 02 Founder's road (Yolda) · 03 Talks · 04 Newsletter · 05 Experience. |
 | Root `/` | The released homepage with the highest `order` (or `pinned` in `content/models.json`). |
 | Public vs internal | `specs/` is public (deployed and shown in the specs window). This file and `tools/` are not; builds live outside the repo. |
@@ -82,7 +82,7 @@ It describes *what* the site says and *how* it should look, never how we run the
 |---|---|
 | `content-to-json.mjs` | Specs → `content/tr.json` + `en.json`; checks languages and decoration phrases (`--check` in CI) |
 | `build.sh` | One batch in its workshop: input set → one `claude -p` per page → log check → screenshots (+ `--resume`) |
-| `review.sh` | Serves a batch's workshop at `localhost:8001` for review |
+| `review.sh` | Serves a batch's workshop at `localhost:8765` for review |
 | `shoot.sh` (+ `frame.html`) | Screenshots of a page: desktop and real 390px mobile, light and dark |
 | `release.sh` | Copies approved pages (only the page files) from a workshop into the site (+ timeline thumbnails to `assets/shots/`); lists batches; rolls back |
 | `promote.mjs` | Validates released versions and writes the root `index.html` from the highest `order` |
@@ -115,7 +115,7 @@ What it does, never by hand:
    where it will live on the site (`models/<model>/`, `talks/`, `projects/<slug>/`).
 3. Checks each log: tool calls, any path outside its folder (flag it to Murad), finished or not. A finished page
    gets `<page>.done` and screenshots in `_shots/<page>/`; an unfinished one is built again by `--resume`.
-4. **Review:** `tools/review.sh <model>_<ts>` serves the workshop at `http://localhost:8001/`; give Murad the
+4. **Review:** `tools/review.sh <model>_<ts>` serves the workshop at `http://localhost:8765/`; give Murad the
    page links it prints. Pages link to each other exactly as on the site.
 
 ## 8. Process 3: release (after Murad agrees)

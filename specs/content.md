@@ -27,8 +27,8 @@ platforms built from the ground up.
   logistics platform founded as the pandemic began. Serverless on AWS, serving
   **1,100+ enterprises** (Metro, P&G, Heinz) and **10K+ carriers**. Grew from zero
   to **€11M annual revenue** and **102 people**, raised **$10M+** over three rounds
-  (Speedinvest, CSF and others), expanded to Germany within two years, and was
-  **acquired** by one of the region's largest logistics companies (a 4,000+ truck fleet).
+  (Speedinvest, CSF and others), and expanded to Germany within two years.
+  Tell it as a founder's journey: building, scaling, what he learned.
   **Endeavor Entrepreneur** since 2022.
 - **Deka Tech** (Feb 2026 – now, Istanbul): his employer. He **leads AI projects
   with some of the largest enterprises** (never named on the site), from use-case
@@ -86,8 +86,8 @@ Personal motif: **a signal** ( *finding the signal beyond the noise*).
 - en: 19+ years · Previously
 
 ### hero.previously
-- tr: Yolda.com'un kurucu ortağı ve CTO'su: sıfırdan 102 kişi ve yıllık 11M€ gelir, 10M$+ yatırım, Almanya'ya açılım ve exit.
-- en: Co-founder & CTO of Yolda.com: zero to 102 people and €11M in annual revenue, $10M+ raised, expanded into Germany, then exited.
+- tr: Yolda.com'un kurucu ortağı ve CTO'su: sıfırdan 102 kişilik bir ekip ve yıllık 11M€ gelir, 10M$+ yatırım, Almanya'ya açılım.
+- en: Co-founder & CTO of Yolda.com: from zero to a 102-person team and €11M in annual revenue, $10M+ raised, expanded into Germany.
 
 ### hero.manifesto
 - tr: Yapay zekânın çalışma, düşünme ve örgütlenme biçimimizi yeniden şekillendirdiğine inanıyorum. Uyum sağlayan küçük ekipler büyük etki yaratacak; ama en önemli kısım yine insanda kalıyor: muhakeme, merak, sorumluluk.
@@ -201,12 +201,12 @@ Personal motif: **a signal** ( *finding the signal beyond the noise*).
 - en: Founder's road
 
 ### founder.title
-- tr: Sıfırdan exit'e: Yolda.com.
-- en: Zero to exit: Yolda.com.
+- tr: Sıfırdan kurmak: Yolda.com.
+- en: Building from zero: Yolda.com.
 
 ### founder.intro
-- tr: Pandeminin ilk ayında bir B2B dijital lojistik platformu kurduk. Beş yılda 102 kişilik bir ekibe, iki ülkede operasyona ve bir satın almaya ulaştık. Bugün kurumlarda yaptığım işin temeli, o yolda öğrendiklerim.
-- en: We founded a B2B digital logistics platform in the first month of the pandemic. In five years it grew into a 102-person team, operations in two countries, and an acquisition. What I learned on that road is the foundation of what I do in enterprises today.
+- tr: Pandeminin ilk ayında bir B2B dijital lojistik platformu kurduk. Beş yılda 102 kişilik bir ekibe ve iki ülkede operasyona ulaştık. Bugün kurumlarda yaptığım işin temeli, o yolda öğrendiklerim.
+- en: We founded a B2B digital logistics platform in the first month of the pandemic. In five years it grew into a 102-person team with operations in two countries. What I learned on that road is the foundation of what I do in enterprises today.
 
 ### founder.note
 - tr: Kurucu Ortak & CTO · 2020–2025 · İstanbul → Hamburg
@@ -216,20 +216,20 @@ Personal motif: **a signal** ( *finding the signal beyond the noise*).
 > Use the numbers exactly as written; don't round or invent. No click-through.
 
 ### founder.case1.title
-- tr: Sıfırdan exit'e bir lojistik platformu
-- en: A logistics platform, zero to exit
+- tr: Sıfırdan bir lojistik platformu
+- en: A logistics platform, built from zero
 
 ### founder.case1.stat
 - tr: 0 → 11M€
 - en: 0 → €11M
 
 ### founder.case1.desc
-- tr: Yıllık gelir sıfırdan 11 milyon euroya, ekip 102 kişiye ulaştı; şirket bölgenin en büyük lojistik gruplarından birine satıldı.
-- en: Annual revenue grew from zero to €11M and the team to 102 people, before the company was acquired by one of the region's largest logistics groups.
+- tr: Yıllık gelir sıfırdan 11 milyon euroya, ekip 102 kişiye ulaştı; 1.100+ kurumsal müşteri ve 10 bin+ taşıyıcı.
+- en: Annual revenue grew from zero to €11M and the team to 102 people, serving 1,100+ enterprises and 10K+ carriers.
 
 ### founder.case1.tag
-- tr: Büyüme · Exit
-- en: Growth · Exit
+- tr: Büyüme · Ölçek
+- en: Growth · Scale
 
 ### founder.case2.title
 - tr: Almanya operasyonunu Türkiye'den yönetmek

@@ -121,5 +121,5 @@ for page in "${pages[@]}"; do
 done
 
 echo
-echo "Review:  tools/review.sh $batch_name      (serves the workshop at http://localhost:8001/)"
+echo "Review:  tools/review.sh $batch_name      (serves the workshop at http://localhost:8765/)"
 echo "Release: tools/release.sh $batch_name     (after Murad's OK)"

@@ -17,7 +17,7 @@ port="${PORT:-8799}"
 ! lsof -nP -iTCP:"$port" -sTCP:LISTEN >/dev/null 2>&1 || { echo "port $port is busy (stale server?); set PORT=…" >&2; exit 1; }
 mkdir -p "$out"; tmp="$(mktemp -d)"
 cp "$repo/tools/frame.html" "$root/.shoot-frame.html"
-( cd "$root" && python3 -m http.server "$port" >/dev/null 2>&1 ) &
+( cd "$root" && exec python3 -m http.server "$port" >/dev/null 2>&1 ) &
 srv=$!
 trap 'kill $srv 2>/dev/null; rm -rf "$tmp" "$root/.shoot-frame.html"' EXIT
 sleep 1
