@@ -23,7 +23,7 @@ Pure static site on GitHub Pages: no framework, no bundler.
 | Built by models | Homepage, talks page and project pages. Built by Claude, outside the experiment: `/models/`, 404, shared code. |
 | Style | Field Notebook; Istanbul accent palette (6 colours, each with its own hero scene); 📡 mark. |
 | Identity | No job title or employer in the hero: startups → largest enterprises. Deka Tech only in Experience/Now; clients never named. Yolda is a founder's journey: no exit or acquisition. |
-| Sections | 01 Workbench (enterprise + personal projects) · 02 Founder's road (Yolda) · 03 Talks · 04 Newsletter · 05 Experience. |
+| Sections | 01 Workbench (enterprise + startup projects) · 02 Founder's road (Yolda) · 03 Talks · 04 Newsletter · 05 Experience. |
 | Root `/` | The released homepage with the highest `order` (or `pinned` in `content/models.json`). |
 | Public vs internal | `specs/` is public (deployed and shown in the specs window). This file and `tools/` are not; builds live outside the repo. |
 | Fairness | Same spec, same prompt, one prompt per page, Claude Code defaults, no human edits to output. |
@@ -180,7 +180,7 @@ Content is anonymized: no client, person, brand, host or real module names, no f
 - **Mailbox RAG Agent:** working POC on a small test mailbox; production (local embeddings, ~10 TB) is a plan.
 - **Sam AI · Habit Coach:** live on the App Store. "Four laws of habit formation" framing approved by Murad;
   store marketing stats not used.
-- **Player Support Agent:** written as a live product per Murad, from the product vision. No invented metrics;
+- **Player Support Agent:** proof of concept (status per Murad), told from the product vision. No invented metrics;
   third-party benchmarks are not presented as results.
 
 ## 11. Status (2026-11-19)

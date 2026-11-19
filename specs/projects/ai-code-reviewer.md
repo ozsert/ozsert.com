@@ -21,8 +21,8 @@
 - en: Enterprise
 
 ### project.ai-code-reviewer.status
-- tr: Kullanımda
-- en: In use
+- tr: Canlıda
+- en: Live
 
 ### project.ai-code-reviewer.year
 - tr: 2026

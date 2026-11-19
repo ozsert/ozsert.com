@@ -18,8 +18,8 @@
 - en: Enterprise
 
 ### project.skill-marketplace.status
-- tr: Kullanımda
-- en: In use
+- tr: Canlıda
+- en: Live
 
 ### project.skill-marketplace.year
 - tr: 2026

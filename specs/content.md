@@ -11,7 +11,7 @@
 
 ## 0. Identity (for the model's understanding — read this first)
 
-C. Murad Özsert is a **senior tech leader with an entrepreneur's mindset**: 19+
+C. Murad Özsert is a **senior tech leader with an entrepreneur's mindset**: 17+
 years of building, shipping and scaling digital products, with AI-powered
 platforms built from the ground up.
 
@@ -82,8 +82,8 @@ Personal motif: **a signal** ( *finding the signal beyond the noise*).
 
 ### hero.previously_label
 > Small mono label in front of `hero.previously` (a mono "PREVIOUSLY"-style label).
-- tr: 19+ yıl · Öncesi
-- en: 19+ years · Previously
+- tr: 17+ yıl · Öncesi
+- en: 17+ years · Previously
 
 ### hero.previously
 - tr: Yolda.com'un kurucu ortağı ve CTO'su: sıfırdan 102 kişilik bir ekip ve yıllık 11M€ gelir, 10M$+ yatırım, Almanya'ya açılım.

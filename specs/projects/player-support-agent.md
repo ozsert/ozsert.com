@@ -14,12 +14,12 @@
 - en: An AI support agent for mobile app and game studios: on every channel it recognises the user, understands the issue, and resolves it with approved actions.
 
 ### project.player-support-agent.kind
-- tr: Kişisel
-- en: Personal
+- tr: Startup
+- en: Startup
 
 ### project.player-support-agent.status
-- tr: Canlıda
-- en: Live
+- tr: Kavram kanıtı
+- en: Proof of concept
 
 ### project.player-support-agent.year
 - tr: 2026

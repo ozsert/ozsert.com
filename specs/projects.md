@@ -1,7 +1,7 @@
 # Workbench spec ("Atölye"): homepage section 01 + project index
 
 > Section name decided 2026-11-18: **Workbench / Atölye**. Two shelves via `kind`:
-> Enterprise / Kurumsal and Personal / Kişisel. URLs stay `/projects/<slug>/`.
+> Enterprise / Kurumsal and Startup / Startup. URLs stay `/projects/<slug>/`.
 
 > **Role of this file:** the homepage "Workbench" section and the shared labels for
 > project pages. Each project's own content lives in `specs/projects/<slug>.md`
@@ -27,12 +27,12 @@
 - en: Workbench
 
 ### projects.title
-- tr: Bugün inşa ettiklerim.
-- en: What I'm building now.
+- tr: Seçili işler: liderlik ettiğim projeler.
+- en: Selected work: projects I've led.
 
 ### projects.intro
-- tr: Kurumlarda hayata geçirdiğim yapay zekâ projeleri ve kendi ürettiklerim. Her biri, doğru bağlamla küçük bir ekibin neler yapabileceğinin bir örneği.
-- en: AI projects I lead inside large enterprises, and the things I build on my own. Each is a small proof of what one team can do with the right context.
+- tr: Kurumlarda liderlik ettiğim yapay zekâ projeleri ve startup'larla geliştirdiklerim. Her biri, doğru bağlamla küçük bir ekibin neler yapabileceğinin bir örneği.
+- en: AI projects I lead inside large enterprises, and the products I build with startups. Each is a small proof of what one team can do with the right context.
 
 ### projects.enterprise_note
 > Small mono note under the intro.
@@ -44,8 +44,8 @@
 - en: Enterprise
 
 ### projects.kind_personal
-- tr: Kişisel
-- en: Personal
+- tr: Startup
+- en: Startup
 
 ### projects.back
 - tr: ← Atölye

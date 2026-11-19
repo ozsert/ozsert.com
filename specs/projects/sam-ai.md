@@ -14,8 +14,8 @@
 - en: A habit coach you talk to: tell it what you did, and it logs, tracks and cheers you on. On the App Store.
 
 ### project.sam-ai.kind
-- tr: Kişisel
-- en: Personal
+- tr: Startup
+- en: Startup
 
 ### project.sam-ai.status
 - tr: App Store'da yayında

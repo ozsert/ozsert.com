@@ -89,7 +89,7 @@ call), but it must call `OZ.setAccent(id)` and show the names in both languages.
   feel like a ticker or a status line. Turkish is the longest language here, so
   at 1440px it should fit on one line in **both** TR and EN (check TR first).
 - **01 Workbench (`#projects`):** list rows (§8b): number, title, one-liner, a rotated
-  stamp with the kind (Enterprise / Personal), the status in mono, and → to `/projects/<slug>/`. The
+  stamp with the kind (Enterprise / Startup), the status in mono, and → to `/projects/<slug>/`. The
   whole row is the link. Make clear these open detail pages (hover state, arrow movement).
 - **02 Founder's road (`#founder`):** 4 Yolda.com case cards on graph paper where the **stat is the
   hero** of each card (big, accent ink, mono units), each with a tiny bespoke chart. No click-through.
