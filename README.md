@@ -1,6 +1,6 @@
 # ozsert.com
 
-Personal site of C. Murad Özsert, in Turkish (default) and English.
+Personal site of C. Murad Özsert, in English (default) and Turkish.
 
 The homepage is an experiment: **one spec, many models**. Several Claude models each build their own
 version of the same homepage, in one shot, from the same specification. The top bar's

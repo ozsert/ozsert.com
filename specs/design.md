@@ -246,7 +246,7 @@ Mono. Every line drawn in SVG. Interpreted by <Model> from the shared spec."*
    Then `<oz-topbar></oz-topbar>` as the first element in `<body>`. Run your own
    code after `OZ.ready` (a Promise) or on the `oz:ready` event.
 4. **No hard-coded visible copy.** Every user-visible string uses `data-i18n` or
-   `OZ.t()`. Re-render on `oz:langchange`. Default language TR. Small interface
+   `OZ.t()`. Re-render on `oz:langchange`. Default language EN, default theme dark. Small interface
    words are in `ui.*` (contents, ink, fig., Vol., case, copy, back to top…) and
    section labels in `<section>.label`. If a word you want has no key, design
    without it. **Allowed as literal text:** numbers, years, dates, coordinates,

@@ -34,7 +34,7 @@
   "use strict";
   var root = document.documentElement;
   var LANGS = ["tr", "en"];
-  var DEFAULT_LANG = "tr";
+  var DEFAULT_LANG = "en";
   var FEED = "https://thenextsignalnewsletter.substack.com/feed";
   var RSS_API = "https://api.rss2json.com/v1/api.json?rss_url=";
 
@@ -57,7 +57,7 @@
   var lang = params.get("lang") || load("oz-lang") || DEFAULT_LANG;
   if (LANGS.indexOf(lang) < 0) lang = DEFAULT_LANG;
 
-  var themePref = load("oz-theme") || "system";
+  var themePref = load("oz-theme") || "dark"; // default dark; the toggle choice is remembered
   var forcedTheme = params.get("theme"); // ?theme=light|dark (screenshots/sharing; not saved)
   if (forcedTheme === "light" || forcedTheme === "dark") themePref = forcedTheme;
   var mq = window.matchMedia ? window.matchMedia("(prefers-color-scheme: dark)") : null;

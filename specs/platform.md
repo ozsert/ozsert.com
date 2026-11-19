@@ -24,11 +24,11 @@ generated from the `### key` blocks in these specs.
 | API | Behaviour |
 |---|---|
 | `OZ.ready` | Promise that resolves once the copy is loaded and `[data-i18n]` is filled (also fires `oz:ready`). Start your code here. |
-| `OZ.lang` / `OZ.setLang(l)` | `tr` \| `en`, default `tr`, remembered. `?lang=en` overrides it. Sets `<html lang>`. |
+| `OZ.lang` / `OZ.setLang(l)` | `tr` \| `en`, default `en`, remembered. `?lang=en` overrides it. Sets `<html lang>`. |
 | `OZ.t(key)` | Copy for the current language. |
 | `[data-i18n]` | `"key"` → text · `"[html]key"` → innerHTML · `"[alt]key"` → an attribute. `;` combines several. Re-filled on language change. |
 | `[data-oz-email]` | Gets the email address as text, and as a `mailto:` link on `<a>`. |
-| `OZ.theme` / `OZ.setTheme(p)` / `OZ.toggleTheme()` | Sets `html[data-theme="light\|dark"]`; the preference (`system\|light\|dark`) is remembered. `?theme=` overrides it. |
+| `OZ.theme` / `OZ.setTheme(p)` / `OZ.toggleTheme()` | Sets `html[data-theme="light\|dark"]`, default dark; the preference (`system\|light\|dark`) is remembered. `?theme=` overrides it. |
 | `OZ.accent` / `OZ.setAccent(id)` / `OZ.accents` | Sets `html[data-accent]`, remembered. `OZ.accents` = `[{id, name:{tr,en}, light, dark}]`. The CSS variable `--oz-accent` always holds the current accent colour. `?accent=` overrides it. |
 | `OZ.email()` | Builds the email address from its parts (anti-scraping). |
 | `OZ.latestPosts(n)` | Promise of `[{title, link, date, excerpt, image}]` from the newsletter feed (`image` = the issue's cover or `null`). It rejects on error, so show `newsletter.error`. |

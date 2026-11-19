@@ -6,7 +6,7 @@ the public part of the project is `specs/`.
 
 ## 1. What and why
 
-ozsert.com is C. Murad Özsert's site, in Turkish (default) and English, in the **Field Notebook** style
+ozsert.com is C. Murad Özsert's site, in English (default) and Turkish, in the **Field Notebook** style
 (`specs/design.md`). It does two things:
 1. **Personal site:** enterprise AI work, Yolda.com (founder's journey), talks, the newsletter, experience.
 2. **Living benchmark:** several Claude models each build the site from the same public spec, one shot.
@@ -18,7 +18,7 @@ Pure static site on GitHub Pages: no framework, no bundler.
 
 | Topic | Decision |
 |---|---|
-| Languages | TR default + EN. All copy lives in the specs as `### key` blocks. |
+| Languages | EN default + TR; dark theme by default. All copy lives in the specs as `### key` blocks. |
 | Pages | Homepage (one per model), `/talks/`, `/projects/<slug>/` (7 projects), `/models/` timeline, `404.html`. |
 | Built by models | Homepage, talks page and project pages. Built by Claude, outside the experiment: `/models/`, 404, shared code. |
 | Style | Field Notebook; Istanbul accent palette (6 colours, each with its own hero scene); 📡 mark. |
@@ -185,10 +185,13 @@ Content is anonymized: no client, person, brand, host or real module names, no f
 
 ## 11. Status (2026-11-19)
 
-- Done: shared code, top bar, `/talks/` fallback, `/models/`, 404, deploy (only `_site/`), content for all 7 projects.
-- Released: Opus 5.5 homepage from batch `claude-opus-5-5_2026-11-19_1056` (two small hand fixes, allowed before
-  the freeze: the accent scene now draws on the first colour click; the portrait card uses `portrait-upper.jpg`).
-- Next, in the same batch, one page at a time: talks → the 7 project pages → release → freeze `spec-v1` →
-  the other models.
+- Done: shared code, top bar, `/models/`, 404, deploy (only `_site/`), content for all 7 projects.
+- Batch `claude-opus-5-5_2026-11-19_1056` (dry run, `specVersion: dry-run`), released: homepage (two small hand
+  fixes: accent scenes draw on the first click; portrait uses `portrait-upper.jpg`; later: hover pictures as an
+  accent-ink duotone, no signal mark in the top bar or footer), talks, ai-code-reviewer, skill-marketplace, executive-kpi-agent.
+- Next, one at a time with Murad's review: ai-gateway → mailbox-qa → sam-ai →
+  player-support-agent → release → freeze `spec-v1` → the other models.
+- Review loop per page: build in the background → scroll-check (static shots miss scroll-drawn figures) →
+  `tools/review.sh <batch>` (port 8765) → Murad's OK → `tools/release.sh <batch> <page>` → commit + push.
 - Deploy: GitHub Pages (source: GitHub Actions, `.github/workflows/static.yml` on push to `main`), domain
   `www.ozsert.com`. HTTPS isn't enforced yet; enable "Enforce HTTPS" in the repo's Pages settings.
