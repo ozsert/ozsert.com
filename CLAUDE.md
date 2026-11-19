@@ -84,7 +84,7 @@ It describes *what* the site says and *how* it should look, never how we run the
 | `build.sh` | One batch in its workshop: input set → one `claude -p` per page → log check → screenshots (+ `--resume`) |
 | `review.sh` | Serves a batch's workshop at `localhost:8765` for review |
 | `shoot.sh` (+ `frame.html`) | Screenshots of a page: desktop and real 390px mobile, light and dark |
-| `release.sh` | Copies approved pages (only the page files) from a workshop into the site (+ timeline thumbnails to `assets/shots/`); lists batches; rolls back |
+| `release.sh` | Copies approved pages (only the page files) from a workshop into the site (+ timeline thumbnails to `assets/shots/`), then stops that batch's review server; lists batches; rolls back |
 | `promote.mjs` | Validates released versions and writes the root `index.html` from the highest `order` |
 | `build-site.sh` | Assembles the public `_site/` for the deploy (no drafts, no tools) |
 

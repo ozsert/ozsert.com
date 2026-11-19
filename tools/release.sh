@@ -50,3 +50,9 @@ else console.log("! " + id + " is not in content/models.json yet. Add an entry s
   fi
 done
 node "$repo/tools/promote.mjs"
+
+# The review is over: stop this batch's review server (tools/review.sh) so no shell stays open.
+for p in $(pgrep -f "http.server" || true); do
+  d="$(lsof -a -p "$p" -d cwd 2>/dev/null | tail -1 | awk '{print $NF}')"
+  [[ "$d" == "$src"* ]] && kill "$p" 2>/dev/null && echo "✓ stopped the review server (pid $p)" || true
+done
