@@ -18,3 +18,9 @@ yarn.lock
 
 docs
 CLAUDE.local.md
+# Private: resume has phone + home address; the Pages deploy uploads the whole repo
+specs/*.pdf
+
+# Assembled public site (tools/build-site.sh, built in CI)
+_site/
+

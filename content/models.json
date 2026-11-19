@@ -1,0 +1,23 @@
+{
+  "pinned": null,
+  "models": [
+    {
+      "id": "claude-opus-5-5",
+      "name": "Claude Opus 5.5",
+      "lab": "Anthropic",
+      "family": "claude",
+      "order": 7,
+      "builtOn": "2026-11-18",
+      "harness": "Claude Code (subagent)",
+      "defaults": "default settings",
+      "specVersion": "dry-run",
+      "status": "ok",
+      "path": "/models/claude-opus-5-5/",
+      "note": {
+        "tr": "Kuru deneme: spec dondurulmadan önce, taslak üzerinden inşa edildi. Resmi spec-v1 inşası bunun yerini alacak.",
+        "en": "Dry run: built from the draft before the spec was frozen. The official spec-v1 build will replace it."
+      },
+      "release": "claude-opus-5-5_2026-11-19_1056"
+    }
+  ]
+}

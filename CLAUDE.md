@@ -1,109 +1,194 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+The one internal document for ozsert.com: what we're building, the decisions, the rules and the exact
+processes. **Binding.** Follow the processes step by step and don't improvise variants. Never deployed;
+the public part of the project is `specs/`.
 
-## Development Workflow
+## 1. What and why
 
-This is a **pure static website** with no build system, bundlers, or preprocessing. All files are served directly - just open `index.html` in a browser or use a simple static server:
+ozsert.com is C. Murad Özsert's site, in Turkish (default) and English, in the **Field Notebook** style
+(`specs/design.md`). It does two things:
+1. **Personal site:** enterprise AI work, Yolda.com (zero to exit), talks, the newsletter, experience.
+2. **Living benchmark:** several Claude models each build the site from the same public spec, one shot.
+   Visitors switch versions in the top bar, and `/models/` shows quality improving over time.
+
+Pure static site on GitHub Pages: no framework, no bundler.
+
+## 2. Decisions
+
+| Topic | Decision |
+|---|---|
+| Languages | TR default + EN. All copy lives in the specs as `### key` blocks. |
+| Pages | Homepage (one per model), `/talks/`, `/projects/<slug>/` (7 projects), `/models/` timeline, `404.html`. |
+| Built by models | Homepage, talks page and project pages. Built by Claude, outside the experiment: `/models/`, 404, shared code. |
+| Style | Field Notebook; Istanbul accent palette (6 colours, each with its own hero scene); 📡 mark. |
+| Identity | No job title in the hero ("I help large enterprises…"). Deka Tech is named; clients never are. |
+| Sections | 01 Workbench (enterprise + personal projects) · 02 Founder's road (Yolda) · 03 Talks · 04 Newsletter · 05 Experience. |
+| Root `/` | The released homepage with the highest `order` (or `pinned` in `content/models.json`). |
+| Public vs internal | `specs/` is public (deployed and shown in the specs window). This file and `tools/` are not; builds live outside the repo. |
+| Fairness | Same spec, same prompt, one prompt per page, Claude Code defaults, no human edits to output. |
+
+## 3. Lineup (`order` in `content/models.json`)
+
+| Order | Model | Model id = `--model` |
+|---|---|---|
+| 1 | Claude Opus 4.6 | `claude-opus-4-6` |
+| 2 | Claude Opus 4.7 | `claude-opus-4-7` |
+| 3 | Claude Opus 4.8 | `claude-opus-4-8` |
+| 4 | Claude Opus 5 | `claude-opus-5` |
+| 5 | Claude Haiku 5.5 | `claude-haiku-5-5` |
+| 6 | Claude Sonnet 5.5 | `claude-sonnet-5-5` |
+| 7 | Claude Opus 5.5 | `claude-opus-5-5` (flagship, so it ends up at `/`) |
+| — | Claude Fable 5.2 | skipped for now (needs API usage) |
+
+Dropped: Sonnet 4.5 and Opus 4.5 (not available in Claude Code). Rival labs are out of scope. Never fake a model.
+
+## 4. Map
+
+| Path | What | Who changes it |
+|---|---|---|
+| `specs/content.md`, `specs/talks.md` | Homepage copy and the 12 talks (+ talks page brief), TR + EN | Murad / Claude on request |
+| `specs/projects.md`, `specs/projects/<slug>.md` | Workbench rows + project page chapters and figure briefs | Murad / Claude on request |
+| `specs/design.md` | Field Notebook style + hard requirements (§9 homepage, §10 detail pages) | Claude, only before a spec freeze |
+| `specs/platform.md` | The shared top bar and the `window.OZ` API | Claude, only before a spec freeze |
+| `specs/build-prompt.md`, `specs/build-prompt-page.md` | The exact prompts the models get | Claude, only before a spec freeze |
+| `shared/` | `core.js` (`window.OZ`), `topbar.js`, `house.css` (shared pages only) | Claude, only before a spec freeze |
+| `content/tr.json`, `content/en.json` | **Generated** from the specs | never by hand |
+| `content/models.json` | Model registry (`order`, `status`, `release`, …) | Claude (Process 3) |
+| `index.html` (root) | **Generated** copy of the promoted release | never by hand |
+| `models/<id>/`, `talks/`, `projects/<slug>/` | Released pages (talks: hand-made fallback until its first release) | only `tools/release.sh` |
+| `models/index.html`, `404.html` | `/models/` timeline, 404 | Claude |
+| `tools/` | The scripts in §5 below. **Not deployed** | Claude |
+| `../ozsert-builds/<model>_<ts>/` | **Outside the repo: the batch's workshop.** `repo/` = input set + the pages the agents built (review here); `<page>.prompt.txt`, `<page>.log`, `<page>.done`, `_shots/<page>/`. Kept for rollback; agent leftovers never leave it | only `tools/build.sh` |
+| `assets/` | Images (`portrait.jpg`, `About_1–4`, `Topics_<vol>.<n>.jpeg`); `assets/shots/` = timeline thumbnails of released homepages | `shots/`: only `tools/release.sh` |
+| `archive/v1/` | The old site (frozen) | never |
+
+## 5. Specs and tools
+
+**`specs/` is the public brief: the only thing a model gets, and what visitors read in "view specs".**
+It describes *what* the site says and *how* it should look, never how we run the experiment.
+
+| Spec | Aim |
+|---|---|
+| `content.md` | Every homepage word, TR + EN, as `### key` blocks (+ notes on how to use them) |
+| `talks.md` | The 12 talks (summary + 4 key points) and the brief for the `/talks/` page |
+| `projects.md` | The Workbench section: project order, shared labels for project pages |
+| `projects/<slug>.md` | One project page: hero, facts, chapters, and a brief for every figure |
+| `design.md` | The Field Notebook style, page anatomy, and hard requirements (§9 homepage, §10 detail pages) |
+| `platform.md` | What every page builds on: the shared top bar and the `window.OZ` API |
+| `build-prompt.md`, `build-prompt-page.md` | The exact prompts a model receives, once per page |
+
+| Tool | Does |
+|---|---|
+| `content-to-json.mjs` | Specs → `content/tr.json` + `en.json`; checks languages and decoration phrases (`--check` in CI) |
+| `build.sh` | One batch in its workshop: input set → one `claude -p` per page → log check → screenshots (+ `--resume`) |
+| `review.sh` | Serves a batch's workshop at `localhost:8001` for review |
+| `shoot.sh` (+ `frame.html`) | Screenshots of a page: desktop and real 390px mobile, light and dark |
+| `release.sh` | Copies approved pages (only the page files) from a workshop into the site (+ timeline thumbnails to `assets/shots/`); lists batches; rolls back |
+| `promote.mjs` | Validates released versions and writes the root `index.html` from the highest `order` |
+| `build-site.sh` | Assembles the public `_site/` for the deploy (no drafts, no tools) |
+
+## 6. Process 1: change text (copy)
+
+1. Edit `specs/content.md`, `specs/talks.md` or a project spec: only `- tr:` / `- en:` lines, always both languages.
+2. Run `node tools/content-to-json.mjs`. It must report **0 warnings** (it flags missing languages, `TODO`s, and
+   decoration phrases `*_highlights` / `*_circle` that no longer appear in their text).
+3. Done. Pages read the copy at runtime, so a refresh shows it. **No rebuild needed**, even on releases.
+
+## 7. Process 2: build (one batch = all pages of one model)
+
+Run it **in the background**; each page takes ~15–20 min and pages run one after another.
 
 ```bash
-# Serve locally (if you have Python)
-python -m http.server 8000
-
-# Or use any static server
-npx serve .
+tools/build.sh <model> "<Model Name>"                    # homepage + talks + every project page
+tools/build.sh <model> "<Model Name>" homepage           # or only some pages: homepage, talks and/or <slug> …
+SPEC_REF=spec-v1 tools/build.sh <model> "<Model Name>"   # official builds from the frozen spec tag
+tools/build.sh --resume <model>_<ts>                     # continue an interrupted batch (e.g. usage limit)
 ```
 
-## Architecture Overview
+What it does, never by hand:
+1. Creates the workshop `../ozsert-builds/<model>_<ts>/repo/` with only the **input set** (`specs/`, `shared/`,
+   `content/`, `assets/`, `favicon.ico`). It's outside the repo, so the agent doesn't load this file.
+2. For each page: one `claude -p` session (one prompt, `--dangerously-skip-permissions`, web tools off, Claude
+   Code defaults), log in `<page>.log`. Homepage: `specs/build-prompt.md`; talks and project pages:
+   `specs/build-prompt-page.md` with `specs/talks.md` or `specs/projects/<slug>.md`. The agent writes the page
+   where it will live on the site (`models/<model>/`, `talks/`, `projects/<slug>/`).
+3. Checks each log: tool calls, any path outside its folder (flag it to Murad), finished or not. A finished page
+   gets `<page>.done` and screenshots in `_shots/<page>/`; an unfinished one is built again by `--resume`.
+4. **Review:** `tools/review.sh <model>_<ts>` serves the workshop at `http://localhost:8001/`; give Murad the
+   page links it prints. Pages link to each other exactly as on the site.
 
-**Core Structure:**
-- 5 main HTML pages (index, about, topics, blog, contact)
-- Single CSS file with CSS custom properties and modern features
-- Vanilla JavaScript with i18next for internationalization
-- No package.json or build dependencies
+## 8. Process 3: release (after Murad agrees)
 
-**Key Technical Decisions:**
-- Client-side internationalization using i18next (loaded via CDN)
-- Language preference stored in localStorage with dynamic HTML lang switching
-- RSS feed integration via RSS2JSON API for latest AI content
-- Pure CSS animations using Intersection Observer for performance
+1. If the model isn't in `content/models.json` yet, add its entry:
+   ```json
+   { "id": "<model>", "name": "<Model Name>", "lab": "Anthropic", "family": "claude",
+     "order": <n from §3>, "builtOn": "<YYYY-MM-DD>", "harness": "Claude Code",
+     "defaults": "default settings", "specVersion": "spec-v1", "status": "ok",
+     "path": "/models/<model>/", "note": { "tr": "…", "en": "…" } }
+   ```
+   (`status: "failed"` for broken builds: shown on the timeline, never promoted.)
+2. `tools/release.sh <model>_<ts> [page …]`: copies only the approved pages' files from the workshop to
+   `models/<model>/`, `talks/` and `projects/<slug>/`, sets `"release"` in the registry, copies the timeline
+   thumbnails to `assets/shots/` and re-promotes `/`. Must report **0 warnings**.
+3. `tools/release.sh` alone lists every batch. Releasing an older batch is how you roll back.
 
-## Internationalization System
+## 9. Rules
 
-The site uses a sophisticated i18next setup:
+**Experiment (fairness):**
+- One prompt per page, never re-prompted. If an agent asks, the answer is "Proceed with your best judgment;
+  no further input will be given."
+- No human edits to model output. Every batch's workshop is kept; only approved pages are released.
+- Before `spec-v1` is frozen, spec, shared code and prompts may change; re-run the Opus 5.5 dry run when a change
+  adds instructions models must understand (small fixes to a dry-run page may be done by hand). After the freeze
+  they don't change: a material change means `spec-v2`, and versions are compared only within one spec version.
+  Text-only edits (Process 1) are always fine.
+- **Isolation (decided 2026-11-18):** separate build folder + `--dangerously-skip-permissions` + web tools off +
+  log check. Claude Code's read/write blocking and the macOS sandbox worked but also blocked normal in-folder work
+  and headless Chrome. Revisit only for builds on a shared machine, or if a log shows reads outside the folder.
 
-**Default Language:** Turkish (tr) with English (en) support
-**Translation Files:** `/locales/tr.json` and `/locales/en.json`
+**Repository:**
+- Never hand-edit generated files (root `index.html`, `content/*.json`). `models/`, `talks/`, `projects/` change
+  only via `tools/release.sh`. Don't modify `archive/`.
+- **`specs/` is public**: only content, design, platform and prompts. No TODOs, research notes, tool or process
+  details, and no client, person or internal-system names; those belong in this file.
+- Gitignored: `specs/*.pdf` (the resume holds private contact details). Never commit private files.
+- The deploy (`.github/workflows/static.yml`) runs `content-to-json`, `promote` and `tools/build-site.sh` and
+  publishes only `_site/`: pages, `assets/`, `content/`, `shared/`, `specs/` and `archive/v1/`.
+- Committing, tagging (`git tag spec-v1`) and pushing happen **only when Murad asks**.
 
-**Key Translation Patterns:**
-- `data-i18n="key"` for text content
-- `data-i18n="[content]key"` for meta descriptions
-- Email addresses constructed from translated parts for anti-spam
-- Translation keys organized by sections: `common_header`, `common_banner`, `index`, `about`, etc.
+**Checks before saying something is done:**
+```bash
+node tools/content-to-json.mjs --check   # 0 warnings
+node tools/promote.mjs --check           # 0 warnings
+python3 -m http.server 8000              # look at /, /models/, /talks/ (review drafts with tools/review.sh)
+```
+Headless Chrome can't go below a 500px viewport; use `tools/shoot.sh` for mobile (a real 390px frame).
 
-**When adding new translatable content:**
-1. Add the translation key to both tr.json and en.json
-2. Use `data-i18n="section.key"` in HTML
-3. Test language switching functionality
+## 10. Project pages: sources and caveats
 
-## JavaScript Functionality
+Content is anonymized: no client, person, brand, host or real module names, no financial values.
 
-**Main Features in script.js:**
-- **Translation Management** - Dynamic language switching with localStorage persistence
-- **AI Credits Banner** - Hover effects and scroll-based animations
-- **RSS Feed Integration** - Fetches content from Substack using RSS2JSON API
-- **Modal System** - Topic detail modals with keyboard navigation (Escape key)
-- **Carousel Navigation** - Dot-based navigation for speaking topics
+- **AI-Assisted Code Review:** `init-code-review` generates a review plugin per project (19 stack checklists +
+  security, 6 weighted dimensions, severity anchors, verification). 800+ blocker/critical and thousands of major
+  = Murad's total across projects. The heat map is one sample review with generic module names.
+- **Skills Marketplace for Every Team:** 13 plugins / 82 skills / 6 departments in the repo, shown as "80+".
+  The focus is the system and its value, not one adoption report.
+- **Management Insights Agent:** live per Murad. Claude → MCP → BI data in summary tables. The "9" is the
+  product-hierarchy depth, not factories. Figures show structure only.
+- **Enterprise AI Gateway:** architecture + PoC, rollout in waves; status "Architecture & pilot".
+- **Mailbox RAG Agent:** working POC on a small test mailbox; production (local embeddings, ~10 TB) is a plan.
+- **Sam AI · Habit Coach:** live on the App Store. "Four laws of habit formation" framing approved by Murad;
+  store marketing stats not used.
+- **Player Support Agent:** written as a live product per Murad, from the product vision. No invented metrics;
+  third-party benchmarks are not presented as results.
 
-**External Dependencies (CDN):**
-- i18next for internationalization (only external dependency)
+## 11. Status (2026-11-19)
 
-## Asset Organization
-
-**Images:**
-- `/assets/` - Main site images (portraits, topic images, icons)
-- `/docs/` - Additional documentation and generated images
-- Naming convention: `Main_1.jpg`, `About_1.jpg`, `Topics_1.1.jpeg` etc.
-
-## Content Structure
-
-**Speaking Topics Architecture:**
-- Organized in 3 volumes with carousel navigation
-- Each topic has preview cards and detailed modal content
-- Images follow numbered system (Topics_1.1.jpeg, Topics_1.2.jpeg, etc.)
-
-**RSS Integration:**
-- Fetches latest AI newsletter content from Substack (currently: `thenextsignalnewsletter.substack.com`)
-- Uses RSS2JSON service for CORS handling
-- Displays recent posts on homepage
-
-## CSS Architecture
-
-Single stylesheet using:
-- CSS custom properties (variables) for consistent theming
-- Modern features: Grid, Flexbox, backdrop-filter
-- Mobile-first responsive design
-- Advanced animations for AI credits banner with gradient effects
-
-## Email Obfuscation
-
-Email addresses are constructed from translation parts to prevent scraping:
-- Split into `email_user` and `email_domain` in translations
-- JavaScript combines them on page load
-- Maintains functionality while reducing spam
-
-## Testing
-
-**Test Directory:** `/test/`
-
-**RSS Feed Testing:**
-- Use `test/test-rss.html` to verify RSS2JSON API integration
-- Tests current Substack feed URL and displays sample posts
-- Helpful for debugging RSS feed issues or validating new feed URLs
-- Open directly in browser (no server required)
-
-**Testing RSS Feed Changes:**
-1. Update RSS feed URL in `script.js` 
-2. Open `test/test-rss.html` in browser to verify new feed works
-3. Check for successful API response and sample post display
-4. Test on actual site to ensure proper integration
+- Done: shared code, top bar, `/talks/` fallback, `/models/`, 404, deploy (only `_site/`), content for all 7 projects.
+- Released: Opus 5.5 homepage from batch `claude-opus-5-5_2026-11-19_1056` (two small hand fixes, allowed before
+  the freeze: the accent scene now draws on the first colour click; the portrait card uses `portrait-upper.jpg`).
+- Next, in the same batch, one page at a time: talks → the 7 project pages → release → freeze `spec-v1` →
+  the other models.
+- Deploy: GitHub Pages (source: GitHub Actions, `.github/workflows/static.yml` on push to `main`), domain
+  `www.ozsert.com`. HTTPS isn't enforced yet; enable "Enforce HTTPS" in the repo's Pages settings.

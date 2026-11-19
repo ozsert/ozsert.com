@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta data-i18n="[content]about.meta_description" name="description">
-    <title data-i18n="about.title"></title>
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <meta data-i18n="[content]contact.meta_description" name="description">
+
+    <title data-i18n="contact.title"></title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="stylesheet" href="style.css"> <!-- Link to CSS -->
 
     <!-- Optional Favicons -->
@@ -54,8 +55,7 @@
                 </div>
             </div>
         </div>
-        
-        <!-- Section 1: Carousel () -->
+ <!-- Section 1: Carousel (Structure for one slide) -->
         <section id="hero-carousel" aria-label="Introduction Carousel">
             <div class="container">
                 <!-- Carousel Wrapper (for JS later) -->
@@ -65,14 +65,16 @@
                         <div class="slide-grid"> <!-- Use Grid or Flexbox for 2 columns -->
                             <div class="content-box">
                                 <h2></h2>
-                                <p data-i18n="about.slide1_greeting"></p>
-                                <p data-i18n="about.slide1_paragraph1"></p>
-                                <p data-i18n="about.slide1_paragraph2"></p>
-                                <p data-i18n="about.slide1_paragraph3"></p>
+                                <p data-i18n="contact.contact_intro1"></p>
+                                <p data-i18n="contact.contact_intro2"></p>
+                                <p>
+                                    <span data-i18n="contact.contact_email_instruction"></span>
+                                    <a id="email-link" href="#"></a>
+                                </p>
                                 <!-- Add more content as needed -->
                             </div>
                             <div class="photo-box">
-                                <img src="assets/About_4.jpg" alt="Placeholder for personal photograph" style="width:100%; max-width:400px; height:auto; background:#ccc;">
+                                <img src="assets/Contact_1.jpg" alt="Placeholder for personal photograph" style="width:100%; max-width:400px; height:auto; background:#ccc;">
                             </div>
                         </div>
                     </div>
@@ -85,68 +87,6 @@
                  <!-- </div> -->
             </div>
         </section>
-
-        <!-- Section 2: Carousel () -->
-        <section id="hero-carousel" aria-label="Introduction Carousel">
-            <div class="container">
-                <!-- Carousel Wrapper (for JS later) -->
-                <div class="carousel-wrapper">
-                    <!-- Slide 1 -->
-                    <div class="carousel-slide active-slide">
-                        <div class="slide-grid"> <!-- Use Grid or Flexbox for 2 columns -->
-                            <div class="photo-box">
-                                <img src="assets/About_2.jpg" alt="Placeholder for personal photograph" style="width:100%; max-width:400px; height:auto; background:#ccc;">
-                            </div>
-                            <div class="content-box">
-                                <h2></h2>
-                                <p data-i18n="about.slide2_paragraph1"></p>
-                                <p data-i18n="about.slide2_paragraph2"></p>
-                                <p data-i18n="about.slide2_paragraph3"></p>
-                                <!-- Add more content as needed -->
-                            </div>
-                           
-                        </div>
-                    </div>
-                    <!-- Add more <div class="carousel-slide">...</div> elements here for more slides later -->
-                </div>
-                 <!-- Optional: Carousel controls (dots/arrows) - need JS -->
-                 <!-- <div class="carousel-controls"> -->
-                 <!--   <button class="prev">Prev</button> -->
-                 <!--   <button class="next">Next</button> -->
-                 <!-- </div> -->
-            </div>
-        </section>
-
-         <!-- Section 3: Carousel () -->
-        <section id="hero-carousel" aria-label="Introduction Carousel">
-            <div class="container">
-                <!-- Carousel Wrapper (for JS later) -->
-                <div class="carousel-wrapper">
-                    <!-- Slide 1 -->
-                    <div class="carousel-slide active-slide">
-                        <div class="slide-grid"> <!-- Use Grid or Flexbox for 2 columns -->
-
-                            <div class="content-box">
-                                <h2></h2>
-                                <p data-i18n="about.slide3_paragraph1"></p>
-                                <p data-i18n="about.slide3_paragraph2"></p>
-                                <!-- Add more content as needed -->
-                            </div>
-                            <div class="photo-box">
-                                <img src="assets/About_3.jpg" alt="Placeholder for personal photograph" style="width:100%; max-width:400px; height:auto; background:#ccc;">
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Add more <div class="carousel-slide">...</div> elements here for more slides later -->
-                </div>
-                 <!-- Optional: Carousel controls (dots/arrows) - need JS -->
-                 <!-- <div class="carousel-controls"> -->
-                 <!--   <button class="prev">Prev</button> -->
-                 <!--   <button class="next">Next</button> -->
-                 <!-- </div> -->
-            </div>
-        </section>
-
 
         <!-- Section 2: Latest AI News -->
         <section id="latest-ai-news" class="container">
@@ -185,6 +125,5 @@
     </footer>
 
     <!-- Link JavaScript file -->
-    <!-- Note: script.js is already included in the head -->
 </body>
 </html>

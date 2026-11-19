@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Models — ozsert.com</title>
+  <link rel="canonical" href="https://ozsert.com/models/">
+  <link rel="icon" href="/favicon.ico">
+  <script src="/shared/core.js"></script>
+  <script src="/shared/topbar.js" defer></script>
+  <link rel="stylesheet" href="/shared/house.css">
+  <style>
+    .m-list { list-style: none; margin: 56px 0 0; padding: 0 0 0 28px; border-left: 1.5px solid var(--rule); }
+    .m-item { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: 24px; padding: 0 0 56px; }
+    .m-item::before { content: ""; position: absolute; left: -36px; top: 6px; width: 13px; height: 13px; border-radius: 50%; background: var(--paper); border: 2px solid var(--ink); }
+    .m-item.rival::before { border-color: var(--muted); }
+    .m-item.failed { opacity: .72; }
+    .m-date { font: 12px var(--mono); color: var(--muted); }
+    .m-item h2 { margin: 4px 0 6px; font-size: clamp(24px, 3vw, 34px); letter-spacing: -.02em; line-height: 1.15; font-weight: 600; }
+    .m-meta { display: flex; flex-wrap: wrap; gap: 8px 14px; font: 12px var(--mono); color: var(--muted); margin-bottom: 12px; }
+    .m-note { margin: 0 0 14px; max-width: 52ch; }
+    .m-shot { display: block; background: var(--card); padding: 6px; box-shadow: 0 1px 0 var(--rule), 0 10px 24px rgba(0,0,0,.08); transform: rotate(.8deg); }
+    .m-shot img { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: top; }
+    .m-empty { margin-top: 56px; font: 14px var(--mono); color: var(--muted); }
+    @media (max-width: 760px) { .m-item { grid-template-columns: 1fr; } }
+    @media (max-width: 639px) { body { padding-bottom: 64px; } }
+  </style>
+</head>
+<body>
+  <oz-topbar></oz-topbar>
+  <main class="h-wrap">
+    <a class="h-back" href="/" id="back"></a>
+    <div class="h-kicker" id="kicker"></div>
+    <h1 class="h-title" id="title"></h1>
+    <p class="h-lead" id="lead"></p>
+    <p class="h-muted" id="how"></p>
+    <ol class="m-list" id="list"></ol>
+  </main>
+  <script>
+  (function () {
+    var UI = {
+      tr: { back: "← Ana sayfa", kicker: "Deney · tek spec, çok model", title: "Aynı spec, farklı modeller.",
+            lead: "Bu sitenin ana sayfası, her biri aynı içerik ve tasarım spesifikasyonunu tek seferde alan farklı yapay zekâ modelleri tarafından ayrı ayrı inşa edildi. Eski modelden yeniye sıralı: kalitenin zamanla değişimini izleyin.",
+            how: "Kurallar: aynı prompt, varsayılan ayarlar, insan düzeltmesi yok. Detaylar üst bardaki ‹ spesifikasyon /› içinde.",
+            open: "Aç →", released: "çıkış", built: "inşa", failed: "başarısız", empty: "Henüz kayıtlı model yok." },
+      en: { back: "← Home", kicker: "Experiment · one spec, many models", title: "Same spec, different models.",
+            lead: "This site's homepage was built separately by different AI models, each given the same content and design spec, one shot. Ordered from older to newer models: watch the quality change over time.",
+            how: "Rules: same prompt, default settings, no human fixes. Details under ‹ view specs /› in the top bar.",
+            open: "Open →", released: "released", built: "built", failed: "failed", empty: "No models registered yet." }
+    };
+    function esc(s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+    function render() {
+      var u = UI[OZ.lang];
+      document.title = (OZ.lang === "tr" ? "Modeller" : "Models") + " — ozsert.com";
+      ["back", "kicker", "title", "lead", "how"].forEach(function (id) { document.getElementById(id).textContent = u[id]; });
+      OZ.models().then(function (reg) {
+        var list = (reg.models || []).filter(function (m) { return m.id.charAt(0) !== "_"; })
+          .sort(function (a, b) { return (a.order || 0) - (b.order || 0); });
+        var el = document.getElementById("list");
+        if (!list.length) { el.outerHTML = '<p class="m-empty" id="list">' + u.empty + "</p>"; return; }
+        el.innerHTML = list.map(function (m) {
+          var note = m.note ? (m.note[OZ.lang] || m.note.en || "") : "";
+          var shot = "/assets/shots/" + m.id + "-desktop-" + OZ.theme + ".png";
+          return '<li class="m-item' + (m.family === "claude" ? "" : " rival") + (m.status === "failed" ? " failed" : "") + '">' +
+            "<div><div class=\"m-date\">#" + esc(m.order) + "</div><h2>" + esc(m.name) + "</h2>" +
+            '<div class="m-meta"><span>' + esc(m.lab) + "</span><span>" + esc(m.harness) + "</span><span>" + u.built + " " + esc(m.builtOn) +
+            "</span><span>" + esc(m.specVersion) + "</span>" + (m.status === "failed" ? '<span class="h-stamp">' + u.failed + "</span>" : "") + "</div>" +
+            (note ? '<p class="m-note">' + esc(note) + "</p>" : "") +
+            '<a href="' + esc(m.path || "/models/" + m.id + "/") + '">' + u.open + "</a></div>" +
+            '<a class="m-shot" href="' + esc(m.path || "/models/" + m.id + "/") + '" aria-hidden="true" tabindex="-1"><img src="' + shot + '" alt="" loading="lazy" onerror="this.parentNode.style.display=\'none\'"></a></li>';
+        }).join("");
+      });
+    }
+    OZ.ready.then(render);
+    document.addEventListener("oz:langchange", render);
+    document.addEventListener("oz:themechange", render);
+  })();
+  </script>
+</body>
+</html>

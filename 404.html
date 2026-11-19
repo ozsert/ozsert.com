@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>404 — ozsert.com</title>
+  <meta name="robots" content="noindex">
+  <script>
+    // Old v1 URLs → new homepage anchors / pages (GitHub Pages serves this file for any missing path).
+    (function () {
+      var map = {
+        "/index.html": "/", "/about.html": "/#experience", "/topics.html": "/talks/",
+        "/blog.html": "/#newsletter", "/contact.html": "/#contact", "/talks": "/talks/", "/models": "/models/"
+      };
+      var p = location.pathname.replace(/\/+$/, "") || "/";
+      if (map[p] || map[location.pathname]) location.replace(map[p] || map[location.pathname]);
+    })();
+  </script>
+  <link rel="icon" href="/favicon.ico">
+  <script src="/shared/core.js"></script>
+  <script src="/shared/topbar.js" defer></script>
+  <link rel="stylesheet" href="/shared/house.css">
+</head>
+<body>
+  <oz-topbar></oz-topbar>
+  <main class="h-wrap">
+    <div class="h-kicker">404 · <span id="path"></span></div>
+    <h1 class="h-title" id="t"></h1>
+    <p class="h-lead" id="l"></p>
+    <p><a class="h-btn" href="/" id="b"></a></p>
+  </main>
+  <script>
+    (function () {
+      var UI = {
+        tr: { t: "Sinyal kayboldu.", l: "Aradığın sayfa burada değil. Belki taşındı, belki hiç yoktu.", b: "Ana sayfaya dön" },
+        en: { t: "Signal lost.", l: "The page you're looking for isn't here. Maybe it moved, maybe it never existed.", b: "Back to the homepage" }
+      };
+      function r() { var u = UI[OZ.lang]; ["t", "l", "b"].forEach(function (k) { document.getElementById(k).textContent = u[k]; }); }
+      document.getElementById("path").textContent = location.pathname;
+      OZ.ready.then(r); document.addEventListener("oz:langchange", r);
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta data-i18n="[content]about.meta_description" name="description">
+    <title data-i18n="about.title"></title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="stylesheet" href="style.css"> <!-- Link to CSS -->
+
+    <!-- Optional Favicons -->
+    <!-- <link rel="icon" href="/favicon.ico" sizes="any"> -->
+    <script src="https://unpkg.com/i18next/dist/umd/i18next.min.js"></script>
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+    <header>
+        <div class="container header-flex"> <!-- Flex container for layout -->
+            <div class="logo">
+                <!-- Link the logo/name to the home page of the current language -->
+                <a href="index.html"><strong data-i18n="common_header.logo_text"></strong></a>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <!-- Update hrefs when other pages are created -->
+                    <li><a href="about.html" data-i18n="common_header.nav_about"></a></li>
+                    <li><a href="topics.html" data-i18n="common_header.nav_topics"></a></li> 
+                    <li><a href="blog.html" data-i18n="common_header.nav_blog"></a></li> 
+                    <li><a href="contact.html" data-i18n="common_header.nav_contact"></a></li>
+                </ul>
+            </nav>
+            <div class="language-toggle">
+                <a href="#" id="lang-tr" data-lang="tr" data-i18n="common_header.lang_tr"></a> | <a href="#" id="lang-en" data-lang="en" data-i18n="common_header.lang_en"></a>
+            </div>
+            <!-- Optional: Mobile Menu Button (hidden by default, shown on mobile via CSS) -->
+            <!-- <button class="mobile-menu-toggle" aria-label="Open navigation menu">☰</button> -->
+        </div>
+    </header>
+
+    <main>
+                <!-- AI Credits Banner -->
+        <div class="banner-wrapper">
+            <div class="ai-credits-banner" role="complementary" aria-label="AI credits information">
+                <div class="ai-icon" aria-hidden="true">
+                    <img src="assets/lucide-bot.svg" alt="AI Bot Icon" width="24" height="24" class="lucide lucide-bot">
+                </div>
+                <div class="ai-text-container">
+                    <div class="ai-text-bold"><strong data-i18n="common_banner.ai_built_by"></strong></div>
+                    <div class="ai-text-regular" data-i18n="common_banner.ai_human_words"></div>
+                </div>
+                <div class="ai-icon" aria-hidden="true">
+                    <img src="assets/lucide-pen.svg" alt="Pen Tool Icon" width="24" height="24" class="lucide lucide-pen-tool">
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section 1: Carousel () -->
+        <section id="hero-carousel" aria-label="Introduction Carousel">
+            <div class="container">
+                <!-- Carousel Wrapper (for JS later) -->
+                <div class="carousel-wrapper">
+                    <!-- Slide 1 -->
+                    <div class="carousel-slide active-slide">
+                        <div class="slide-grid"> <!-- Use Grid or Flexbox for 2 columns -->
+                            <div class="content-box">
+                                <h2></h2>
+                                <p data-i18n="about.slide1_greeting"></p>
+                                <p data-i18n="about.slide1_paragraph1"></p>
+                                <p data-i18n="about.slide1_paragraph2"></p>
+                                <p data-i18n="about.slide1_paragraph3"></p>
+                                <!-- Add more content as needed -->
+                            </div>
+                            <div class="photo-box">
+                                <img src="/assets/About_4.jpg" alt="Placeholder for personal photograph" style="width:100%; max-width:400px; height:auto; background:#ccc;">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Add more <div class="carousel-slide">...</div> elements here for more slides later -->
+                </div>
+                 <!-- Optional: Carousel controls (dots/arrows) - need JS -->
+                 <!-- <div class="carousel-controls"> -->
+                 <!--   <button class="prev">Prev</button> -->
+                 <!--   <button class="next">Next</button> -->
+                 <!-- </div> -->
+            </div>
+        </section>
+
+        <!-- Section 2: Carousel () -->
+        <section id="hero-carousel" aria-label="Introduction Carousel">
+            <div class="container">
+                <!-- Carousel Wrapper (for JS later) -->
+                <div class="carousel-wrapper">
+                    <!-- Slide 1 -->
+                    <div class="carousel-slide active-slide">
+                        <div class="slide-grid"> <!-- Use Grid or Flexbox for 2 columns -->
+                            <div class="photo-box">
+                                <img src="/assets/About_2.jpg" alt="Placeholder for personal photograph" style="width:100%; max-width:400px; height:auto; background:#ccc;">
+                            </div>
+                            <div class="content-box">
+                                <h2></h2>
+                                <p data-i18n="about.slide2_paragraph1"></p>
+                                <p data-i18n="about.slide2_paragraph2"></p>
+                                <p data-i18n="about.slide2_paragraph3"></p>
+                                <!-- Add more content as needed -->
+                            </div>
+                           
+                        </div>
+                    </div>
+                    <!-- Add more <div class="carousel-slide">...</div> elements here for more slides later -->
+                </div>
+                 <!-- Optional: Carousel controls (dots/arrows) - need JS -->
+                 <!-- <div class="carousel-controls"> -->
+                 <!--   <button class="prev">Prev</button> -->
+                 <!--   <button class="next">Next</button> -->
+                 <!-- </div> -->
+            </div>
+        </section>
+
+         <!-- Section 3: Carousel () -->
+        <section id="hero-carousel" aria-label="Introduction Carousel">
+            <div class="container">
+                <!-- Carousel Wrapper (for JS later) -->
+                <div class="carousel-wrapper">
+                    <!-- Slide 1 -->
+                    <div class="carousel-slide active-slide">
+                        <div class="slide-grid"> <!-- Use Grid or Flexbox for 2 columns -->
+
+                            <div class="content-box">
+                                <h2></h2>
+                                <p data-i18n="about.slide3_paragraph1"></p>
+                                <p data-i18n="about.slide3_paragraph2"></p>
+                                <!-- Add more content as needed -->
+                            </div>
+                            <div class="photo-box">
+                                <img src="/assets/About_3.jpg" alt="Placeholder for personal photograph" style="width:100%; max-width:400px; height:auto; background:#ccc;">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Add more <div class="carousel-slide">...</div> elements here for more slides later -->
+                </div>
+                 <!-- Optional: Carousel controls (dots/arrows) - need JS -->
+                 <!-- <div class="carousel-controls"> -->
+                 <!--   <button class="prev">Prev</button> -->
+                 <!--   <button class="next">Next</button> -->
+                 <!-- </div> -->
+            </div>
+        </section>
+
+
+        <!-- Section 2: Latest AI News -->
+        <section id="latest-ai-news" class="container">
+            <h2 data-i18n="common_latest_posts.latest_posts_title"></h2>
+            <ul id="ai-news-list">
+                <p data-i18n="common_latest_posts.loading_latest_news"></p> <!-- Placeholder text -->
+            </ul>
+        </section>
+
+        <!-- Section 3: Newsletter Subscribe -->
+        <section id="newsletter-subscribe" class="container text-center">
+            <h2 class="newsletter-section-title" data-i18n="common_newsletter.section_title">Weekly Newsletter</h2>
+            <div class="newsletter-card">
+                <img src="assets/logo.png" alt="Newsletter Logo" class="newsletter-logo">
+                <h2 class="newsletter-title" data-i18n="common_newsletter.newsletter_name">The Next SignAl</h2>
+                <p class="newsletter-description" data-i18n="common_newsletter.newsletter_description">Finding the next signal in AI & Tech - Beyond the noise</p>
+                <p class="newsletter-author" data-i18n="common_newsletter.newsletter_author">By C. Murad Özsert</p>
+                <div class="newsletter-buttons">
+                    <a class="newsletter-button linkedin-button" href="https://www.linkedin.com/build-relation/newsletter-follow?entityUrn=7346972552528834560" target="_blank" data-i18n="common_newsletter.subscribe_linkedin">Subscribe on LinkedIn</a>
+                    <a class="newsletter-button substack-button" href="https://thenextsignalnewsletter.substack.com/" target="_blank" data-i18n="common_newsletter.subscribe_substack">Subscribe on Substack</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container footer-flex"> <!-- Flex container for layout -->
+            <div class="copyright">
+                <p data-i18n="common_footer.copyright_text"></p> <!-- Wireframe says 2025, adjust if needed -->
+            </div>
+            <div class="footer-links">
+                <a href="contact.html" data-i18n="common_footer.footer_contact_link"></a> <!-- Link to Contact page -->
+            </div>
+        </div>
+    </footer>
+
+    <!-- Link JavaScript file -->
+    <!-- Note: script.js is already included in the head -->
+</body>
+</html>

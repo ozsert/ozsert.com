@@ -1,0 +1,63 @@
+/* ozsert.com — house style for SHARED pages only (/talks/, /models/, 404).
+   Model versions bring their own CSS and must not depend on this file. */
+@import url("https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400;500&display=swap&subset=latin-ext");
+
+:root {
+  --paper: #FBF8F1; --card: #FEFCF7; --fg: #1A1714; --muted: #6A615B;
+  --rule: rgba(123, 112, 94, .26); --dot: rgba(78, 119, 144, .16);
+  --ink: var(--oz-accent, #1F5F8B);
+  --sans: "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+:root[data-theme="dark"] {
+  --paper: #16130F; --card: #1D1915; --fg: #ECE7DE; --muted: #B0AAA3;
+  --rule: rgba(229, 221, 208, .14); --dot: rgba(159, 196, 218, .09);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { animation: none !important; transition: none !important; } }
+body {
+  margin: 0; color: var(--fg); font: 17px/1.6 var(--sans);
+  background-color: var(--paper);
+  background-image: radial-gradient(var(--dot) 1px, transparent 1.2px);
+  background-size: 22px 22px;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration-color: color-mix(in srgb, var(--ink) 55%, transparent); text-underline-offset: 3px; }
+a:hover { color: var(--ink); }
+:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; border-radius: 3px; }
+
+.h-wrap { max-width: 1080px; margin: 0 auto; padding: 72px 24px 120px; }
+@media (max-width: 639px) { .h-wrap { padding: 48px 16px 120px; } }
+
+.h-kicker { font: 500 11px/1.4 var(--mono); letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
+.h-title { font-size: clamp(40px, 8vw, 96px); line-height: .98; letter-spacing: -.045em; font-weight: 600; margin: 14px 0 24px; }
+.h-title .dot { color: var(--ink); }
+.h-lead { max-width: 62ch; font-size: clamp(18px, 2.2vw, 22px); line-height: 1.5; margin: 0 0 12px; }
+.h-muted { color: var(--muted); }
+.h-mono { font-family: var(--mono); }
+
+.h-underline { position: relative; white-space: nowrap; }
+.h-underline svg { position: absolute; left: -2%; bottom: -.12em; width: 104%; height: .32em; overflow: visible; }
+.h-underline path { fill: none; stroke: var(--ink); stroke-width: 3; stroke-linecap: round; }
+
+.h-rule { border: 0; height: 8px; margin: 40px 0; background:
+  url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='600' height='8' preserveAspectRatio='none'><path d='M0 4 C 100 2, 200 6, 300 4 S 500 3, 600 5' fill='none' stroke='%237b705e' stroke-opacity='.55' stroke-width='1.2'/></svg>") center / 100% 8px no-repeat; }
+
+.h-stamp {
+  display: inline-block; font: 600 10px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase;
+  color: var(--ink); border: 1.5px solid currentColor; padding: 5px 7px 4px; border-radius: 2px;
+  transform: rotate(-3deg);
+}
+
+.h-back { display: inline-flex; gap: 6px; font: 12px var(--mono); color: var(--muted); text-decoration: none; margin-bottom: 40px; }
+.h-back:hover { color: var(--ink); }
+
+.h-btn {
+  display: inline-block; font: 500 15px/1 var(--sans); color: var(--paper); background: var(--ink);
+  padding: 12px 18px; text-decoration: none; position: relative; border-radius: 2px;
+}
+.h-btn::after { content: ""; position: absolute; inset: 0; border: 1.5px solid var(--fg); transform: translate(4px, 4px); border-radius: 2px; pointer-events: none; }
+.h-btn:hover { color: var(--paper); }
+
+.h-foot { margin-top: 80px; font: 12px/1.7 var(--mono); color: var(--muted); }

@@ -3,18 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta data-i18n="[content]contact.meta_description" name="description">
-
-    <title data-i18n="contact.title"></title>
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link rel="stylesheet" href="style.css"> <!-- Link to CSS -->
-
-    <!-- Optional Favicons -->
-    <!-- <link rel="icon" href="/favicon.ico" sizes="any"> -->
+    <title data-i18n="index.title"></title>
+    <meta data-i18n="[content]index.meta_description" name="description">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <script src="https://unpkg.com/i18next/dist/umd/i18next.min.js"></script>
     <script src="script.js" defer></script>
 </head>
-<body>
+<body class="index-page">
 
     <header>
         <div class="container header-flex"> <!-- Flex container for layout -->
@@ -40,7 +36,7 @@
     </header>
 
     <main>
-                <!-- AI Credits Banner -->
+        <!-- AI Credits Banner -->
         <div class="banner-wrapper">
             <div class="ai-credits-banner" role="complementary" aria-label="AI credits information">
                 <div class="ai-icon" aria-hidden="true">
@@ -55,7 +51,8 @@
                 </div>
             </div>
         </div>
- <!-- Section 1: Carousel (Structure for one slide) -->
+
+        <!-- Section 1: Carousel (Structure for one slide) -->
         <section id="hero-carousel" aria-label="Introduction Carousel">
             <div class="container">
                 <!-- Carousel Wrapper (for JS later) -->
@@ -65,16 +62,18 @@
                         <div class="slide-grid"> <!-- Use Grid or Flexbox for 2 columns -->
                             <div class="content-box">
                                 <h2></h2>
-                                <p data-i18n="contact.contact_intro1"></p>
-                                <p data-i18n="contact.contact_intro2"></p>
-                                <p>
-                                    <span data-i18n="contact.contact_email_instruction"></span>
-                                    <a id="email-link" href="#"></a>
-                                </p>
+                                <p data-i18n="index.slide1_greeting"></p>
+                                <p data-i18n="index.slide1_paragraph1"></p>
+                                <p data-i18n="index.slide1_paragraph2"></p>
+                                <p data-i18n="index.slide1_paragraph3"></p>
+                                <p data-i18n="index.slide1_paragraph4"></p>
                                 <!-- Add more content as needed -->
                             </div>
                             <div class="photo-box">
-                                <img src="assets/Contact_1.jpg" alt="Placeholder for personal photograph" style="width:100%; max-width:400px; height:auto; background:#ccc;">
+                                <div class="photo-hover-container">
+                                    <img src="/assets/Main_1.jpg" alt="Placeholder for personal photograph" class="main-photo main-photo-front" style="width:100%; max-width:400px; height:auto; background:#ccc;">
+                                    <img src="assets/Main_2.jpg" alt="Animated personal photograph" class="main-photo main-photo-back" style="width:100%; max-width:400px; height:auto; background:#ccc;">
+                                </div>
                             </div>
                         </div>
                     </div>
