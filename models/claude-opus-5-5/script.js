@@ -120,11 +120,11 @@
   function drawArrow() {
     var svg = $(".vo55-arrow"), grid = $(".vo55-hero-grid"), from = $("#vo55-circ-last"), note = $("#vo55-note");
     if (!svg || !from || !note || mqMobile.matches) return;
-    var portrait = $(".vo55-portrait"), man = $(".vo55-manifesto");
+    var side = $(".vo55-hero-side"), man = $(".vo55-manifesto");
     note.style.marginTop = "";
     var nat = note.getBoundingClientRect().top, want = man.getBoundingClientRect().bottom - 30;
-    var pb = portrait.getBoundingClientRect().bottom;
-    note.style.marginTop = Math.max(28, want - pb) + "px";
+    var toc = $(".vo55-toc"), pb = toc && toc.offsetHeight ? toc.getBoundingClientRect().bottom : side.getBoundingClientRect().top;
+    note.style.marginTop = Math.max(toc && toc.offsetHeight ? 32 : 0, want - pb) + "px";
     if (Math.abs(nat - note.getBoundingClientRect().top) > 1) queueLayout();
     var g = grid.getBoundingClientRect(), a = from.getBoundingClientRect(), b = note.getBoundingClientRect();
     if (!b.width) return;

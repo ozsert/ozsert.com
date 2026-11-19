@@ -84,7 +84,9 @@ call), but it must call `OZ.setAccent(id)` and show the names in both languages.
 ## 4. Layout
 
 - Content starts **below the 40px shared top bar**. Do not build your own site header.
-- Spacious hero: headline, role line, manifesto, CTAs, portrait, and a margin note.
+- Spacious hero: headline, role line, manifesto, CTAs, portrait, and a margin note. The portrait is a small
+  taped photo pinned at the headline's corner (not a big column; the headline still fits on two lines), so the
+  role line starts right under the headline. The contents list sits at the top of the side column, beside the role line.
 - The now strip is compact and horizontal on desktop and wraps on mobile. It can
   feel like a ticker or a status line. Turkish is the longest language here, so
   at 1440px it should fit on one line in **both** TR and EN (check TR first).
