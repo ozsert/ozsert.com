@@ -67,8 +67,9 @@ prompt_for() {
   fi
 }
 
-stop_servers() {   # kill local servers an agent left running in the workshop
+stop_servers() {   # kill local servers an agent left running in the workshop (not ones that ran before it, e.g. review.sh)
   for p in $(pgrep -f "http.server" || true); do
+    [[ " $before " == *" $p "* ]] && continue
     d="$(lsof -a -p "$p" -d cwd 2>/dev/null | tail -1 | awk '{print $NF}')"
     [[ "$d" == "$batch"* ]] && kill "$p" 2>/dev/null || true
   done
@@ -105,6 +106,7 @@ for page in "${pages[@]}"; do
   if [[ -f "$batch/$page.log" ]]; then n=1; while [[ -e "$batch/$page.log.$n" ]]; do n=$((n+1)); done; mv "$batch/$page.log" "$batch/$page.log.$n"; fi
   echo "▶ $page"
   prompt_for "$page" > "$batch/$page.prompt.txt"
+  before="$(pgrep -f "http.server" | tr '\n' ' ' || true)"
   ( cd "$work" && claude -p "$(cat "$batch/$page.prompt.txt")" --model "$model" \
       --dangerously-skip-permissions --disallowedTools WebSearch WebFetch \
       --output-format stream-json --verbose > "$batch/$page.log" 2>&1 ) || true

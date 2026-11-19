@@ -533,8 +533,8 @@
 - en: Talks — C. Murad Özsert
 
 ### talks.page_intro
-- tr: Yapay zekâ üzerine düşünce egzersizleri: üç cilt, on iki konuşma. Etkinlikler ve kurum içi oturumlar için uyarlanabilir.
-- en: Thought exercises on AI: three volumes, twelve talks. Each can be tailored for events and in-house sessions.
+- tr: Üç cilt, on iki konuşma: dönüşümün felsefesi, sektörler ve insan.
+- en: Three volumes, twelve talks: the philosophy of change, sectors and people.
 
 ### talks.back_home
 - tr: ← Ana sayfaya dön

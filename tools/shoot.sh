@@ -14,6 +14,7 @@ chrome="${CHROME:-/Applications/Google Chrome.app/Contents/MacOS/Google Chrome}"
 [[ -f "$root$path/index.html" || -f "$root${path%/}/index.html" ]] || { echo "$root$path index.html not found" >&2; exit 1; }
 
 port="${PORT:-8799}"
+! lsof -nP -iTCP:"$port" -sTCP:LISTEN >/dev/null 2>&1 || { echo "port $port is busy (stale server?); set PORT=…" >&2; exit 1; }
 mkdir -p "$out"; tmp="$(mktemp -d)"
 cp "$repo/tools/frame.html" "$root/.shoot-frame.html"
 ( cd "$root" && python3 -m http.server "$port" >/dev/null 2>&1 ) &
