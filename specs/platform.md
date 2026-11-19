@@ -9,7 +9,7 @@ Load `/shared/topbar.js` (deferred) and put `<oz-topbar></oz-topbar>` first in `
 component in Shadow DOM, so its styles and the page's styles never affect each other.
 
 - 40px tall, sticky, translucent with blur.
-- Left: **📡 ozsert.com**, linking to `/`.
+- Left: **ozsert.com**, linking to `/`.
 - Right: **TR / EN**, **theme** (light / dark), **"Built with [model ▾]"** to switch between the homepage
   versions built by different models, and **"view specs"**, which opens these specs.
 - On mobile (<640px) the model switcher and specs button move to a fixed bottom bar, so pages leave

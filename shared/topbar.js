@@ -1,6 +1,6 @@
 /*!
  * ozsert.com — shared top bar: <oz-topbar>
- * 40px sticky bar: 📡 mark · TR/EN · theme · "Built with [model ▾]" · view specs.
+ * 40px sticky bar: TR/EN · theme · "Built with [model ▾]" · view specs.
  * On mobile (<640px) the model switcher + specs move to a fixed bottom bar
  * (versions must leave 64px of bottom padding on mobile).
  * Shadow DOM: version CSS cannot affect it and it cannot affect versions.
@@ -34,7 +34,7 @@
     "border-bottom:1px solid var(--rule);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}",
     "a{color:inherit;text-decoration:none}",
     ".home{display:flex;align-items:center;gap:8px;font-weight:600;font-size:12px;white-space:nowrap}",
-    ".home .mark{font-size:18px;line-height:1}",
+    "",
     ".right{display:flex;align-items:center;gap:10px}",
     ".mono{font-family:'Geist Mono',ui-monospace,SFMono-Regular,Menlo,monospace}",
     "button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}",
@@ -92,7 +92,7 @@
       sr.innerHTML =
         "<style>" + CSS + "</style>" +
         '<div class="bar">' +
-          '<a class="home" href="/"><span class="mark" aria-hidden="true">📡</span><span>ozsert.com</span></a>' +
+          '<a class="home" href="/"><span>ozsert.com</span></a>' +
           '<div class="right">' +
             '<div class="lang mono" role="group"><button data-l="tr">TR</button><button data-l="en">EN</button></div>' +
             '<button class="icon theme" type="button"></button>' +

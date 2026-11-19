@@ -22,10 +22,10 @@ belongs to one person.
 Keywords: *warm paper · grid · ink · margin notes · signal · on the road · Istanbul*.
 
 **Fidelity target:** the anatomy in §8b, at its level of craft, with Murad's identity: the Istanbul
-palette, 📡, the Bosphorus and his content.
+palette, the signal motif, the Bosphorus and his content.
 
 Recurring motifs you can pick from (use some, not all):
-- **Signal:** radio waves, a waveform, a frequency dial, a 📡 mark.
+- **Signal:** radio waves, a waveform, a frequency dial, a dot with radiating arcs.
   A signal emerging from noise is a natural hero device.
 - **Road (Yolda):** a hand-drawn route line that connects the sections, with
   stops as milestones in the experience timeline.
@@ -106,7 +106,8 @@ call), but it must call `OZ.setAccent(id)` and show the names in both languages.
   or scale. Talk picture: `talk.<slug>.image`. Issue picture: `post.image` (the
   cover from Substack; skip it if `null`). On touch and with reduced motion, show a
   small static thumbnail in the row instead. The pictures must never hide the text
-  being read or cause layout shift.
+  being read or cause layout shift. Print every picture in the notebook's ink (e.g. an
+  accent-ink duotone) so it belongs to the page, not a pasted photo.
 - **Experience:** a compact timeline (road or route metaphor encouraged), with
   years in mono.
 - **Footer:** name, identity line, contact links with mono handles, signoff.
@@ -275,6 +276,7 @@ Mono. Every line drawn in SVG. Interpreted by <Model> from the shared spec."*
     scenes, one per `OZ.accents` id (§8b table), each with its caption `hero.fig.<id>`.
     Swap on `oz:accentchange` with a short crossfade (instant under reduced motion),
     without layout shift. The current accent at load (`OZ.accent`) decides the first scene.
+    Test it: each scene must draw fully on the *first* click of its colour, not only on a revisit.
 
 ---
 

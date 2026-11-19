@@ -48,7 +48,7 @@ Tone: warm, curious, grounded, a builder who has been in the trenches, not a
 hype merchant. First person. Short sentences. It reads like a notebook he keeps,
 not a corporate brochure.
 
-Personal mark: **📡** (signal: *finding the signal beyond the noise*).
+Personal motif: **a signal** ( *finding the signal beyond the noise*).
 
 ---
 
