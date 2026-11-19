@@ -393,14 +393,28 @@
     showScene(OZ.accent, false);
   }
   var sceneSeen = false;
+  // Draw a scene's lines with explicit animations. A CSS transition on a scene that was never shown
+  // before doesn't always start, which left the scene blank on the first click of a colour.
+  function drawScene(s, animate) {
+    s.classList.add("vo55-in");
+    $$("[pathLength]", s).forEach(function (p) {
+      p.style.transition = "none"; // the drawing is driven below, not by the CSS transition
+      p.getAnimations().forEach(function (a) { a.cancel(); });
+      if (!animate) return;
+      var cs = getComputedStyle(p);
+      p.animate([{ strokeDashoffset: 1 }, { strokeDashoffset: 0 }], {
+        duration: (parseFloat(cs.getPropertyValue("--dur")) || 1) * 1000,
+        delay: (parseFloat(cs.getPropertyValue("--delay")) || 0) * 1000,
+        easing: "cubic-bezier(.2, .7, .2, 1)", fill: "backwards"
+      });
+    });
+  }
   function showScene(id, redraw) {
     if (redraw) sceneSeen = true; // the user picked a colour: draw the new scene now, even before the reveal fired
     $$(".vo55-scene").forEach(function (s) {
       var on = s.getAttribute("data-scene") === id;
       s.classList.toggle("vo55-on", on);
-      if (on && redraw && sceneSeen && !still()) {
-        s.classList.remove("vo55-in"); void s.getBoundingClientRect(); s.classList.add("vo55-in");
-      } else if (on && sceneSeen) s.classList.add("vo55-in");
+      if (on && sceneSeen) drawScene(s, redraw && !still());
     });
     $(".vo55-fig1-cap").textContent = t("hero.fig." + id);
   }
@@ -808,7 +822,7 @@
     ents.forEach(function (e) {
       if (!e.isIntersecting) return;
       e.target.classList.add("vo55-in");
-      if (e.target.classList.contains("vo55-scenes")) { sceneSeen = true; showScene(OZ.accent, false); }
+      if (e.target.classList.contains("vo55-scenes")) { sceneSeen = true; showScene(OZ.accent, true); }
       io.unobserve(e.target);
     });
   }, { rootMargin: "0px 0px -8% 0px", threshold: .12 }) : null;
