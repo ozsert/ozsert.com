@@ -24,22 +24,27 @@ Pure static site on GitHub Pages: no framework, no bundler.
 | Style | Field Notebook; Istanbul accent palette (6 colours, each with its own hero scene); 📡 mark. |
 | Identity | No job title or employer in the hero: startups → largest enterprises. Deka Tech only in Experience/Now; clients never named. Yolda is a founder's journey: no exit or acquisition. |
 | Sections | 01 Workbench (enterprise + startup projects) · 02 Founder's road (Yolda) · 03 Talks · 04 Newsletter · 05 Experience. |
-| Root `/` | The released homepage with the highest `order` (or `pinned` in `content/models.json`). |
+| Root `/` | `pinned` in `content/models.json` (Opus 5.5), otherwise the released homepage with the highest `order`. |
 | Public vs internal | `specs/` is public (deployed and shown in the specs window). This file and `tools/` are not; builds live outside the repo. |
 | Fairness | Same spec, same prompt, one prompt per page, Claude Code defaults, no human edits to output. |
 
-## 3. Lineup (`order` in `content/models.json`)
+## 3. Lineup (`order` in `content/models.json` = release order)
 
-| Order | Model | Model id = `--model` |
-|---|---|---|
-| 1 | Claude Opus 4.6 | `claude-opus-4-6` |
-| 2 | Claude Opus 4.7 | `claude-opus-4-7` |
-| 3 | Claude Opus 4.8 | `claude-opus-4-8` |
-| 4 | Claude Opus 5 | `claude-opus-5` |
-| 5 | Claude Haiku 5.5 | `claude-haiku-5-5` |
-| 6 | Claude Sonnet 5.5 | `claude-sonnet-5-5` |
-| 7 | Claude Opus 5.5 | `claude-opus-5-5` (flagship, so it ends up at `/`) |
-| — | Claude Fable 5.2 | skipped for now (needs API usage) |
+Built newest first after the flagship; one model at a time, and within a model one page at a time.
+Release dates are approximate (one year before each model's earliest retirement date).
+
+| Order | Model | Model id = `--model` | Released | Status |
+|---|---|---|---|---|
+| 1 | Claude Opus 4.6 | `claude-opus-4-6` | ~2026-02-05 | to build |
+| 2 | Claude Opus 4.7 | `claude-opus-4-7` | ~2026-04-16 | to build |
+| 3 | Claude Opus 4.8 | `claude-opus-4-8` | ~2026-05-28 | to build |
+| 4 | Claude Opus 5 | `claude-opus-5` | ~2026-07-24 | building (`spec-v1`) |
+| 5 | Claude Opus 5.5 | `claude-opus-5-5` | ~2026-09-22 | live (dry run, kept as its version; `pinned`, so it stays at `/`) |
+| 6 | Claude Sonnet 5.5 | `claude-sonnet-5-5` | ~2026-09-28 | to build |
+| 7 | Claude Haiku 5.5 | `claude-haiku-5-5` | ~2026-10-07 | to build |
+| — | Claude Fable 5.2 | `claude-fable-5-2` | — | out of scope for now |
+
+Build order: Opus 5 → Opus 4.8 → Opus 4.7 → Opus 4.6 → Sonnet 5.5 → Haiku 5.5.
 
 Dropped: Sonnet 4.5 and Opus 4.5 (not available in Claude Code). Rival labs are out of scope. Never fake a model.
 
@@ -97,7 +102,8 @@ It describes *what* the site says and *how* it should look, never how we run the
 
 ## 7. Process 2: build (one batch = all pages of one model)
 
-Run it **in the background**; each page takes ~15–20 min and pages run one after another.
+Run it **in the background** as a plain script (no supervising agents); each page takes ~15–20 min, more if a usage
+limit cuts it off.
 
 ```bash
 SPEC_REF=spec-v1 tools/build.sh <model> "<Model Name>"   # official build → ../ozsert-builds/<model>_spec-v1/
@@ -105,11 +111,16 @@ tools/build.sh <model> "<Model Name>" [page …]           # dry run from the cu
 ```
 
 **Deterministic layout:** one batch folder per model per spec version, `../ozsert-builds/<model>_<spec>/`
-(no dates). Models never share a folder, so no model sees another's work; one model's pages share it (links work,
-and a page may look at that model's earlier pages, the same for every model). Running the same command again
+(no dates). Models never share a folder, so no model sees another's work; one model's pages are reviewed together in its `repo/`
+(links work). Running the same command again
 continues the batch (finished pages skipped, e.g. after a usage limit); to start over, delete the folder.
-**Official builds:** the default page order (homepage → talks → projects in `projects.order`), one after another,
-never in parallel. Parallel page runs are only for dry runs.
+**One page at a time, never in parallel.** The prompt has every agent test on port 8000 and agents stop servers they
+think are theirs, so parallel builds disturb each other (and any server you run on 8000: use another port, e.g. 8080,
+while a build runs). Each page builds in its own folder `_pages/<page>/` holding only the input set, so no page sees
+another page's work; finished pages are copied into `repo/` for review. After a page finishes: check it, report,
+then start the next. A page cut off by a usage limit continues its own session (`claude --resume`, "Continue.").
+Every page ends with the model's own check pass (TR/EN, light/dark, 390/1440, every figure), ~75–90% of its tool
+calls; this is part of the benchmark and stays.
 
 What it does, never by hand:
 1. Creates the workshop `../ozsert-builds/<model>_<spec>/repo/` with only the **input set** (`specs/`, `shared/`,

@@ -2,7 +2,7 @@
 # Build pages for one model, in one batch (CLAUDE.md §7):
 #   SPEC_REF=spec-v1 tools/build.sh <model-id> "<Model Name>" [page ...]
 #     pages: homepage, talks, and/or project slugs. Default: homepage + talks + every slug in projects.order,
-#     in that order, one after another. The batch is ../ozsert-builds/<model>_<spec>/ (deterministic):
+#     one page at a time, each in its own folder. The batch is ../ozsert-builds/<model>_<spec>/ (deterministic):
 #     if it exists, the same command continues it (finished pages are skipped; a half-finished page starts
 #     over with a fresh prompt and may build on its own half-done files). To start over, delete the batch.
 #   tools/build.sh --resume <batch> [page ...]   continue a batch by its folder name
@@ -68,20 +68,17 @@ prompt_for() {
   fi
 }
 
-stop_servers() {   # kill local servers an agent left running in the workshop (not ones that ran before it, e.g. review.sh)
-  # another build still running (parallel builds): leave its servers alone; the last one to finish cleans up
-  pgrep -f "disallowedTools WebSearch WebFetch" >/dev/null 2>&1 && return 0
+stop_servers() {   # stop_servers <dir>: kill local servers an agent left running in its own page folder
   for p in $(pgrep -f "http.server" || true); do
-    [[ " $before " == *" $p "* ]] && continue
     d="$(lsof -a -p "$p" -d cwd 2>/dev/null | tail -1 | awk '{print $NF}')"
-    [[ "$d" == "$batch"* ]] && kill "$p" 2>/dev/null || true
+    [[ "$d" == "$1"* ]] && kill "$p" 2>/dev/null || true
   done
 }
 
 report() {   # report <log>: tool calls, outside-path attempts, finished or not
-  python3 -I - "$1" "$work" "$repo" <<'EOF'
+  python3 -I - "$1" "$2" "$repo" "$builds_root" <<'EOF'
 import json, sys
-log, work, repo = sys.argv[1:4]
+log, work, repo, builds = sys.argv[1:5]   # anything outside the page's own folder is flagged
 calls = outside = 0; result = None; ms = 0
 for line in open(log, encoding="utf-8", errors="replace"):
     try: ev = json.loads(line)
@@ -94,7 +91,7 @@ for line in open(log, encoding="utf-8", errors="replace"):
         if isinstance(b, dict) and b.get("type") == "tool_use":
             calls += 1
             inp = json.dumps(b.get("input"), ensure_ascii=False).replace(work, "<WORK>")
-            if repo + "/" in inp or "/archive/" in inp:
+            if repo + "/" in inp or builds + "/" in inp or "/archive/" in inp:
                 outside += 1; print(f"    ✗ outside its folder: {b.get('name')}: {inp[:160]}")
 ok = result is not None and not result.get("is_error")
 mins = round(ms / 60000, 1)
@@ -103,25 +100,49 @@ sys.exit(0 if ok else 2)
 EOF
 }
 
-# ---- run every page, one after another ---------------------------------------------------
-for page in "${pages[@]}"; do
-  if [[ "$page" != homepage && ! -f "$work/$(spec_file "$page")" ]]; then echo "✗ skip $page: no $(spec_file "$page")"; continue; fi
-  if [[ -f "$batch/$page.done" ]]; then echo "✓ $page already finished, skipping"; continue; fi
-  if [[ -f "$batch/$page.log" ]]; then n=1; while [[ -e "$batch/$page.log.$n" ]]; do n=$((n+1)); done; mv "$batch/$page.log" "$batch/$page.log.$n"; fi
-  echo "▶ $page"
-  prompt_for "$page" > "$batch/$page.prompt.txt"
-  before="$(pgrep -f "http.server" | tr '\n' ' ' || true)"
-  ( cd "$work" && claude -p "$(cat "$batch/$page.prompt.txt")" --model "$model" \
+# ---- run the pages, one at a time ----------------------------------------------------------
+# Never in parallel: the prompt has every agent use port 8000, and agents stop "their" servers.
+# Each page is built in its own folder _pages/<page>/ holding only the input set, so pages never see each
+# other's work. The finished page is copied into repo/.
+build_page() {
+  local page="$1" i="$2" pw="$batch/_pages/$1" out; out="$(out_dir "$page")"
+  if [[ ! -d "$pw" ]]; then
+    mkdir -p "$pw"
+    rsync -a --exclude /models --exclude /talks --exclude /projects "$work/" "$pw/"   # anchored: keep specs/projects/
+  fi
+  # an interrupted page (e.g. usage limit) continues its own session, so it stays one prompt, one conversation
+  local sid="" args
+  if [[ -f "$batch/$page.log" ]]; then
+    sid="$(python3 -I -c 'import json,sys
+for l in open(sys.argv[1], errors="replace"):
+    try: e = json.loads(l)
+    except ValueError: continue
+    if isinstance(e, dict) and e.get("session_id"): print(e["session_id"]); break' "$batch/$page.log")"
+    n=1; while [[ -e "$batch/$page.log.$n" ]]; do n=$((n+1)); done; mv "$batch/$page.log" "$batch/$page.log.$n"
+  fi
+  if [[ -n "$sid" ]]; then args=(--resume "$sid" -p "Continue.")
+  else prompt_for "$page" > "$batch/$page.prompt.txt"; args=(-p "$(cat "$batch/$page.prompt.txt")"); fi
+  ( cd "$pw" && claude "${args[@]}" --model "$model" \
       --dangerously-skip-permissions --disallowedTools WebSearch WebFetch \
       --output-format stream-json --verbose > "$batch/$page.log" 2>&1 ) || true
-  stop_servers
-  if report "$batch/$page.log" && [[ -f "$work/$(out_dir "$page")/index.html" ]]; then
+  stop_servers "$pw"
+  echo "▶ $page"
+  if report "$batch/$page.log" "$pw" && [[ -f "$pw/$out/index.html" ]]; then
+    rm -rf "$work/$out"; mkdir -p "$work/$out"; rsync -a "$pw/$out/" "$work/$out/"
     touch "$batch/$page.done"
-    PORT="$((8800 + $$ % 100))" "$repo/tools/shoot.sh" "$work" "/$(out_dir "$page")/" "$batch/_shots/$page" >/dev/null 2>&1 || true
-    echo "    ✓ done: /$(out_dir "$page")/"
+    PORT="$((8800 + i))" "$repo/tools/shoot.sh" "$work" "/$out/" "$batch/_shots/$page" >/dev/null 2>&1 || true
+    echo "    ✓ done: /$out/"
   else
-    echo "    ⚠ $page did not finish (e.g. usage limit). Continue later: tools/build.sh --resume $batch_name (or the same command again)"
+    echo "    ⚠ $page did not finish (e.g. usage limit). Run the same command again to continue."
   fi
+}
+
+i=0
+for page in "${pages[@]}"; do
+  i=$((i+1))
+  if [[ "$page" != homepage && ! -f "$work/$(spec_file "$page")" ]]; then echo "✗ skip $page: no $(spec_file "$page")"; continue; fi
+  if [[ -f "$batch/$page.done" ]]; then echo "✓ $page already finished, skipping"; continue; fi
+  build_page "$page" "$i"
 done
 
 echo

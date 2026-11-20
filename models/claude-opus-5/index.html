@@ -1,0 +1,597 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="oz-model" content="claude-opus-5">
+<link rel="canonical" href="https://ozsert.com/">
+<script src="/shared/core.js"></script>
+<script src="/shared/topbar.js" defer></script>
+
+<title>C. Murad Özsert</title>
+<meta name="description" content="">
+<meta name="theme-color" content="#FBF8F1" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#16130F" media="(prefers-color-scheme: dark)">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400;500;600&display=swap&subset=latin-ext">
+<link rel="stylesheet" href="/models/claude-opus-5/style.css">
+<script src="/models/claude-opus-5/script.js" defer></script>
+</head>
+<body>
+<oz-topbar></oz-topbar>
+
+<div class="vo5-grain" aria-hidden="true"></div>
+<canvas class="vo5-trail" aria-hidden="true"></canvas>
+
+<main class="vo5-main">
+
+  <!-- ══════════════════════════ HERO ══════════════════════════ -->
+  <section id="top" class="vo5-sec vo5-hero">
+    <div class="vo5-wrap">
+
+      <div class="vo5-kicker">
+        <span data-i18n="hero.kicker"></span>
+        <span class="vo5-kicker-r">41.01° N, 28.98° E</span>
+      </div>
+
+      <div class="vo5-sheet vo5-sheet--hero">
+        <div class="vo5-margin vo5-margin--hero" aria-hidden="true">
+          <svg class="vo5-spine" viewBox="0 0 24 200" preserveAspectRatio="none" fill="none">
+            <path d="M12 2 C9 50 15 98 11 146 C9 170 13 186 12 198" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/>
+            <path d="M4 16 L20 16 M4 60 L20 60 M4 104 L20 104 M4 148 L20 148" stroke="currentColor" stroke-width="1" stroke-linecap="round" opacity=".55"/>
+          </svg>
+        </div>
+
+        <div class="vo5-hero-head">
+
+          <figure class="vo5-photo vo5-photo--hero" id="vo5-portrait">
+            <span class="vo5-tape vo5-tape--a" aria-hidden="true"></span>
+            <span class="vo5-tape vo5-tape--b" aria-hidden="true"></span>
+            <div class="vo5-photo-inner">
+              <img src="/assets/portrait-upper.jpg" width="960" height="1200"
+                   data-i18n="[alt]hero.portrait_alt" alt="">
+            </div>
+            <svg class="vo5-photo-frame" viewBox="0 0 100 125" preserveAspectRatio="none" fill="none" aria-hidden="true">
+              <path d="M2.5 3.2 C30 1.6 70 2.4 97.4 2.6 C98.3 40 98.1 85 97.2 122.2 C68 123.4 30 122.8 2.8 122.4 C1.9 84 2.1 41 2.5 3.2 Z"
+                    stroke="currentColor" stroke-width=".9" vector-effect="non-scaling-stroke"/>
+            </svg>
+          </figure>
+
+          <h1 class="vo5-h1" id="vo5-headline"><span class="vo5-h1-line"></span></h1>
+        </div>
+
+        <div class="vo5-col vo5-hero-body">
+          <p class="vo5-role" id="vo5-role"></p>
+
+          <p class="vo5-prev">
+            <span class="vo5-label" data-i18n="hero.previously_label"></span>
+            <span class="vo5-prev-text" data-i18n="hero.previously"></span>
+          </p>
+
+          <p class="vo5-manifesto" id="vo5-manifesto"></p>
+
+          <div class="vo5-ctas">
+            <a class="vo5-btn" href="#projects" data-i18n="hero.cta_work"></a>
+            <a class="vo5-link-dn" href="#talks"><span data-i18n="hero.cta_talks"></span><span class="vo5-arr" aria-hidden="true">↓</span></a>
+            <a class="vo5-link-dn" href="#newsletter"><span data-i18n="hero.cta_newsletter"></span><span class="vo5-arr" aria-hidden="true">↓</span></a>
+          </div>
+
+          <div class="vo5-controls">
+            <div class="vo5-ink" id="vo5-ink">
+              <span class="vo5-label vo5-ink-label" data-i18n="ui.ink"></span>
+              <div class="vo5-ink-dots" id="vo5-ink-dots" role="radiogroup"></div>
+              <span class="vo5-ink-name" id="vo5-ink-name"></span>
+            </div>
+            <div class="vo5-toggles">
+              <button type="button" class="vo5-toggle" id="vo5-t-trail" aria-pressed="false">
+                <span class="vo5-tg-k"></span><span class="vo5-tg-v"></span>
+              </button>
+              <span class="vo5-dotsep" aria-hidden="true">·</span>
+              <button type="button" class="vo5-toggle" id="vo5-t-calm" aria-pressed="false">
+                <span class="vo5-tg-k"></span><span class="vo5-tg-v"></span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <aside class="vo5-side vo5-side--hero">
+          <nav class="vo5-contents" id="vo5-contents" aria-labelledby="vo5-contents-h">
+            <h2 class="vo5-label" id="vo5-contents-h" data-i18n="ui.contents"></h2>
+            <ol class="vo5-contents-list" id="vo5-contents-list"></ol>
+          </nav>
+          <div class="vo5-note vo5-note--hero" id="vo5-margin-note">
+            <svg class="vo5-note-bracket" viewBox="0 0 10 60" preserveAspectRatio="none" fill="none" aria-hidden="true">
+              <path d="M8 2 C3 10 3 22 5 30 C3 38 3 50 8 58" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+            </svg>
+            <p data-i18n="hero.margin_note"></p>
+          </div>
+        </aside>
+      </div>
+
+      <!-- fig. 1 — the accent scene -->
+      <figure class="vo5-fig1-wrap" id="vo5-fig1">
+        <div class="vo5-fig1" id="vo5-scenes">
+
+          <svg class="vo5-scene" data-scene="bosphorus" viewBox="0 0 1200 220" fill="none" aria-hidden="true">
+            <path d="M0 138 L188 138"/>
+            <path d="M1012 138 L1200 138"/>
+            <path d="M24 138 L24 120 L44 120 L44 138 M56 138 L56 108 L72 108 L72 138 M86 138 L86 124 L104 124 L104 138 M118 138 L118 116 L134 116 L134 138"/>
+            <path d="M1076 138 L1076 118 L1092 118 L1092 138 M1110 138 L1110 112 L1128 112 L1128 138 M1142 138 L1142 122 L1160 122 L1160 138"/>
+            <path d="M296 136 L296 28 M320 136 L320 28 M296 52 L320 52 M296 82 L320 82 M296 112 L320 112"/>
+            <path d="M880 136 L880 28 M904 136 L904 28 M880 52 L904 52 M880 82 L904 82 M880 112 L904 112"/>
+            <path d="M308 30 C430 118 770 118 892 30"/>
+            <path d="M308 30 C262 64 214 106 188 134"/>
+            <path d="M892 30 C938 64 986 106 1012 134"/>
+            <path d="M120 134 L1080 134 M126 141 L1074 141"/>
+            <path d="M363 59 L363 134 M434 80 L434 134 M514 92 L514 134 M600 96 L600 134 M686 92 L686 134 M766 80 L766 134 M837 59 L837 134"/>
+            <path d="M612 182 L744 182 L730 197 L626 197 Z"/>
+            <path d="M636 182 L636 165 L716 165 L716 182"/>
+            <path d="M650 165 L650 153 L663 153 L663 165"/>
+            <path d="M656 153 C650 144 665 140 658 131 C653 125 662 121 660 116"/>
+            <path d="M652 174 L664 174 M676 174 L688 174 M700 174 L712 174"/>
+            <path d="M0 207 C48 201 86 213 134 207 C182 201 220 213 268 207 C316 201 354 213 402 207 C450 201 488 213 536 207 C584 201 622 213 670 207 C718 201 756 213 804 207 C852 201 890 213 938 207 C986 201 1024 213 1072 207 C1120 201 1158 212 1200 206"/>
+            <path d="M70 217 C118 212 156 222 204 217 C252 212 290 222 338 217 C386 212 424 222 472 217 C520 212 558 222 606 217 C654 212 692 222 740 217 C788 212 826 222 874 217 C922 212 960 222 1008 217 C1056 212 1094 222 1142 217"/>
+          </svg>
+
+          <svg class="vo5-scene" data-scene="galata" viewBox="0 0 1200 220" fill="none" aria-hidden="true">
+            <path d="M0 176 L1200 176"/>
+            <path d="M258 176 L258 76 M342 176 L342 76"/>
+            <path d="M246 76 L354 76 M250 66 L350 66 M246 76 L246 66 M354 76 L354 66"/>
+            <path d="M270 66 L270 46 M330 66 L330 46"/>
+            <path d="M262 46 L300 10 L338 46"/>
+            <path d="M300 10 L300 1"/>
+            <path d="M276 162 L276 148 A8 8 0 0 1 292 148 L292 162 Z"/>
+            <path d="M308 162 L308 148 A8 8 0 0 1 324 148 L324 162 Z"/>
+            <path d="M276 128 L276 114 A8 8 0 0 1 292 114 L292 128 Z"/>
+            <path d="M308 128 L308 114 A8 8 0 0 1 324 114 L324 128 Z"/>
+            <path d="M290 176 L290 158 A10 10 0 0 1 310 158 L310 176"/>
+            <path d="M40 176 L40 144 L84 144 L84 176 M52 144 L52 176 M66 144 L66 176"/>
+            <path d="M100 176 L100 152 L140 152 L140 176"/>
+            <path d="M156 176 L156 160 L196 160 L196 176"/>
+            <path d="M400 176 L400 142 L446 142 L446 176 M414 142 L414 176 M430 142 L430 176"/>
+            <path d="M500 176 L500 148 C500 120 556 120 556 148 L556 176"/>
+            <path d="M528 127 L528 108 M522 112 L534 112"/>
+            <path d="M576 176 L576 104 L582 94 L588 104 L588 176 M573 130 L591 130"/>
+            <path d="M616 176 L616 150 L664 150 L664 176 M628 150 L628 176 M642 150 L642 176 M654 150 L654 176"/>
+            <path d="M700 176 L700 150 C700 112 780 112 780 150 L780 176"/>
+            <path d="M740 121 L740 99 M733 104 L747 104"/>
+            <path d="M692 176 L692 98 L697 88 L702 98 L702 176"/>
+            <path d="M782 176 L782 98 L787 88 L792 98 L792 176"/>
+            <path d="M820 176 L820 152 L866 152 L866 176"/>
+            <path d="M880 176 L880 140 L916 140 L916 176 M892 140 L892 176 M904 140 L904 176"/>
+            <path d="M930 176 L930 158 L980 158 L980 176"/>
+            <path d="M996 176 L996 132 L1030 132 L1030 176"/>
+            <path d="M1046 176 L1046 150 L1096 150 L1096 176"/>
+            <path d="M1112 176 L1112 160 L1160 160 L1160 176"/>
+            <path d="M0 194 C56 188 96 200 152 194 C208 188 248 200 304 194 C360 188 400 200 456 194 C512 188 552 200 608 194 C664 188 704 200 760 194 C816 188 856 200 912 194 C968 188 1008 200 1064 194 C1120 188 1160 199 1200 193"/>
+            <path d="M60 208 C116 203 156 214 212 208 C268 203 308 214 364 208 C420 203 460 214 516 208 C572 203 612 214 668 208 C724 203 764 214 820 208 C876 203 916 214 972 208 C1028 203 1068 214 1124 208"/>
+          </svg>
+
+          <svg class="vo5-scene" data-scene="iznik" viewBox="0 0 1200 220" fill="none" aria-hidden="true">
+            <path d="M22 26 L1178 26 M22 34 L1178 34"/>
+            <path d="M22 186 L1178 186 M22 194 L1178 194"/>
+            <path d="M22 26 L22 194 M1178 26 L1178 194"/>
+            <path d="M40 110 C100 58 180 58 240 110 C300 162 380 162 440 110 C500 58 580 58 640 110 C700 162 780 162 840 110 C900 58 980 58 1040 110 C1090 152 1140 156 1164 120"/>
+            <path d="M140 92 C126 92 120 70 126 52 C131 66 135 58 140 46 C145 58 149 66 154 52 C160 70 154 92 140 92"/>
+            <path d="M140 92 L140 130"/>
+            <path d="M140 112 C124 108 116 120 112 134 C128 133 136 126 140 118"/>
+            <path d="M140 102 C156 98 164 110 168 124 C152 123 144 116 140 108"/>
+            <path d="M540 92 C526 92 520 70 526 52 C531 66 535 58 540 46 C545 58 549 66 554 52 C560 70 554 92 540 92"/>
+            <path d="M540 92 L540 130"/>
+            <path d="M540 112 C524 108 516 120 512 134 C528 133 536 126 540 118"/>
+            <path d="M540 102 C556 98 564 110 568 124 C552 123 544 116 540 108"/>
+            <path d="M940 92 C926 92 920 70 926 52 C931 66 935 58 940 46 C945 58 949 66 954 52 C960 70 954 92 940 92"/>
+            <path d="M940 92 L940 130"/>
+            <path d="M940 112 C924 108 916 120 912 134 C928 133 936 126 940 118"/>
+            <path d="M940 102 C956 98 964 110 968 124 C952 123 944 116 940 108"/>
+            <path d="M340 98 C326 98 316 84 322 70 C330 78 332 66 340 56 C348 66 350 78 358 70 C364 84 354 98 340 98"/>
+            <path d="M330 72 L326 60 M340 62 L340 50 M350 72 L354 60"/>
+            <path d="M340 98 L340 128"/>
+            <path d="M740 98 C726 98 716 84 722 70 C730 78 732 66 740 56 C748 66 750 78 758 70 C764 84 754 98 740 98"/>
+            <path d="M730 72 L726 60 M740 62 L740 50 M750 72 L754 60"/>
+            <path d="M740 98 L740 128"/>
+            <path d="M1060 98 C1046 98 1036 84 1042 70 C1050 78 1052 66 1060 56 C1068 66 1070 78 1078 70 C1084 84 1074 98 1060 98"/>
+            <path d="M1050 72 L1046 60 M1060 62 L1060 50 M1070 72 L1074 60"/>
+            <path d="M1060 98 L1060 128"/>
+            <path d="M240 140 C264 140 276 124 264 110 C254 98 236 106 240 122"/>
+            <path d="M240 140 C216 140 204 156 216 170 C226 182 244 174 240 158"/>
+            <path d="M640 140 C664 140 676 124 664 110 C654 98 636 106 640 122"/>
+            <path d="M640 140 C616 140 604 156 616 170 C626 182 644 174 640 158"/>
+            <path d="M440 160 C456 160 464 148 456 138 C448 130 436 136 440 148"/>
+            <path d="M840 160 C856 160 864 148 856 138 C848 130 836 136 840 148"/>
+            <path d="M48 60 m-10 0 a10 10 0 1 0 20 0 a10 10 0 1 0 -20 0 M38 60 L58 60 M48 50 L48 70"/>
+            <path d="M1152 60 m-10 0 a10 10 0 1 0 20 0 a10 10 0 1 0 -20 0 M1142 60 L1162 60 M1152 50 L1152 70"/>
+            <path d="M48 160 m-10 0 a10 10 0 1 0 20 0 a10 10 0 1 0 -20 0 M38 160 L58 160 M48 150 L48 170"/>
+            <path d="M1152 160 m-10 0 a10 10 0 1 0 20 0 a10 10 0 1 0 -20 0 M1142 160 L1162 160 M1152 150 L1152 170"/>
+          </svg>
+
+          <svg class="vo5-scene" data-scene="tulip" viewBox="0 0 1200 220" fill="none" aria-hidden="true">
+            <path d="M0 196 C200 190 400 201 600 195 C800 189 1000 200 1200 194"/>
+            <g transform="translate(110,146)">
+              <path d="M0 0 C-16 0 -20 -26 -16 -46 C-9 -30 -6 -40 0 -54 C6 -40 9 -30 16 -46 C20 -26 16 0 0 0"/>
+              <path d="M0 0 L0 50"/>
+              <path d="M0 14 C-20 10 -30 26 -34 44 C-16 42 -6 30 0 20"/>
+              <path d="M0 24 C20 20 30 34 34 48 C16 46 6 36 0 30"/>
+            </g>
+            <g transform="translate(252,132)">
+              <path d="M0 0 C-15 0 -19 -24 -15 -43 C-8 -28 -6 -37 0 -50 C6 -37 8 -28 15 -43 C19 -24 15 0 0 0"/>
+              <path d="M0 0 L0 64"/>
+              <path d="M0 20 C-22 16 -32 32 -36 52 C-18 50 -7 38 0 27"/>
+              <path d="M0 32 C20 28 29 42 33 58 C16 56 6 46 0 39"/>
+            </g>
+            <g transform="translate(388,154)">
+              <path d="M0 0 C-14 0 -18 -23 -14 -41 C-8 -27 -5 -35 0 -47 C5 -35 8 -27 14 -41 C18 -23 14 0 0 0"/>
+              <path d="M0 0 L0 42"/>
+              <path d="M0 10 C-19 7 -27 22 -31 38 C-15 36 -6 26 0 16"/>
+              <path d="M0 18 C18 15 26 28 30 42 C14 40 5 32 0 25"/>
+            </g>
+            <g transform="translate(524,138)">
+              <path d="M0 0 C-16 0 -20 -26 -16 -46 C-9 -30 -6 -40 0 -54 C6 -40 9 -30 16 -46 C20 -26 16 0 0 0"/>
+              <path d="M0 0 L0 58"/>
+              <path d="M0 16 C-21 12 -31 28 -35 48 C-17 46 -6 34 0 23"/>
+              <path d="M0 28 C20 24 29 38 33 54 C16 52 6 42 0 35"/>
+            </g>
+            <g transform="translate(662,150)">
+              <path d="M0 0 C-14 0 -18 -23 -14 -41 C-8 -27 -5 -35 0 -47 C5 -35 8 -27 14 -41 C18 -23 14 0 0 0"/>
+              <path d="M0 0 L0 46"/>
+              <path d="M0 12 C-19 9 -27 24 -31 40 C-15 38 -6 28 0 18"/>
+              <path d="M0 22 C18 19 26 32 30 46 C14 44 5 36 0 29"/>
+            </g>
+            <g transform="translate(804,130)">
+              <path d="M0 0 C-16 0 -20 -26 -16 -46 C-9 -30 -6 -40 0 -54 C6 -40 9 -30 16 -46 C20 -26 16 0 0 0"/>
+              <path d="M0 0 L0 66"/>
+              <path d="M0 22 C-22 18 -32 34 -36 54 C-18 52 -7 40 0 29"/>
+              <path d="M0 34 C20 30 29 44 33 60 C16 58 6 48 0 41"/>
+            </g>
+            <g transform="translate(944,152)">
+              <path d="M0 0 C-14 0 -18 -23 -14 -41 C-8 -27 -5 -35 0 -47 C5 -35 8 -27 14 -41 C18 -23 14 0 0 0"/>
+              <path d="M0 0 L0 44"/>
+              <path d="M0 10 C-19 7 -27 22 -31 38 C-15 36 -6 26 0 16"/>
+              <path d="M0 20 C18 17 26 30 30 44 C14 42 5 34 0 27"/>
+            </g>
+            <g transform="translate(1082,140)">
+              <path d="M0 0 C-15 0 -19 -24 -15 -43 C-8 -28 -6 -37 0 -50 C6 -37 8 -28 15 -43 C19 -24 15 0 0 0"/>
+              <path d="M0 0 L0 56"/>
+              <path d="M0 18 C-21 14 -31 30 -35 50 C-17 48 -6 36 0 25"/>
+              <path d="M0 30 C20 26 29 40 33 56 C16 54 6 44 0 37"/>
+            </g>
+          </svg>
+
+          <svg class="vo5-scene" data-scene="saffron" viewBox="0 0 1200 220" fill="none" aria-hidden="true">
+            <path d="M0 188 L1200 188"/>
+            <path d="M40 122 L40 98 L1160 98 L1160 122"/>
+            <path d="M48 122 L1152 122"/>
+            <path d="M250 98 C250 50 350 50 350 98"/>
+            <path d="M300 62 L300 42 M293 42 L307 42"/>
+            <path d="M538 98 C538 36 662 36 662 98"/>
+            <path d="M600 52 L600 28 M591 28 L609 28"/>
+            <path d="M850 98 C850 50 950 50 950 98"/>
+            <path d="M900 62 L900 42 M893 42 L907 42"/>
+            <path d="M92 188 L92 158 A38 38 0 0 1 168 158 L168 188"/>
+            <path d="M232 188 L232 158 A38 38 0 0 1 308 158 L308 188"/>
+            <path d="M372 188 L372 158 A38 38 0 0 1 448 158 L448 188"/>
+            <path d="M512 188 L512 158 A38 38 0 0 1 588 158 L588 188"/>
+            <path d="M652 188 L652 158 A38 38 0 0 1 728 158 L728 188"/>
+            <path d="M792 188 L792 158 A38 38 0 0 1 868 158 L868 188"/>
+            <path d="M932 188 L932 158 A38 38 0 0 1 1008 158 L1008 188"/>
+            <path d="M1072 188 L1072 158 A38 38 0 0 1 1148 158 L1148 188"/>
+            <path d="M340 122 L340 138 M328 138 C328 152 352 152 352 138 C352 132 340 132 340 138"/>
+            <path d="M760 122 L760 138 M748 138 C748 152 772 152 772 138 C772 132 760 132 760 138"/>
+            <path d="M60 188 C74 150 128 146 142 188"/>
+            <path d="M78 176 L84 170 M96 164 L102 158 M114 170 L120 164 M92 180 L98 174"/>
+            <path d="M268 188 C284 146 344 142 360 188"/>
+            <path d="M288 174 L294 168 M310 160 L316 154 M332 168 L338 162 M302 180 L308 174"/>
+            <path d="M510 188 C524 152 576 148 590 188"/>
+            <path d="M528 176 L534 170 M548 164 L554 158 M566 172 L572 166"/>
+            <path d="M742 188 C758 148 816 144 832 188"/>
+            <path d="M762 174 L768 168 M784 160 L790 154 M806 170 L812 164 M774 180 L780 174"/>
+            <path d="M980 188 C994 154 1042 150 1056 188"/>
+            <path d="M998 176 L1004 170 M1016 164 L1022 158 M1034 172 L1040 166"/>
+            <path d="M176 188 L182 166 C182 160 212 160 212 166 L218 188 Z"/>
+            <path d="M620 188 L626 170 C626 164 652 164 652 170 L658 188 Z"/>
+            <path d="M884 188 L890 168 C890 162 918 162 918 168 L924 188 Z"/>
+            <path d="M0 202 L1200 202"/>
+          </svg>
+
+          <svg class="vo5-scene" data-scene="olive" viewBox="0 0 1200 220" fill="none" aria-hidden="true">
+            <path d="M20 160 C180 134 360 118 540 108 C660 101 740 96 820 86"/>
+            <path d="M540 108 C560 92 586 78 616 70"/>
+            <path d="M300 122 C320 110 344 102 368 100"/>
+            <path d="M110 150 C112 134 122 120 138 110 C130 126 126 138 126 148"/>
+            <path d="M118 148 C104 140 96 126 96 110 C106 122 114 132 120 140"/>
+            <path d="M190 142 C192 124 204 110 222 102 C212 118 206 132 206 142"/>
+            <path d="M262 132 C262 114 272 100 290 92 C280 108 276 120 276 132"/>
+            <path d="M270 136 C254 130 244 116 242 100 C254 112 264 124 272 130"/>
+            <path d="M368 100 C372 84 386 72 404 68 C392 82 386 92 384 102"/>
+            <path d="M430 114 C430 96 442 82 460 76 C448 90 444 102 444 112"/>
+            <path d="M440 120 C424 114 412 100 410 84 C424 96 434 106 442 114"/>
+            <path d="M616 70 C620 54 634 44 652 40 C640 54 634 62 632 72"/>
+            <path d="M560 100 C562 82 574 70 592 64 C580 78 574 88 574 98"/>
+            <path d="M700 94 C702 78 714 66 732 60 C720 74 714 84 714 94"/>
+            <path d="M712 100 C696 94 686 80 684 64 C696 76 706 88 714 96"/>
+            <path d="M790 88 C792 72 804 60 822 54 C810 68 804 78 804 88"/>
+            <path d="M160 146 m-8 0 a8 10 0 1 0 16 0 a8 10 0 1 0 -16 0 M160 136 L158 128"/>
+            <path d="M336 118 m-8 0 a8 10 0 1 0 16 0 a8 10 0 1 0 -16 0 M336 108 L334 100"/>
+            <path d="M494 106 m-8 0 a8 10 0 1 0 16 0 a8 10 0 1 0 -16 0 M494 96 L492 88"/>
+            <path d="M660 96 m-8 0 a8 10 0 1 0 16 0 a8 10 0 1 0 -16 0 M660 86 L658 78"/>
+            <path d="M1086 196 L1086 136 C1086 126 1074 118 1068 108"/>
+            <path d="M1086 152 C1098 144 1112 138 1126 136"/>
+            <path d="M1086 166 C1074 160 1062 154 1050 152"/>
+            <path d="M1030 120 C1016 90 1040 58 1072 62 C1082 38 1124 36 1138 60 C1172 58 1186 92 1162 114 C1152 126 1060 134 1030 120"/>
+            <path d="M1060 96 C1072 86 1088 82 1104 84 M1096 112 C1110 104 1126 102 1140 104 M1052 76 C1064 72 1076 70 1086 72"/>
+            <path d="M0 196 L1200 196"/>
+          </svg>
+
+        </div>
+        <figcaption class="vo5-figcap" id="vo5-fig1-cap"></figcaption>
+      </figure>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════ NOW ══════════════════════════ -->
+  <section id="now" class="vo5-sec vo5-now" aria-labelledby="vo5-now-h">
+    <div class="vo5-wrap">
+      <div class="vo5-hr" aria-hidden="true"></div>
+      <div class="vo5-now-strip">
+        <h2 class="vo5-label vo5-now-label" id="vo5-now-h" data-i18n="now.label"></h2>
+        <ul class="vo5-now-list">
+          <li><span data-i18n="now.item1"></span><span class="vo5-caret" aria-hidden="true"></span></li>
+          <li><span data-i18n="now.item2"></span></li>
+          <li><span data-i18n="now.item3"></span></li>
+          <li><a href="#contact"><span data-i18n="now.item4"></span> <span class="vo5-arr" aria-hidden="true">→</span></a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════ 01 WORKBENCH ══════════════════════════ -->
+  <section id="projects" class="vo5-sec" aria-labelledby="vo5-projects-h">
+    <div class="vo5-wrap vo5-sheet">
+      <div class="vo5-margin"><span class="vo5-secno" data-i18n="projects.section_no"></span></div>
+      <div class="vo5-col">
+        <p class="vo5-eyebrow"><span aria-hidden="true">§&nbsp;</span><span data-i18n="projects.section_no"></span><span aria-hidden="true">&nbsp;—&nbsp;</span><span data-i18n="projects.label"></span></p>
+        <h2 class="vo5-h2" id="vo5-projects-h" data-vo5-ul="colon" data-vo5-ulstyle="wave" data-i18n="projects.title"></h2>
+        <p class="vo5-intro" data-i18n="projects.intro"></p>
+        <p class="vo5-note-inline" data-i18n="projects.enterprise_note"></p>
+        <ol class="vo5-rows" id="vo5-projects"></ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════ 02 FOUNDER ══════════════════════════ -->
+  <section id="founder" class="vo5-sec" aria-labelledby="vo5-founder-h">
+    <div class="vo5-wrap vo5-sheet">
+      <div class="vo5-margin"><span class="vo5-secno" data-i18n="founder.section_no"></span></div>
+      <div class="vo5-col">
+        <p class="vo5-eyebrow"><span aria-hidden="true">§&nbsp;</span><span data-i18n="founder.section_no"></span><span aria-hidden="true">&nbsp;—&nbsp;</span><span data-i18n="founder.label"></span></p>
+        <h2 class="vo5-h2" id="vo5-founder-h" data-vo5-ul="colon" data-vo5-ulstyle="straight" data-i18n="founder.title"></h2>
+        <div class="vo5-founder-top">
+          <p class="vo5-intro" data-i18n="founder.intro"></p>
+          <div class="vo5-stamp vo5-stamp--big" aria-hidden="true">YOLDA.COM · 2020–2025</div>
+        </div>
+        <p class="vo5-note-inline" data-i18n="founder.note"></p>
+
+        <div class="vo5-cases">
+          <article class="vo5-case">
+            <span class="vo5-tape vo5-tape--case" aria-hidden="true"></span>
+            <div class="vo5-case-head">
+              <span class="vo5-case-no"><span class="vo5-case-word" data-vo5-ui="case"></span> 01</span>
+              <span class="vo5-case-tag" data-i18n="founder.case1.tag"></span>
+            </div>
+            <h3 class="vo5-case-title" data-i18n="founder.case1.title"></h3>
+            <p class="vo5-stat" data-vo5-stat="founder.case1.stat"></p>
+            <div class="vo5-viz">
+              <svg viewBox="0 0 220 72" fill="none" aria-hidden="true">
+                <path d="M6 66 L214 66" class="vo5-viz-ax"/>
+                <path d="M6 66 L6 6" class="vo5-viz-ax"/>
+                <path d="M8 64 C54 63 86 58 118 44 C150 30 178 16 212 9" class="vo5-viz-ink"/>
+                <path d="M212 9 m-6 0 a6 6 0 1 0 12 0 a6 6 0 1 0 -12 0" class="vo5-viz-ink"/>
+                <path d="M8 64 m-4 0 a4 4 0 1 0 8 0 a4 4 0 1 0 -8 0" class="vo5-viz-ax"/>
+                <path d="M118 44 L118 66 M66 60 L66 66 M170 24 L170 66" class="vo5-viz-ax" stroke-dasharray="2 4"/>
+              </svg>
+            </div>
+            <p class="vo5-case-desc" data-i18n="founder.case1.desc"></p>
+          </article>
+
+          <article class="vo5-case">
+            <span class="vo5-tape vo5-tape--case" aria-hidden="true"></span>
+            <div class="vo5-case-head">
+              <span class="vo5-case-no"><span class="vo5-case-word" data-vo5-ui="case"></span> 02</span>
+              <span class="vo5-case-tag" data-i18n="founder.case2.tag"></span>
+            </div>
+            <h3 class="vo5-case-title" data-i18n="founder.case2.title"></h3>
+            <p class="vo5-stat" data-vo5-stat="founder.case2.stat"></p>
+            <div class="vo5-viz">
+              <svg viewBox="0 0 220 72" fill="none" aria-hidden="true">
+                <path d="M20 54 C60 18 140 14 196 30" class="vo5-viz-ink"/>
+                <path d="M186 22 L197 30 L185 37" class="vo5-viz-ink"/>
+                <path d="M20 54 m-5 0 a5 5 0 1 0 10 0 a5 5 0 1 0 -10 0" class="vo5-viz-ink"/>
+                <path d="M196 30 m-5 0 a5 5 0 1 0 10 0 a5 5 0 1 0 -10 0" class="vo5-viz-ax"/>
+                <path d="M6 66 L214 66" class="vo5-viz-ax" stroke-dasharray="3 5"/>
+                <path d="M72 30 L82 30 M100 24 L110 24 M128 22 L138 22" class="vo5-viz-ax"/>
+              </svg>
+            </div>
+            <p class="vo5-case-desc" data-i18n="founder.case2.desc"></p>
+          </article>
+
+          <article class="vo5-case">
+            <span class="vo5-tape vo5-tape--case" aria-hidden="true"></span>
+            <div class="vo5-case-head">
+              <span class="vo5-case-no"><span class="vo5-case-word" data-vo5-ui="case"></span> 03</span>
+              <span class="vo5-case-tag" data-i18n="founder.case3.tag"></span>
+            </div>
+            <h3 class="vo5-case-title" data-i18n="founder.case3.title"></h3>
+            <p class="vo5-stat" data-vo5-stat="founder.case3.stat"></p>
+            <div class="vo5-viz">
+              <svg viewBox="0 0 220 72" fill="none" aria-hidden="true">
+                <path d="M10 66 L10 54 L74 54 L74 38 L142 38 L142 16 L210 16" class="vo5-viz-ink"/>
+                <path d="M10 66 L214 66" class="vo5-viz-ax"/>
+                <path d="M42 54 m-4 0 a4 4 0 1 0 8 0 a4 4 0 1 0 -8 0 M108 38 m-4 0 a4 4 0 1 0 8 0 a4 4 0 1 0 -8 0 M176 16 m-4 0 a4 4 0 1 0 8 0 a4 4 0 1 0 -8 0" class="vo5-viz-ax"/>
+              </svg>
+            </div>
+            <p class="vo5-case-desc" data-i18n="founder.case3.desc"></p>
+          </article>
+
+          <article class="vo5-case">
+            <span class="vo5-tape vo5-tape--case" aria-hidden="true"></span>
+            <div class="vo5-case-head">
+              <span class="vo5-case-no"><span class="vo5-case-word" data-vo5-ui="case"></span> 04</span>
+              <span class="vo5-case-tag" data-i18n="founder.case4.tag"></span>
+            </div>
+            <h3 class="vo5-case-title" data-i18n="founder.case4.title"></h3>
+            <p class="vo5-stat" data-vo5-stat="founder.case4.stat"></p>
+            <div class="vo5-viz vo5-viz--dots" id="vo5-dotmatrix"></div>
+            <p class="vo5-case-desc" data-i18n="founder.case4.desc"></p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════ 03 TALKS ══════════════════════════ -->
+  <section id="talks" class="vo5-sec" aria-labelledby="vo5-talks-h">
+    <div class="vo5-wrap vo5-sheet">
+      <div class="vo5-margin"><span class="vo5-secno" data-i18n="talks.section_no"></span></div>
+      <div class="vo5-col">
+        <p class="vo5-eyebrow"><span aria-hidden="true">§&nbsp;</span><span data-i18n="talks.section_no"></span><span aria-hidden="true">&nbsp;—&nbsp;</span><span data-i18n="talks.label"></span></p>
+        <h2 class="vo5-h2" id="vo5-talks-h" data-vo5-ul="last" data-vo5-ulstyle="dash" data-i18n="talks.title"></h2>
+        <p class="vo5-intro" data-i18n="talks.intro"></p>
+        <ol class="vo5-rows" id="vo5-talks"></ol>
+        <div class="vo5-afterrows">
+          <a class="vo5-moreline" href="/talks/" data-i18n="talks.all"></a>
+          <a class="vo5-btn vo5-btn--ghost" id="vo5-talks-cta" href="#contact" data-i18n="talks.cta"></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════ 04 NEWSLETTER ══════════════════════════ -->
+  <section id="newsletter" class="vo5-sec" aria-labelledby="vo5-news-h">
+    <div class="vo5-wrap vo5-sheet">
+      <div class="vo5-margin"><span class="vo5-secno" data-i18n="newsletter.section_no"></span></div>
+      <div class="vo5-col">
+        <p class="vo5-eyebrow"><span aria-hidden="true">§&nbsp;</span><span data-i18n="newsletter.section_no"></span><span aria-hidden="true">&nbsp;—&nbsp;</span><span data-i18n="newsletter.label"></span></p>
+        <h2 class="vo5-h2" id="vo5-news-h" data-vo5-ul="all" data-vo5-ulstyle="double" data-i18n="newsletter.name"></h2>
+        <p class="vo5-intro" data-i18n="newsletter.tagline"></p>
+        <p class="vo5-note-inline" data-i18n="newsletter.cadence"></p>
+
+        <div class="vo5-clip">
+          <span class="vo5-tape vo5-tape--clip" aria-hidden="true"></span>
+          <div class="vo5-clip-head">
+            <h3 class="vo5-label" data-i18n="newsletter.latest"></h3>
+            <span class="vo5-clip-dash" aria-hidden="true"></span>
+          </div>
+          <ol class="vo5-rows vo5-rows--issues" id="vo5-issues" aria-live="polite" aria-busy="true"></ol>
+          <div class="vo5-subs">
+            <a class="vo5-btn" href="https://thenextsignalnewsletter.substack.com/" target="_blank" rel="noopener" data-i18n="newsletter.subscribe_substack"></a>
+            <a class="vo5-btn vo5-btn--ghost" href="https://www.linkedin.com/build-relation/newsletter-follow?entityUrn=7346972552528834560" target="_blank" rel="noopener" data-i18n="newsletter.subscribe_linkedin"></a>
+          </div>
+        </div>
+      </div>
+
+      <aside class="vo5-side">
+        <figure class="vo5-fig2">
+          <svg viewBox="0 0 260 150" fill="none" aria-hidden="true">
+            <path class="vo5-noise" d="M6 40 L12 22 L18 56 L24 18 L30 62 L36 26 L42 54 L48 16 L54 60 L60 30 L66 50 L72 20 L78 58 L84 28 L90 52 L96 24 L102 56 L108 34 L114 46 L120 26 L126 54 L132 32 L138 48 L144 30 L150 46 L156 34 L162 44 L168 36 L174 42 L180 38 L186 41 L192 39 L198 40 L204 40 L210 40 L216 40 L222 40 L228 40 L234 40 L240 40 L250 40"/>
+            <path class="vo5-sig" d="M8 110 C30 110 36 92 50 92 C64 92 70 128 86 128 C102 128 106 86 122 86 C138 86 142 124 158 124 C174 124 178 84 196 84 C214 84 222 112 252 104"/>
+            <path class="vo5-ax" d="M6 150 L254 150" stroke-dasharray="3 5"/>
+            <path class="vo5-ax" d="M196 84 m-9 0 a9 9 0 1 0 18 0 a9 9 0 1 0 -18 0"/>
+            <path class="vo5-ax" d="M224 68 C216 72 206 76 199 78"/>
+          </svg>
+          <figcaption class="vo5-figcap" id="vo5-fig2-cap"></figcaption>
+        </figure>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════ 05 EXPERIENCE ══════════════════════════ -->
+  <section id="experience" class="vo5-sec" aria-labelledby="vo5-exp-h">
+    <div class="vo5-wrap vo5-sheet">
+      <div class="vo5-margin"><span class="vo5-secno" data-i18n="experience.section_no"></span></div>
+      <div class="vo5-col">
+        <p class="vo5-eyebrow"><span aria-hidden="true">§&nbsp;</span><span data-i18n="experience.section_no"></span><span aria-hidden="true">&nbsp;—&nbsp;</span><span data-i18n="experience.label"></span></p>
+        <h2 class="vo5-h2" id="vo5-exp-h" data-vo5-ul="last2" data-vo5-ulstyle="scribble" data-i18n="experience.title"></h2>
+
+        <figure class="vo5-fig3">
+          <svg viewBox="0 0 1000 86" fill="none" aria-hidden="true" id="vo5-timeline">
+            <path class="vo5-tl-base" d="M8 52 L992 52"/>
+            <g class="vo5-tl-seg" data-row="7"><path d="M8 52 L228 52"/></g>
+            <g class="vo5-tl-seg" data-row="6"><path d="M228 52 L338 52"/></g>
+            <g class="vo5-tl-seg" data-row="5"><path d="M338 52 L393 52"/></g>
+            <g class="vo5-tl-seg" data-row="4"><path d="M393 52 L668 52"/></g>
+            <g class="vo5-tl-seg vo5-tl-seg--hi" data-row="3"><path d="M668 52 L943 52"/></g>
+            <g class="vo5-tl-seg" data-row="2"><path d="M943 52 L975 52"/></g>
+            <g class="vo5-tl-seg" data-row="1"><path d="M975 52 L992 52"/></g>
+            <path class="vo5-tl-tick" d="M8 44 L8 60 M228 44 L228 60 M448 44 L448 60 M668 44 L668 60 M888 46 L888 58 M992 44 L992 60"/>
+            <path class="vo5-tl-edu" d="M8 30 L228 30 M8 24 L8 36 M228 24 L228 36"/>
+          </svg>
+          <div class="vo5-tl-years" aria-hidden="true"><span>2008</span><span>2012</span><span>2016</span><span>2020</span><span>2024</span><span>2026</span></div>
+          <figcaption class="vo5-figcap" data-i18n="experience.fig"></figcaption>
+        </figure>
+
+        <ol class="vo5-exp" id="vo5-exp">
+          <li class="vo5-exp-row" data-row="1"><span class="vo5-exp-org" data-i18n="experience.r1.org"></span><span class="vo5-exp-role" data-i18n="experience.r1.role"></span><span class="vo5-exp-years" data-vo5-now="1" data-i18n="experience.r1.years"></span></li>
+          <li class="vo5-exp-row" data-row="2"><span class="vo5-exp-org" data-i18n="experience.r2.org"></span><span class="vo5-exp-role" data-i18n="experience.r2.role"></span><span class="vo5-exp-years" data-i18n="experience.r2.years"></span></li>
+          <li class="vo5-exp-row" data-row="3"><span class="vo5-exp-org" data-i18n="experience.r3.org"></span><span class="vo5-exp-role" data-i18n="experience.r3.role"></span><span class="vo5-exp-years" data-i18n="experience.r3.years"></span></li>
+          <li class="vo5-exp-row" data-row="4"><span class="vo5-exp-org" data-i18n="experience.r4.org"></span><span class="vo5-exp-role" data-i18n="experience.r4.role"></span><span class="vo5-exp-years" data-i18n="experience.r4.years"></span></li>
+          <li class="vo5-exp-row" data-row="5"><span class="vo5-exp-org" data-i18n="experience.r5.org"></span><span class="vo5-exp-role" data-i18n="experience.r5.role"></span><span class="vo5-exp-years" data-i18n="experience.r5.years"></span></li>
+          <li class="vo5-exp-row" data-row="6"><span class="vo5-exp-org" data-i18n="experience.r6.org"></span><span class="vo5-exp-role" data-i18n="experience.r6.role"></span><span class="vo5-exp-years" data-i18n="experience.r6.years"></span></li>
+          <li class="vo5-exp-row" data-row="7"><span class="vo5-exp-org" data-i18n="experience.r7.org"></span><span class="vo5-exp-role" data-i18n="experience.r7.role"></span><span class="vo5-exp-years" data-i18n="experience.r7.years"></span></li>
+          <li class="vo5-exp-row" data-row="8"><span class="vo5-exp-org" data-i18n="experience.r8.org"></span><span class="vo5-exp-role" data-i18n="experience.r8.role"></span><span class="vo5-exp-years" data-i18n="experience.r8.years"></span></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ══════════════════════════ CONTACT / FOOTER ══════════════════════════ -->
+<footer id="contact" class="vo5-sec vo5-foot" aria-labelledby="vo5-foot-h">
+  <div class="vo5-wrap vo5-sheet">
+    <div class="vo5-margin"><span class="vo5-secno" aria-hidden="true">06</span></div>
+    <div class="vo5-col">
+      <p class="vo5-eyebrow"><span aria-hidden="true">§&nbsp;06&nbsp;—&nbsp;</span><span data-i18n="footer.label"></span></p>
+      <h2 class="vo5-bigname" id="vo5-foot-h" data-i18n="footer.name"></h2>
+      <p class="vo5-identity" data-i18n="footer.identity"></p>
+      <p class="vo5-intro vo5-intro--foot" data-i18n="footer.contact_intro"></p>
+
+      <ul class="vo5-links">
+        <li class="vo5-linkcell">
+          <span class="vo5-label" data-i18n="footer.email_label"></span>
+          <a class="vo5-handle" data-oz-email href="#"></a>
+          <button type="button" class="vo5-copy" id="vo5-copy"><span data-vo5-ui="copy"></span></button>
+        </li>
+        <li class="vo5-linkcell">
+          <span class="vo5-label"><span data-i18n="footer.linkedin_label"></span> <span class="vo5-arr" aria-hidden="true">↗</span></span>
+          <a class="vo5-handle" href="https://www.linkedin.com/in/ozsert" target="_blank" rel="noopener">in/ozsert</a>
+        </li>
+        <li class="vo5-linkcell">
+          <span class="vo5-label"><span data-i18n="footer.substack_label"></span> <span class="vo5-arr" aria-hidden="true">↗</span></span>
+          <a class="vo5-handle" href="https://thenextsignalnewsletter.substack.com/" target="_blank" rel="noopener">thenextsignal</a>
+        </li>
+      </ul>
+
+      <div class="vo5-hr vo5-hr--foot" aria-hidden="true"></div>
+
+      <div class="vo5-footbar">
+        <p class="vo5-signoff" data-i18n="footer.signoff"></p>
+        <div class="vo5-ink vo5-ink--foot" id="vo5-ink-foot">
+          <span class="vo5-label vo5-ink-label" data-i18n="ui.ink"></span>
+          <div class="vo5-ink-dots" id="vo5-ink-dots-foot" role="radiogroup"></div>
+        </div>
+        <a class="vo5-top" href="#top"><span data-vo5-ui="back_to_top"></span> <span class="vo5-arr" aria-hidden="true">↑</span></a>
+      </div>
+      <p class="vo5-colophon" id="vo5-credit"></p>
+    </div>
+  </div>
+</footer>
+
+<div class="vo5-peek" id="vo5-peek" aria-hidden="true">
+  <span class="vo5-tape vo5-tape--peek"></span>
+  <div class="vo5-peek-inner"><img id="vo5-peek-img" alt="" width="320" height="200"></div>
+</div>
+
+</body>
+</html>
