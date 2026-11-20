@@ -341,7 +341,7 @@
     host.textContent = "";
     list("projects.order").forEach(function (slug, i) {
       host.appendChild(makeRow({
-        href: "/projects/" + slug + "/",
+        href: "/models/claude-opus-5/projects/" + slug + "/",
         no: pad2(i + 1),
         glyph: glyph(slug),
         title: t("project." + slug + ".title"),
@@ -361,7 +361,7 @@
     list("talks.featured").forEach(function (slug, i) {
       var img = t("talk." + slug + ".image");
       host.appendChild(makeRow({
-        href: "/talks/#" + slug,
+        href: "/models/claude-opus-5/talks/#" + slug,
         no: pad2(i + 1),
         title: t("talk." + slug + ".title"),
         sub: t("talk." + slug + ".subtitle"),

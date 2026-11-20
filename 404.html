@@ -14,6 +14,9 @@
       };
       var p = location.pathname.replace(/\/+$/, "") || "/";
       if (map[p] || map[location.pathname]) location.replace(map[p] || map[location.pathname]);
+      // A model that hasn't released this page yet: show the root copy (the pinned model's) instead.
+      var mp = location.pathname.match(/^\/models\/[^/]+\/((?:talks|projects\/[^/]+)\/.*)$/);
+      if (mp) location.replace("/" + mp[1] + location.search + location.hash);
     })();
   </script>
   <link rel="icon" href="/favicon.ico">

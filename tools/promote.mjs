@@ -1,5 +1,6 @@
 #!/usr/bin/env node
-// Picks the version shown at "/" and writes the root index.html.
+// Picks the version shown at "/" and writes the root copy of its site: index.html, talks/ and projects/<slug>/
+// (from models/<id>/…, paths mapped back by tools/sitepaths.mjs).
 //   - the registry's "pinned" id if set, otherwise
 //   - the newest model = highest "order" (lineup position, CLAUDE.md §3) with status "ok".
 // Ids starting with "_" are never promoted.
@@ -10,7 +11,8 @@
 //
 // Usage: node tools/promote.mjs [--check]   (--check: validate only, write nothing)
 
-import { readFileSync, writeFileSync, existsSync } from "node:fs";
+import { readFileSync, writeFileSync, existsSync, rmSync, mkdirSync, cpSync } from "node:fs";
+import { toRoot, eachFile } from "./sitepaths.mjs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 
@@ -73,5 +75,22 @@ main{max-width:640px;margin:18vh auto 0;padding:0 16px}h1{font-size:clamp(36px,7
 }
 
 console.log(pick ? `promoted: ${pick.id} (${pick.name})` : "no eligible version — placeholder");
+if (pick) out = toRoot(out, pick.id);
 if (!check) writeFileSync(join(root, "index.html"), out);
+
+// Root talks/ and projects/<slug>/: generated copies of the promoted model's pages (never edit them by hand).
+if (pick && !check) {
+  rmSync(join(root, "talks"), { recursive: true, force: true });
+  rmSync(join(root, "projects"), { recursive: true, force: true });
+  const from = join(root, "models", pick.id);
+  for (const page of pick.pages || []) {
+    if (page === "homepage") continue;
+    const rel = page === "talks" ? "talks" : join("projects", page);
+    if (!existsSync(join(from, rel, "index.html"))) { warn(`${pick.id}: ${rel}/ listed in "pages" but missing`); continue; }
+    mkdirSync(join(root, rel), { recursive: true });
+    cpSync(join(from, rel), join(root, rel), { recursive: true });
+    eachFile(join(root, rel), (f) => writeFileSync(f, toRoot(readFileSync(f, "utf8"), pick.id)));
+  }
+  console.log(`root copy: / + ${(pick.pages || []).filter((x) => x !== "homepage").length} page(s) from /models/${pick.id}/`);
+}
 console.log(`${check ? "checked" : "wrote index.html"} — ${warnings} warnings`);

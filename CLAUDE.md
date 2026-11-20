@@ -19,7 +19,7 @@ Pure static site on GitHub Pages: no framework, no bundler.
 | Topic | Decision |
 |---|---|
 | Languages | EN default + TR; dark theme by default. All copy lives in the specs as `### key` blocks. |
-| Pages | Homepage (one per model), `/talks/`, `/projects/<slug>/` (7 projects), `/models/` timeline, `404.html`. |
+| Pages | Every model has its own full site: `/models/<id>/` (homepage), `/models/<id>/talks/`, `/models/<id>/projects/<slug>/` (7). Root `/`, `/talks/`, `/projects/<slug>/` = generated copy of the pinned model. Plus `/models/` timeline, `404.html`. |
 | Built by models | Homepage, talks page and project pages. Built by Claude, outside the experiment: `/models/`, 404, shared code. |
 | Style | Field Notebook; Istanbul accent palette (6 colours, each with its own hero scene); 📡 mark. |
 | Identity | No job title or employer in the hero: startups → largest enterprises. Deka Tech only in Experience/Now; clients never named. Yolda is a founder's journey: no exit or acquisition. |
@@ -60,8 +60,8 @@ Dropped: Sonnet 4.5 and Opus 4.5 (not available in Claude Code). Rival labs are 
 | `shared/` | `core.js` (`window.OZ`), `topbar.js`, `house.css` (shared pages only) | Claude, only before a spec freeze |
 | `content/tr.json`, `content/en.json` | **Generated** from the specs | never by hand |
 | `content/models.json` | Model registry (`order`, `status`, `release`, …) | Claude (Process 3) |
-| `index.html` (root) | **Generated** copy of the promoted release | never by hand |
-| `models/<id>/`, `talks/`, `projects/<slug>/` | Released pages (talks: hand-made fallback until its first release) | only `tools/release.sh` |
+| `index.html`, `talks/`, `projects/<slug>/` (root) | **Generated** copy of the promoted model's site (`tools/promote.mjs`) | never by hand |
+| `models/<id>/` (+ `talks/`, `projects/<slug>/` inside) | One model's released site; `pages` in the registry lists what it has | only `tools/release.sh` |
 | `models/index.html`, `404.html` | `/models/` timeline, 404 | Claude |
 | `tools/` | The scripts in §5 below. **Not deployed** | Claude |
 | `../ozsert-builds/<model>_<spec>/` | **Outside the repo: the batch's workshop.** `repo/` = input set + the pages the agents built (review here); `<page>.prompt.txt`, `<page>.log`, `<page>.done`, `_shots/<page>/`. Kept for rollback; agent leftovers never leave it | only `tools/build.sh` |
@@ -89,7 +89,8 @@ It describes *what* the site says and *how* it should look, never how we run the
 | `build.sh` | One batch in its workshop: input set → one `claude -p` per page → log check → screenshots (+ `--resume`) |
 | `review.sh` | Serves a batch's workshop at `localhost:8765` for review |
 | `shoot.sh` (+ `frame.html`) | Screenshots of a page: desktop and real 390px mobile, light and dark |
-| `release.sh` | Copies approved pages (only the page files) from a workshop into the site (+ timeline thumbnails to `assets/shots/`), then stops that batch's review server; lists batches; rolls back |
+| `release.sh` | Copies approved pages (only the page files) from a workshop into that model's site `models/<id>/…` (+ timeline thumbnails to `assets/shots/`), then stops that batch's review server; lists batches; rolls back |
+| `sitepaths.mjs` | Maps a page's own paths to `/models/<id>/…` (release) and back for the root copy (promote) |
 | `promote.mjs` | Validates released versions and writes the root `index.html` from the highest `order` |
 | `build-site.sh` | Assembles the public `_site/` for the deploy (no drafts, no tools) |
 
@@ -128,7 +129,8 @@ What it does, never by hand:
 2. For each page: one `claude -p` session (one prompt, `--dangerously-skip-permissions`, web tools off, Claude
    Code defaults), log in `<page>.log`. Homepage: `specs/build-prompt.md`; talks and project pages:
    `specs/build-prompt-page.md` with `specs/talks.md` or `specs/projects/<slug>.md`. The agent writes the page
-   where it will live on the site (`models/<model>/`, `talks/`, `projects/<slug>/`).
+   where it would live on a site of its own (`models/<model>/`, `talks/`, `projects/<slug>/`); release maps it under
+   `/models/<model>/`.
 3. Checks each log: tool calls, any path outside its folder (flag it to Murad), finished or not. A finished page
    gets `<page>.done` and screenshots in `_shots/<page>/`; an unfinished one is built again by running the same command.
 4. **Review:** `tools/review.sh <model>_<spec>` serves the workshop at `http://localhost:8765/`; give Murad the
@@ -144,9 +146,13 @@ What it does, never by hand:
      "path": "/models/<model>/", "note": { "tr": "…", "en": "…" } }
    ```
    (`status: "failed"` for broken builds: shown on the timeline, never promoted.)
-2. `tools/release.sh <model>_<spec> [page …]`: copies only the approved pages' files from the workshop to
-   `models/<model>/`, `talks/` and `projects/<slug>/`, sets `"release"` in the registry, copies the timeline
-   thumbnails to `assets/shots/` and re-promotes `/`. Must report **0 warnings**.
+2. `tools/release.sh <model>_<spec> [page …]`: copies only the approved pages' files from the workshop into that
+   model's own site: `models/<model>/`, `models/<model>/talks/`, `models/<model>/projects/<slug>/`. Its own paths are
+   mapped there by `tools/sitepaths.mjs` (only `/talks/…`, `/projects/…`, `/#…` and `href="/"`, nothing else: a
+   deployment path, not an edit of the page). Adds the page to `pages`, sets `"release"`, copies the timeline
+   thumbnails to `assets/shots/` and re-promotes: the pinned model's site is copied to the root (`/`, `/talks/`,
+   `/projects/`) with its paths mapped back. A model page that isn't released yet falls back to the root copy
+   (404.html). No model ever replaces another model's pages. Must report **0 warnings**.
 3. `tools/release.sh` alone lists every batch. Releasing an older batch is how you roll back.
 
 ## 9. Rules
@@ -164,7 +170,7 @@ What it does, never by hand:
   and headless Chrome. Revisit only for builds on a shared machine, or if a log shows reads outside the folder.
 
 **Repository:**
-- Never hand-edit generated files (root `index.html`, `content/*.json`). `models/`, `talks/`, `projects/` change
+- Never hand-edit generated files (root `index.html`, `talks/`, `projects/`, `content/*.json`). `models/` changes
   only via `tools/release.sh`. Don't modify `archive/`.
 - **`specs/` is public**: only content, design, platform and prompts. No TODOs, research notes, tool or process
   details, and no client, person or internal-system names; those belong in this file.

@@ -509,7 +509,7 @@
     var order = t("projects.order").split(",").map(function (s) { return s.trim(); }).filter(Boolean);
     $(".vo55-projects").innerHTML = order.map(function (slug, i) {
       var k = "project." + slug + ".";
-      return '<li class="vo55-reveal"><a class="vo55-row" href="/projects/' + slug + '/" data-peek-glyph="' + slug + '">' +
+      return '<li class="vo55-reveal"><a class="vo55-row" href="/models/claude-opus-5-5/projects/' + slug + '/" data-peek-glyph="' + slug + '">' +
         '<span class="vo55-row-n">' + pad2(i + 1) + "</span>" +
         '<span class="vo55-row-main"><span class="vo55-row-t">' + esc(t(k + "title")) + '</span><span class="vo55-row-d">' + esc(t(k + "oneliner")) + "</span></span>" +
         '<span class="vo55-row-meta"><span class="vo55-stamp">' + esc(t(k + "kind")) + '</span><span class="vo55-row-status">' + esc(t(k + "status")) + " · " + esc(t(k + "year")) + "</span></span>" +
@@ -587,7 +587,7 @@
     $(".vo55-talks").innerHTML = slugs.map(function (slug, i) {
       var k = "talk." + slug + ".";
       var img = t(k + "image");
-      return '<li class="vo55-reveal"><a class="vo55-row" href="/talks/#' + slug + '" data-peek-img="' + esc(img) + '">' +
+      return '<li class="vo55-reveal"><a class="vo55-row" href="/models/claude-opus-5-5/talks/#' + slug + '" data-peek-img="' + esc(img) + '">' +
         '<span class="vo55-row-n">' + pad2(i + 1) + "</span>" +
         '<span class="vo55-row-main"><span class="vo55-row-t">' + esc(t(k + "title")) + '</span><span class="vo55-row-d">' + esc(t(k + "subtitle")) + "</span></span>" +
         '<img class="vo55-thumb" src="' + esc(img) + '" alt="" width="64" height="64" loading="lazy" decoding="async">' +

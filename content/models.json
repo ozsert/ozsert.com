@@ -17,7 +17,10 @@
         "tr": "spec-v1 üzerinden tek seferde inşa edildi.",
         "en": "Built one-shot from spec-v1."
       },
-      "release": "claude-opus-5_spec-v1"
+      "release": "claude-opus-5_spec-v1",
+      "pages": [
+        "homepage"
+      ]
     },
     {
       "id": "claude-opus-5-5",
@@ -35,7 +38,18 @@
         "tr": "Spec dondurulmadan hemen önce, son taslak üzerinden inşa edildi; farklar küçük olduğu için bu sürüm korunuyor.",
         "en": "Built from the last draft just before the spec was frozen; the differences are small, so this version stays."
       },
-      "release": "claude-opus-5-5_2026-11-19_1056"
+      "release": "claude-opus-5-5_2026-11-19_1056",
+      "pages": [
+        "homepage",
+        "ai-code-reviewer",
+        "ai-gateway",
+        "executive-kpi-agent",
+        "mailbox-qa",
+        "player-support-agent",
+        "sam-ai",
+        "skill-marketplace",
+        "talks"
+      ]
     }
   ]
 }

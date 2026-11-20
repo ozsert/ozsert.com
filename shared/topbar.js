@@ -79,6 +79,16 @@
   var SUN = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>';
   var MOON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg>';
 
+  // Which model's site and which page this is: /models/<id>/[talks/|projects/<slug>/] or the root copy.
+  function sitePage() {
+    var p = location.pathname, m = p.match(/^\/models\/([^/]+)\/(.*)$/), model, sub = p.slice(1);
+    if (m && m[1] !== "index.html") { model = m[1]; sub = m[2]; } else if (m) { sub = ""; model = undefined; }
+    sub = sub.replace(/index\.html$/, "");
+    var pr = sub.match(/^projects\/([^/]+)\//);
+    var page = /^talks\//.test(sub) ? "talks" : pr ? pr[1] : "homepage";
+    return { model: model, page: page, sub: page === "homepage" ? "" : sub.replace(/^((?:talks|projects\/[^/]+)\/).*/, "$1") };
+  }
+
   function promotedId(reg) {
     if (reg.pinned) return reg.pinned;
     var ok = (reg.models || []).filter(function (m) { return m.status === "ok" && m.id.charAt(0) !== "_"; });
@@ -115,9 +125,9 @@
       this._sr = sr;
       this._tab = "content";
       this._sub = {};   // tab → chosen file, for tabs with several files (projects, prompt)
-      var m = location.pathname.match(/^\/projects\/([^/]+)\//);   // on a project page, open its own spec
-      if (m) { this._tab = "projects"; this._sub.projects = "/specs/projects/" + m[1] + ".md"; }
-      else if (/^\/talks\//.test(location.pathname)) this._tab = "talks";
+      var here = sitePage();   // on a project or talks page, open its own spec
+      if (here.page === "talks") this._tab = "talks";
+      else if (here.page !== "homepage") { this._tab = "projects"; this._sub.projects = "/specs/projects/" + here.page + ".md"; }
       this._mdCache = {};
 
       var self = this;
@@ -136,7 +146,8 @@
         document.addEventListener(ev, function () { self.render(); });
       });
       this.render();
-      if (OZ.model) this.buildSwitcher(); else sr.querySelectorAll(".specs").forEach(function (b) { b.hidden = true; });
+      var site = sitePage();   // a model's homepage, or any talks/project page (a model's own or the root copy)
+      if (OZ.model || site.model || site.page !== "homepage") this.buildSwitcher(); else sr.querySelectorAll(".specs").forEach(function (b) { b.hidden = true; });
     }
 
     ui() { return UI[window.OZ.lang] || UI.en; }
@@ -167,14 +178,15 @@
       OZ.models().then(function (reg) {
         var list = (reg.models || []).filter(function (m) { return m.id.charAt(0) !== "_"; }).slice();
         list.sort(function (a, b) { return (a.order || 0) - (b.order || 0); });
-        var top = promotedId(reg);
+        var top = promotedId(reg), here = sitePage();
+        var cur = OZ.model || here.model || top;   // talks/project pages have no oz-model meta: the path says whose they are
         var draftMatch = location.pathname.match(/^\/history\/[^/]+\/([^/]+)\//);
         if (draftMatch) {
           // Viewing a draft from history/: list it explicitly and select it.
           var base = list.filter(function (m) { return m.id === OZ.model; })[0];
           list.push({ id: "@draft", name: (base ? base.name : OZ.model) + " · " + self.ui().draft + " " + draftMatch[1], path: location.pathname, order: 1e9 });
-        } else if (!list.some(function (m) { return m.id === OZ.model; })) {
-          list.push({ id: OZ.model, name: OZ.model + " (" + self.ui().unregistered + ")", path: location.pathname });
+        } else if (!list.some(function (m) { return m.id === cur; })) {
+          list.push({ id: cur, name: cur + " (" + self.ui().unregistered + ")", path: location.pathname });
         }
         self._sr.querySelectorAll(".model").forEach(function (host, i) {
           var id = "oz-model-" + i;
@@ -182,11 +194,13 @@
           var sel = host.querySelector("select");
           list.forEach(function (m) {
             var o = document.createElement("option");
-            o.value = m.id === top ? "/" : (m.path || "/models/" + m.id + "/");
+            // stay on the same page in the other model's site when it has one, else go to its homepage
+            var sub = here.page !== "homepage" && (m.pages || []).indexOf(here.page) >= 0 ? here.sub : "";
+            o.value = m.path && m.id.charAt(0) === "@" ? m.path : (m.id === top ? "/" : "/models/" + m.id + "/") + sub;
             o.dataset.name = m.name;
             o.textContent = m.name + (m.status === "failed" ? " ✗" : "");
             if (m.id === top) o.dataset.latest = "1";
-            if (draftMatch ? m.id === "@draft" : m.id === OZ.model) o.selected = true;
+            if (draftMatch ? m.id === "@draft" : m.id === cur) o.selected = true;
             sel.appendChild(o);
           });
           var all = document.createElement("option");
