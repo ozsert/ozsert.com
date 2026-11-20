@@ -13,16 +13,19 @@
   var UI = {
     tr: { built: "Yapan model", specs: "spesifikasyon", all: "Tüm modeller →", latest: "güncel",
           theme: "Temayı değiştir", lang: "Dil", close: "Kapat", loading: "Yükleniyor…",
-          tabs: { content: "İçerik", talks: "Konuşmalar", workbench: "Atölye", design: "Tasarım", platform: "Platform", prompt: "Prompt" },
+          tabs: { content: "İçerik", talks: "Konuşmalar", workbench: "Atölye", projects: "Projeler", design: "Tasarım", platform: "Platform", prompt: "Prompt" },
           specsTitle: "Bu sayfanın spesifikasyonu", unregistered: "kayıtsız", draft: "taslak" },
     en: { built: "Built with", specs: "view specs", all: "All models →", latest: "latest",
           theme: "Toggle theme", lang: "Language", close: "Close", loading: "Loading…",
-          tabs: { content: "Content", talks: "Talks", workbench: "Workbench", design: "Design", platform: "Platform", prompt: "Prompt" },
+          tabs: { content: "Content", talks: "Talks", workbench: "Workbench", projects: "Projects", design: "Design", platform: "Platform", prompt: "Prompt" },
           specsTitle: "The spec behind this page", unregistered: "unregistered", draft: "draft" }
   };
   var SPECS = [
     ["content", "/specs/content.md"], ["talks", "/specs/talks.md"], ["workbench", "/specs/projects.md"],
-    ["design", "/specs/design.md"], ["platform", "/specs/platform.md"], ["prompt", "/specs/build-prompt.md"]
+    ["projects", ["ai-code-reviewer", "skill-marketplace", "executive-kpi-agent", "ai-gateway", "mailbox-qa", "sam-ai",
+      "player-support-agent"].map(function (p) { return "/specs/projects/" + p + ".md"; })],
+    ["design", "/specs/design.md"], ["platform", "/specs/platform.md"],
+    ["prompt", ["/specs/build-prompt.md", "/specs/build-prompt-page.md"]]
   ];
 
   var CSS = [
@@ -66,6 +69,10 @@
     ".tabs{display:flex;gap:4px;padding:8px 12px;border-bottom:1px solid var(--rule);overflow-x:auto}",
     ".tabs button{font:11px 'Geist Mono',ui-monospace,monospace;letter-spacing:.06em;text-transform:uppercase;padding:6px 10px;border-radius:6px;color:var(--muted);white-space:nowrap}",
     ".tabs button[aria-selected=true]{background:var(--rule);color:var(--fg)}",
+    ".subs{display:flex;flex-wrap:wrap;gap:4px;padding:6px 12px;border-bottom:1px solid var(--rule)}",
+    ".subs[hidden]{display:none}",
+    ".subs button{font:11px 'Geist Mono',ui-monospace,monospace;padding:4px 8px;border-radius:6px;color:var(--muted)}",
+    ".subs button[aria-pressed=true]{color:var(--fg);box-shadow:inset 0 0 0 1px var(--rule)}",
     "pre{margin:0;flex:1;overflow:auto;padding:16px 20px;font:12.5px/1.6 'Geist Mono',ui-monospace,monospace;white-space:pre-wrap;word-break:break-word}"
   ].join("\n");
 
@@ -103,10 +110,14 @@
         '<div class="bottom"><div class="model"></div><button class="specs mono" type="button"></button></div>' +
         '<dialog aria-labelledby="oz-specs-title"><div class="dlg">' +
           '<div class="dhead"><h2 id="oz-specs-title"></h2><button class="icon close" type="button">✕</button></div>' +
-          '<div class="tabs" role="tablist"></div><pre tabindex="0"></pre>' +
+          '<div class="tabs" role="tablist"></div><div class="subs" hidden></div><pre tabindex="0"></pre>' +
         "</div></dialog>";
       this._sr = sr;
       this._tab = "content";
+      this._sub = {};   // tab → chosen file, for tabs with several files (projects, prompt)
+      var m = location.pathname.match(/^\/projects\/([^/]+)\//);   // on a project page, open its own spec
+      if (m) { this._tab = "projects"; this._sub.projects = "/specs/projects/" + m[1] + ".md"; }
+      else if (/^\/talks\//.test(location.pathname)) this._tab = "talks";
       this._mdCache = {};
 
       var self = this;
@@ -201,6 +212,27 @@
         b.addEventListener("click", function () { self._tab = s[0]; self.renderTabs(); self.loadSpec(); });
         tabs.appendChild(b);
       });
+      var subs = sr.querySelector(".subs"), files = this.files();
+      subs.innerHTML = "";
+      subs.hidden = files.length < 2;
+      if (files.length > 1) files.forEach(function (f) {
+        var b = document.createElement("button");
+        b.type = "button";
+        b.setAttribute("aria-pressed", String(f === self.url()));
+        b.textContent = f.split("/").pop();
+        b.addEventListener("click", function () { self._sub[self._tab] = f; self.renderTabs(); self.loadSpec(); });
+        subs.appendChild(b);
+      });
+    }
+
+    files() {   // the spec file(s) behind the current tab
+      var self = this, f = SPECS.filter(function (s) { return s[0] === self._tab; })[0][1];
+      return [].concat(f);
+    }
+
+    url() {
+      var files = this.files(), sub = this._sub[this._tab];
+      return files.indexOf(sub) >= 0 ? sub : files[0];
     }
 
     openSpecs() {
@@ -211,12 +243,12 @@
 
     loadSpec() {
       var self = this, pre = this._sr.querySelector("pre");
-      var url = SPECS.filter(function (s) { return s[0] === self._tab; })[0][1];
+      var url = this.url();
       if (this._mdCache[url]) { pre.textContent = this._mdCache[url]; pre.scrollTop = 0; return; }
       pre.textContent = this.ui().loading;
       fetch(url).then(function (r) { return r.text(); }).then(function (txt) {
         self._mdCache[url] = txt;
-        if (SPECS.filter(function (s) { return s[0] === self._tab; })[0][1] === url) { pre.textContent = txt; pre.scrollTop = 0; }
+        if (self.url() === url) { pre.textContent = txt; pre.scrollTop = 0; }
       });
     }
   }
