@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Publish approved pages from a batch's workshop into the site (CLAUDE.md §8):
 #   tools/release.sh                              → list batches and their finished pages
-#   tools/release.sh <model>_<ts> [page ...]      → release those pages (default: every finished page)
+#   tools/release.sh <model>_<spec> [page ...]      → release those pages (default: every finished page)
 #     homepage → models/<model>/   (+ registry "release", timeline thumbnails in assets/shots/, re-promote "/")
 #     talks    → talks/
 #     <slug>   → projects/<slug>/
@@ -23,7 +23,7 @@ fi
 
 batch="$1"; shift
 src="$builds_root/$batch"; [[ -d "$src/repo" ]] || die "no batch $src"
-model="${batch%%_20[0-9][0-9]-*}"
+model="${batch%%_*}"
 pages=("$@"); [[ ${#pages[@]} -gt 0 ]] || pages=($(ls -1 "$src" | sed -n 's/\.done$//p'))
 [[ ${#pages[@]} -gt 0 ]] || die "no finished pages in $batch"
 

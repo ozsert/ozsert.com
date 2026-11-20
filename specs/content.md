@@ -392,8 +392,6 @@ Personal motif: **a signal** ( *finding the signal beyond the noise*).
 - tr: şekil 3 — 2008 → bugün, ölçekli
 - en: fig. 3 — 2008 → now, to scale
 
-> Assumes independent consulting ran Jun 2025 → Jan 2026, before Deka Tech (Feb 2026).
-
 ### experience.r1.org
 - tr: Deka Tech
 - en: Deka Tech

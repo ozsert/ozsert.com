@@ -59,7 +59,7 @@ Dropped: Sonnet 4.5 and Opus 4.5 (not available in Claude Code). Rival labs are 
 | `models/<id>/`, `talks/`, `projects/<slug>/` | Released pages (talks: hand-made fallback until its first release) | only `tools/release.sh` |
 | `models/index.html`, `404.html` | `/models/` timeline, 404 | Claude |
 | `tools/` | The scripts in §5 below. **Not deployed** | Claude |
-| `../ozsert-builds/<model>_<ts>/` | **Outside the repo: the batch's workshop.** `repo/` = input set + the pages the agents built (review here); `<page>.prompt.txt`, `<page>.log`, `<page>.done`, `_shots/<page>/`. Kept for rollback; agent leftovers never leave it | only `tools/build.sh` |
+| `../ozsert-builds/<model>_<spec>/` | **Outside the repo: the batch's workshop.** `repo/` = input set + the pages the agents built (review here); `<page>.prompt.txt`, `<page>.log`, `<page>.done`, `_shots/<page>/`. Kept for rollback; agent leftovers never leave it | only `tools/build.sh` |
 | `assets/` | Images (`portrait.jpg`, `About_1–4`, `Topics_<vol>.<n>.jpeg`); `assets/shots/` = timeline thumbnails of released homepages | `shots/`: only `tools/release.sh` |
 | `archive/v1/` | The old site (frozen) | never |
 
@@ -100,22 +100,27 @@ It describes *what* the site says and *how* it should look, never how we run the
 Run it **in the background**; each page takes ~15–20 min and pages run one after another.
 
 ```bash
-tools/build.sh <model> "<Model Name>"                    # homepage + talks + every project page
-tools/build.sh <model> "<Model Name>" homepage           # or only some pages: homepage, talks and/or <slug> …
-SPEC_REF=spec-v1 tools/build.sh <model> "<Model Name>"   # official builds from the frozen spec tag
-tools/build.sh --resume <model>_<ts>                     # continue an interrupted batch (e.g. usage limit)
+SPEC_REF=spec-v1 tools/build.sh <model> "<Model Name>"   # official build → ../ozsert-builds/<model>_spec-v1/
+tools/build.sh <model> "<Model Name>" [page …]           # dry run from the current files → <model>_dry-run/
 ```
 
+**Deterministic layout:** one batch folder per model per spec version, `../ozsert-builds/<model>_<spec>/`
+(no dates). Models never share a folder, so no model sees another's work; one model's pages share it (links work,
+and a page may look at that model's earlier pages, the same for every model). Running the same command again
+continues the batch (finished pages skipped, e.g. after a usage limit); to start over, delete the folder.
+**Official builds:** the default page order (homepage → talks → projects in `projects.order`), one after another,
+never in parallel. Parallel page runs are only for dry runs.
+
 What it does, never by hand:
-1. Creates the workshop `../ozsert-builds/<model>_<ts>/repo/` with only the **input set** (`specs/`, `shared/`,
+1. Creates the workshop `../ozsert-builds/<model>_<spec>/repo/` with only the **input set** (`specs/`, `shared/`,
    `content/`, `assets/`, `favicon.ico`). It's outside the repo, so the agent doesn't load this file.
 2. For each page: one `claude -p` session (one prompt, `--dangerously-skip-permissions`, web tools off, Claude
    Code defaults), log in `<page>.log`. Homepage: `specs/build-prompt.md`; talks and project pages:
    `specs/build-prompt-page.md` with `specs/talks.md` or `specs/projects/<slug>.md`. The agent writes the page
    where it will live on the site (`models/<model>/`, `talks/`, `projects/<slug>/`).
 3. Checks each log: tool calls, any path outside its folder (flag it to Murad), finished or not. A finished page
-   gets `<page>.done` and screenshots in `_shots/<page>/`; an unfinished one is built again by `--resume`.
-4. **Review:** `tools/review.sh <model>_<ts>` serves the workshop at `http://localhost:8765/`; give Murad the
+   gets `<page>.done` and screenshots in `_shots/<page>/`; an unfinished one is built again by running the same command.
+4. **Review:** `tools/review.sh <model>_<spec>` serves the workshop at `http://localhost:8765/`; give Murad the
    page links it prints. Pages link to each other exactly as on the site.
 
 ## 8. Process 3: release (after Murad agrees)
@@ -128,7 +133,7 @@ What it does, never by hand:
      "path": "/models/<model>/", "note": { "tr": "…", "en": "…" } }
    ```
    (`status: "failed"` for broken builds: shown on the timeline, never promoted.)
-2. `tools/release.sh <model>_<ts> [page …]`: copies only the approved pages' files from the workshop to
+2. `tools/release.sh <model>_<spec> [page …]`: copies only the approved pages' files from the workshop to
    `models/<model>/`, `talks/` and `projects/<slug>/`, sets `"release"` in the registry, copies the timeline
    thumbnails to `assets/shots/` and re-promotes `/`. Must report **0 warnings**.
 3. `tools/release.sh` alone lists every batch. Releasing an older batch is how you roll back.
@@ -188,9 +193,10 @@ Content is anonymized: no client, person, brand, host or real module names, no f
 - Done: shared code, top bar, `/models/`, 404, deploy (only `_site/`), content for all 7 projects.
 - Batch `claude-opus-5-5_2026-11-19_1056` (dry run, `specVersion: dry-run`), released: homepage (two small hand
   fixes: accent scenes draw on the first click; portrait uses `portrait-upper.jpg`; later: hover pictures as an
-  accent-ink duotone, no signal mark in the top bar or footer), talks, ai-code-reviewer, skill-marketplace, executive-kpi-agent, ai-gateway, mailbox-qa.
-- Next, with Murad's review: sam-ai + player-support-agent (two pages may build in parallel: separate
-  `build.sh --resume <batch> <page>` runs) → release → freeze `spec-v1` → the other models.
+  accent-ink duotone, no signal mark in the top bar or footer), talks and all 7 project pages.
+- **`spec-v1` frozen (2026-11-20, git tag).** Spec, shared code and prompts no longer change (text-only edits
+  are fine). Next: official builds, one model at a time: `SPEC_REF=spec-v1 tools/build.sh <model> "<Name>"`
+  (Opus 5.5 too; its dry-run pages stay live until its official build is released).
 - Review loop per page: build in the background → scroll-check (static shots miss scroll-drawn figures) →
   `tools/review.sh <batch>` (port 8765) → Murad's OK → `tools/release.sh <batch> <page>` → commit + push.
 - Deploy: GitHub Pages (source: GitHub Actions, `.github/workflows/static.yml` on push to `main`), domain
