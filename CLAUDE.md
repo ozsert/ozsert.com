@@ -188,9 +188,9 @@ Content is anonymized: no client, person, brand, host or real module names, no f
 - Done: shared code, top bar, `/models/`, 404, deploy (only `_site/`), content for all 7 projects.
 - Batch `claude-opus-5-5_2026-11-19_1056` (dry run, `specVersion: dry-run`), released: homepage (two small hand
   fixes: accent scenes draw on the first click; portrait uses `portrait-upper.jpg`; later: hover pictures as an
-  accent-ink duotone, no signal mark in the top bar or footer), talks, ai-code-reviewer, skill-marketplace, executive-kpi-agent.
-- Next, one at a time with Murad's review: ai-gateway → mailbox-qa → sam-ai →
-  player-support-agent → release → freeze `spec-v1` → the other models.
+  accent-ink duotone, no signal mark in the top bar or footer), talks, ai-code-reviewer, skill-marketplace, executive-kpi-agent, ai-gateway, mailbox-qa.
+- Next, with Murad's review: sam-ai + player-support-agent (two pages may build in parallel: separate
+  `build.sh --resume <batch> <page>` runs) → release → freeze `spec-v1` → the other models.
 - Review loop per page: build in the background → scroll-check (static shots miss scroll-drawn figures) →
   `tools/review.sh <batch>` (port 8765) → Murad's OK → `tools/release.sh <batch> <page>` → commit + push.
 - Deploy: GitHub Pages (source: GitHub Actions, `.github/workflows/static.yml` on push to `main`), domain

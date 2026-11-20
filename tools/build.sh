@@ -68,6 +68,8 @@ prompt_for() {
 }
 
 stop_servers() {   # kill local servers an agent left running in the workshop (not ones that ran before it, e.g. review.sh)
+  # another build still running (parallel builds): leave its servers alone; the last one to finish cleans up
+  pgrep -f "disallowedTools WebSearch WebFetch" >/dev/null 2>&1 && return 0
   for p in $(pgrep -f "http.server" || true); do
     [[ " $before " == *" $p "* ]] && continue
     d="$(lsof -a -p "$p" -d cwd 2>/dev/null | tail -1 | awk '{print $NF}')"
@@ -113,7 +115,7 @@ for page in "${pages[@]}"; do
   stop_servers
   if report "$batch/$page.log" && [[ -f "$work/$(out_dir "$page")/index.html" ]]; then
     touch "$batch/$page.done"
-    "$repo/tools/shoot.sh" "$work" "/$(out_dir "$page")/" "$batch/_shots/$page" >/dev/null 2>&1 || true
+    PORT="$((8800 + $$ % 100))" "$repo/tools/shoot.sh" "$work" "/$(out_dir "$page")/" "$batch/_shots/$page" >/dev/null 2>&1 || true
     echo "    ✓ done: /$(out_dir "$page")/"
   else
     echo "    ⚠ $page did not finish (e.g. usage limit). Continue later: tools/build.sh --resume $batch_name"
