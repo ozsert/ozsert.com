@@ -7,7 +7,7 @@ set -euo pipefail
 repo="$(git rev-parse --show-toplevel)"
 batch="${1:-}"; port="${2:-8765}"
 [[ -n "$batch" ]] || { echo "usage: tools/review.sh <model>_<spec> [port]"; ls -1 "$(dirname "$repo")/ozsert-builds" 2>/dev/null | sed 's/^/  /'; exit 2; }
-work="$(dirname "$repo")/ozsert-builds/$batch/repo"
+work="$(dirname "$repo")/ozsert-builds/$batch/site"
 [[ -d "$work" ]] || { echo "✗ no workshop $work" >&2; exit 1; }
 model="${batch%%_*}"
 echo "Review $batch at:"

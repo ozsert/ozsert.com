@@ -18,14 +18,14 @@ die() { echo "✗ $*" >&2; exit 1; }
 if [[ $# -eq 0 ]]; then
   echo "Batches (../ozsert-builds/):"
   for b in "$builds_root"/*/; do
-    [[ -d "$b/repo" ]] || continue
+    [[ -d "$b/site" ]] || continue
     done_pages="$(ls -1 "$b" 2>/dev/null | sed -n 's/\.done$//p' | tr '\n' ' ')"
     echo "  $(basename "$b")  →  ${done_pages:-(no finished pages)}"
   done; exit 0
 fi
 
 batch="$1"; shift
-src="$builds_root/$batch"; [[ -d "$src/repo" ]] || die "no batch $src"
+src="$builds_root/$batch"; [[ -d "$src/site" ]] || die "no batch $src"
 model="${batch%%_*}"
 pages=("$@"); [[ ${#pages[@]} -gt 0 ]] || pages=($(ls -1 "$src" | sed -n 's/\.done$//p'))
 [[ ${#pages[@]} -gt 0 ]] || die "no finished pages in $batch"
@@ -34,7 +34,7 @@ src_of()    { case "$1" in homepage) echo "models/$model";; talks) echo "talks";
 target_of() { case "$1" in homepage) echo "models/$model";; talks) echo "models/$model/talks";; *) echo "models/$model/projects/$1";; esac; }
 
 for page in "${pages[@]}"; do
-  target="$(target_of "$page")"; from="$src/repo/$(src_of "$page")"
+  target="$(target_of "$page")"; from="$src/site/$(src_of "$page")"
   [[ -f "$from/index.html" ]] || { echo "✗ no $(src_of "$page") in $batch"; continue; }
   if [[ "$page" == homepage ]]; then   # keep the model's talks/ and projects/ next to its homepage
     mkdir -p "$repo/$target"; rm -rf "$repo/$target"/{index.html,style.css,script.js,assets}

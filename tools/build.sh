@@ -9,7 +9,7 @@
 #   Env: SPEC_REF=<git tag> (official builds, e.g. spec-v1) or unset = the current files, batch <model>_dry-run.
 #
 # Everything happens in the batch's workshop, OUTSIDE the repo (so the agent doesn't load CLAUDE.md):
-#   ../ozsert-builds/<model>_<spec>/repo/              the input set (specs/ shared/ content/ assets/) + the pages
+#   ../ozsert-builds/<model>_<spec>/site/              the input set (specs/ shared/ content/ assets/) + the pages
 #                                                    the agents write (models/<model>/, talks/, projects/<slug>/)
 #   ../ozsert-builds/<model>_<spec>/<page>.prompt.txt  the exact prompt sent (once)
 #   ../ozsert-builds/<model>_<spec>/<page>.log         claude -p stream-json log
@@ -26,7 +26,7 @@ die() { echo "✗ $*" >&2; exit 1; }
 resume=""
 if [[ "${1:-}" == "--resume" ]]; then
   resume="${2:-}"; [[ -n "$resume" ]] || die "usage: tools/build.sh --resume <batch> [page ...]"
-  [[ -d "$builds_root/$resume/repo" ]] || die "no batch $builds_root/$resume"
+  [[ -d "$builds_root/$resume/site" ]] || die "no batch $builds_root/$resume"
   model="${resume%%_*}"; name="$(cat "$builds_root/$resume/name.txt" 2>/dev/null || echo "$model")"
   shift 2
 else
@@ -41,7 +41,7 @@ lsof -nP -iTCP:8000 -sTCP:LISTEN >/dev/null 2>&1 && die "port 8000 is in use (yo
 
 ref="${SPEC_REF:-working-tree}"
 batch_name="${resume:-${model}_$([[ "$ref" == working-tree ]] && echo dry-run || echo "$ref")}"
-batch="$builds_root/$batch_name"; work="$batch/repo"
+batch="$builds_root/$batch_name"; work="$batch/site"   # input master + finished pages for review
 [[ -d "$work" ]] && resume="$batch_name"   # the batch exists: continue it, never mix in newer inputs
 
 if [[ -z "$resume" ]]; then
@@ -108,7 +108,7 @@ EOF
 # ---- run the pages, one at a time ----------------------------------------------------------
 # Never in parallel: the prompt has every agent use port 8000, and agents stop "their" servers.
 # Each page is built in its own folder _pages/<page>/repo/ holding only the input set, so pages never see each
-# other's work. The finished page is copied into repo/.
+# other's work. The finished page is copied into site/.
 build_page() {
   # the agent's folder is always named "repo": a folder named after the page (e.g. "talks") made an agent think it
   # was already inside talks/ and write the page one level too high
@@ -137,7 +137,7 @@ for l in open(sys.argv[1], errors="replace"):
   pkill -f -- "--headless.*--user-data-dir=/tmp/" 2>/dev/null || true   # headless Chrome the agent left behind
   # scratch files the agent left in /tmp (its helper scripts, screenshots): only entries that appeared during this page
   comm -13 <(printf '%s\n' "$tmp_before" | sort) <(ls -A /tmp | sort) | while IFS= read -r f; do
-    [[ -n "$f" && -O "/tmp/$f" ]] && rm -rf "/tmp/$f"; done
+    if [[ -n "$f" && -O "/tmp/$f" ]]; then rm -rf "/tmp/$f"; fi; done || true
   echo "▶ $page"
   if report "$batch/$page.log" "$pw" && [[ -f "$pw/$out/index.html" ]]; then
     rm -rf "$work/$out"; mkdir -p "$work/$out"; rsync -a "$pw/$out/" "$work/$out/"

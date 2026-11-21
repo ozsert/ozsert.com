@@ -63,7 +63,7 @@ Dropped: Sonnet 4.5 and Opus 4.5 (not available in Claude Code). Rival labs are 
 | `models/<id>/` (+ `talks/`, `projects/<slug>/` inside) | One model's released site; `pages` in the registry lists what it has | only `tools/release.sh` |
 | `models/index.html`, `404.html` | `/models/` timeline, 404 | Claude |
 | `tools/` | The scripts in §5 below. **Not deployed** | Claude |
-| `../ozsert-builds/<model>_<spec>/` | **Outside the repo: one model's batch.** `_pages/<page>/repo/` = where the agent works; `repo/` = finished pages for review; `<page>.prompt.txt`, `.log`, `.done`, `_shots/`. Released batches → `_archive/*.tar.gz` | only `tools/build.sh` |
+| `../ozsert-builds/<model>_<spec>/` | **Outside the repo: one model's batch.** `_pages/<page>/repo/` = where the agent works; `site/` = input master + finished pages for review; `<page>.prompt.txt`, `.log`, `.done`, `_shots/`. Released batches → `_archive/*.tar.gz` | only `tools/build.sh` |
 | `assets/` | Images (`portrait.jpg`, `About_1–4`, `Topics_<vol>.<n>.jpeg`); `assets/shots/` = timeline thumbnails of released homepages | `shots/`: only `tools/release.sh` |
 | `archive/v1/` | The old site (frozen) | never |
 
@@ -116,7 +116,7 @@ Loop per page: build → check the log and scroll through the page → report to
 | One page at a time | never parallel, no supervising agents. The prompt has agents test on port 8000, so `build.sh` refuses to start while another build runs or 8000 is taken (use e.g. 8080 for your own server) |
 | Isolation | each page in its own `_pages/<page>/repo/` with only the input set (`specs/ shared/ content/ assets/ favicon.ico` from `SPEC_REF`); folder always named `repo`; web tools off; `--dangerously-skip-permissions`; Claude Code defaults |
 | Prompts | homepage `specs/build-prompt.md`; talks/projects `specs/build-prompt-page.md` + its spec; taken from the batch's own copy |
-| Log check | tool calls, any path outside the page folder (flag to Murad), finished or not → `<page>.done`, copy to `repo/`, screenshots |
+| Log check | tool calls, any path outside the page folder (flag to Murad), finished or not → `<page>.done`, copy to `site/`, screenshots |
 | Cleanup | after each page: stop leftover servers and headless Chrome, delete what the agent created in `/tmp` |
 | Usage limit | run the same command again: finished pages skipped, a cut-off page continues its own session (`claude --resume`) |
 | Start over | delete the batch folder |

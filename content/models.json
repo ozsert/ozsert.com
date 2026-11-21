@@ -19,7 +19,8 @@
       },
       "release": "claude-opus-5_spec-v1",
       "pages": [
-        "homepage"
+        "homepage",
+        "talks"
       ]
     },
     {
