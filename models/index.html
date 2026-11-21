@@ -49,6 +49,12 @@
             open: "Open →", released: "released", built: "built", failed: "failed", empty: "No models registered yet." }
     };
     function esc(s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+    // "2026-07" → "Temmuz 2026" / "July 2026": the model's release month (approximate, so no day)
+    function month(ym) {
+      var p = String(ym).split("-");
+      try { return new Intl.DateTimeFormat(OZ.lang === "tr" ? "tr-TR" : "en-GB", { month: "long", year: "numeric" }).format(new Date(+p[0], +p[1] - 1, 1)); }
+      catch (e) { return ym; }
+    }
     function render() {
       var u = UI[OZ.lang];
       document.title = (OZ.lang === "tr" ? "Modeller" : "Models") + " — ozsert.com";
@@ -63,7 +69,7 @@
           var shot = "/assets/shots/" + m.id + "-desktop-" + OZ.theme + ".png";
           return '<li class="m-item' + (m.family === "claude" ? "" : " rival") + (m.status === "failed" ? " failed" : "") + '">' +
             "<div><div class=\"m-date\">#" + esc(m.order) + "</div><h2>" + esc(m.name) + "</h2>" +
-            '<div class="m-meta"><span>' + esc(m.lab) + "</span><span>" + esc(m.harness) + "</span><span>" + u.built + " " + esc(m.builtOn) +
+            '<div class="m-meta"><span>' + esc(m.lab) + "</span><span>" + esc(m.harness) + "</span><span>" + (m.released ? u.released + " " + esc(month(m.released)) : u.built + " " + esc(m.builtOn)) +
             "</span><span>" + esc(m.specVersion) + "</span>" + (m.status === "failed" ? '<span class="h-stamp">' + u.failed + "</span>" : "") + "</div>" +
             (note ? '<p class="m-note">' + esc(note) + "</p>" : "") +
             '<a href="' + esc(m.path || "/models/" + m.id + "/") + '">' + u.open + "</a></div>" +
