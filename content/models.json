@@ -7,7 +7,7 @@
       "lab": "Anthropic",
       "family": "claude",
       "order": 4,
-      "builtOn": "2026-11-20",
+      "builtOn": "2026-11-21",
       "harness": "Claude Code",
       "defaults": "default settings",
       "specVersion": "spec-v1",

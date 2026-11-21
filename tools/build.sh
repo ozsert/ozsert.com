@@ -35,6 +35,10 @@ else
   [[ "$model" =~ ^[a-z0-9][a-z0-9.-]*$ ]] || die "model-id: lowercase letters, digits, dots, dashes"
 fi
 
+# guards: one build at a time, and port 8000 free (the prompt has every agent test on it; agents stop servers there)
+pgrep -f "disallowedTools WebSearch WebFetch" >/dev/null && die "another build is running; builds run one at a time"
+lsof -nP -iTCP:8000 -sTCP:LISTEN >/dev/null 2>&1 && die "port 8000 is in use (your own server?). Stop it, or use another port, then run again"
+
 ref="${SPEC_REF:-working-tree}"
 batch_name="${resume:-${model}_$([[ "$ref" == working-tree ]] && echo dry-run || echo "$ref")}"
 batch="$builds_root/$batch_name"; work="$batch/repo"
@@ -44,9 +48,10 @@ if [[ -z "$resume" ]]; then
   mkdir -p "$work"
   if [[ "$ref" == "working-tree" ]]; then src="$repo"; else
     src="$(mktemp -d)"; git -C "$repo" archive "$ref" specs shared content assets favicon.ico | tar -x -C "$src" \
-      || { rm -rf "$batch"; die "git ref '$ref' not found"; }; fi
+      || { rm -rf "$batch" "$src"; die "git ref '$ref' not found"; }; fi
   for d in specs shared content assets; do rsync -a --exclude '*.pdf' --exclude .DS_Store --exclude shots "$src/$d" "$work/"; done
   cp "$src/favicon.ico" "$work/"
+  [[ "$src" != "$repo" ]] && rm -rf "$src"
   printf '%s\n' "$ref" > "$batch/spec-ref.txt"
   printf '%s\n' "$name" > "$batch/name.txt"
 fi
@@ -102,10 +107,12 @@ EOF
 
 # ---- run the pages, one at a time ----------------------------------------------------------
 # Never in parallel: the prompt has every agent use port 8000, and agents stop "their" servers.
-# Each page is built in its own folder _pages/<page>/ holding only the input set, so pages never see each
+# Each page is built in its own folder _pages/<page>/repo/ holding only the input set, so pages never see each
 # other's work. The finished page is copied into repo/.
 build_page() {
-  local page="$1" i="$2" pw="$batch/_pages/$1" out; out="$(out_dir "$page")"
+  # the agent's folder is always named "repo": a folder named after the page (e.g. "talks") made an agent think it
+  # was already inside talks/ and write the page one level too high
+  local page="$1" i="$2" pw="$batch/_pages/$1/repo" out; out="$(out_dir "$page")"
   if [[ ! -d "$pw" ]]; then
     mkdir -p "$pw"
     rsync -a --exclude /models --exclude /talks --exclude /projects "$work/" "$pw/"   # anchored: keep specs/projects/
@@ -122,10 +129,15 @@ for l in open(sys.argv[1], errors="replace"):
   fi
   if [[ -n "$sid" ]]; then args=(--resume "$sid" -p "Continue.")
   else prompt_for "$page" > "$batch/$page.prompt.txt"; args=(-p "$(cat "$batch/$page.prompt.txt")"); fi
+  local tmp_before; tmp_before="$(ls -A /tmp)"
   ( cd "$pw" && claude "${args[@]}" --model "$model" \
       --dangerously-skip-permissions --disallowedTools WebSearch WebFetch \
       --output-format stream-json --verbose > "$batch/$page.log" 2>&1 ) || true
   stop_servers "$pw"
+  pkill -f -- "--headless.*--user-data-dir=/tmp/" 2>/dev/null || true   # headless Chrome the agent left behind
+  # scratch files the agent left in /tmp (its helper scripts, screenshots): only entries that appeared during this page
+  comm -13 <(printf '%s\n' "$tmp_before" | sort) <(ls -A /tmp | sort) | while IFS= read -r f; do
+    [[ -n "$f" && -O "/tmp/$f" ]] && rm -rf "/tmp/$f"; done
   echo "▶ $page"
   if report "$batch/$page.log" "$pw" && [[ -f "$pw/$out/index.html" ]]; then
     rm -rf "$work/$out"; mkdir -p "$work/$out"; rsync -a "$pw/$out/" "$work/$out/"
