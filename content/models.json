@@ -42,7 +42,8 @@
         "en": "Built one-shot from spec-v1."
       },
       "pages": [
-        "homepage"
+        "homepage",
+        "talks"
       ],
       "release": "claude-sonnet-5-5_spec-v1"
     },
