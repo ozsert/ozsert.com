@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="oz-model" content="claude-sonnet-5">
+<link rel="canonical" href="https://ozsert.com/">
+<script src="/shared/core.js"></script>
+<script src="/shared/topbar.js" defer></script>
+<title>C. Murad Özsert</title>
+<meta name="description" content="C. Murad Özsert — field notes on technology, startups and AI.">
+<link rel="icon" href="/favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=Geist+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/models/claude-sonnet-5/style.css">
+<script src="/models/claude-sonnet-5/script.js" defer></script>
+</head>
+<body>
+<oz-topbar></oz-topbar>
+<a class="v-cs5-skip" href="#top" data-i18n="ui.back_to_top"></a>
+
+<main id="top">
+
+<!-- ============================= HERO ============================= -->
+<section class="v-cs5-hero" aria-labelledby="v-cs5-h1">
+  <div class="v-cs5-wrap">
+    <div class="v-cs5-hero-kicker v-cs5-mono">
+      <span data-i18n="hero.kicker"></span>
+      <span class="v-cs5-coords">41.01° N, 28.98° E</span>
+    </div>
+
+    <div class="v-cs5-hero-grid">
+      <div class="v-cs5-hero-main">
+        <div class="v-cs5-hero-head">
+          <h1 id="v-cs5-h1" class="v-cs5-headline"></h1>
+          <figure class="v-cs5-portrait v-cs5-duo" aria-hidden="false">
+            <img src="/assets/portrait-upper.jpg" width="960" height="1200" data-i18n="[alt]hero.portrait_alt" alt="">
+            <span class="v-cs5-tape" aria-hidden="true"></span>
+          </figure>
+        </div>
+
+        <p class="v-cs5-role"></p>
+        <p class="v-cs5-previously v-cs5-mono">
+          <span class="v-cs5-previously-label" data-i18n="hero.previously_label"></span>
+          <span data-i18n="hero.previously"></span>
+        </p>
+
+        <div class="v-cs5-manifesto-block v-cs5-reveal">
+          <p class="v-cs5-manifesto"></p>
+          <aside class="v-cs5-margin-note v-cs5-mono">
+            <span data-i18n="hero.margin_note"></span>
+          </aside>
+          <svg class="v-cs5-arrow-svg" viewBox="0 0 600 160" preserveAspectRatio="none" aria-hidden="true">
+            <path class="v-cs5-draw-path" id="v-cs5-arrow-path" pathLength="100" fill="none" d="M0,0 Q0,0 0,0"/>
+            <path class="v-cs5-draw-path" id="v-cs5-arrow-head" pathLength="100" fill="none" d="M0,0 L0,0"/>
+          </svg>
+        </div>
+
+        <div class="v-cs5-hero-ctas">
+          <a class="v-cs5-btn-primary" href="#projects" data-scroll data-i18n="hero.cta_work"></a>
+          <a class="v-cs5-link-down" href="#talks" data-scroll><span data-i18n="hero.cta_talks"></span> ↓</a>
+          <a class="v-cs5-link-down" href="#newsletter" data-scroll><span data-i18n="hero.cta_newsletter"></span> ↓</a>
+        </div>
+      </div>
+
+      <div class="v-cs5-hero-side">
+        <nav class="v-cs5-contents" aria-label="Contents">
+          <p class="v-cs5-mono v-cs5-upper v-cs5-side-label" data-i18n="ui.contents"></p>
+          <ol>
+            <li><a href="#projects" data-scroll><span class="v-cs5-mono" data-i18n="projects.section_no"></span><span data-i18n="projects.label"></span></a></li>
+            <li><a href="#founder" data-scroll><span class="v-cs5-mono" data-i18n="founder.section_no"></span><span data-i18n="founder.label"></span></a></li>
+            <li><a href="#talks" data-scroll><span class="v-cs5-mono" data-i18n="talks.section_no"></span><span data-i18n="talks.label"></span></a></li>
+            <li><a href="#newsletter" data-scroll><span class="v-cs5-mono" data-i18n="newsletter.section_no"></span><span data-i18n="newsletter.label"></span></a></li>
+            <li><a href="#experience" data-scroll><span class="v-cs5-mono" data-i18n="experience.section_no"></span><span data-i18n="experience.label"></span></a></li>
+            <li><a href="#contact" data-scroll><span class="v-cs5-mono">—</span><span data-i18n="footer.label"></span></a></li>
+          </ol>
+        </nav>
+
+        <div class="v-cs5-ink-panel">
+          <p class="v-cs5-mono v-cs5-upper v-cs5-side-label" data-i18n="ui.ink"></p>
+          <div class="v-cs5-ink-picker" data-ink-picker></div>
+          <div class="v-cs5-toggles">
+            <button type="button" class="v-cs5-toggle" data-toggle="pentrail">
+              <span data-i18n="ui.pen_trail"></span> <b class="v-cs5-mono"></b>
+            </button>
+            <button type="button" class="v-cs5-toggle" data-toggle="calm">
+              <span data-i18n="ui.calm_motion"></span> <b class="v-cs5-mono"></b>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <figure class="v-cs5-hero-fig v-cs5-reveal">
+      <svg class="v-cs5-fig-svg" viewBox="0 0 1200 220" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+        <g data-scene="bosphorus" class="v-cs5-scene">
+          <path class="v-cs5-draw-path" pathLength="100" d="M40,190 C300,190 300,190 1160,190"/>
+          <path class="v-cs5-draw-path" pathLength="100" d="M330,190 L330,40 M870,190 L870,40"/>
+          <path class="v-cs5-draw-path" pathLength="100" d="M330,55 C480,110 720,110 870,55"/>
+          <path class="v-cs5-draw-path" pathLength="100" d="M330,70 L600,160 M330,95 L600,160 M330,120 L600,160 M330,145 L600,160 M870,70 L600,160 M870,95 L600,160 M870,120 L600,160 M870,145 L600,160"/>
+          <path class="v-cs5-draw-path" pathLength="100" d="M900,175 L960,175 L975,160 L1010,160 L1020,175 L900,175 Z"/>
+          <path class="v-cs5-draw-path" pathLength="100" d="M80,185 Q130,175 180,185 T280,185"/>
+        </g>
+        <g data-scene="galata" class="v-cs5-scene">
+          <path class="v-cs5-draw-path" pathLength="100" d="M40,190 L1160,190"/>
+          <path class="v-cs5-draw-path" pathLength="100" d="M560,190 L560,55 Q560,35 580,35 L580,55 M560,70 L580,70 M555,100 L585,100 M550,135 L590,135 M560,190 L560,135 M580,190 L580,35"/>
+          <path class="v-cs5-draw-path" pathLength="100" d="M568,35 L572,20"/>
+          <path class="v-cs5-draw-path" pathLength="100" d="M620,190 L620,120 L660,120 L660,190 M700,190 L700,100 L730,100 L730,190 M760,190 L760,140 L800,140 L800,190 M460,190 L460,110 L500,110 L500,190 M400,190 L400,150 L430,150 L430,190"/>
+          <path class="v-cs5-draw-path" pathLength="100" d="M80,175 Q300,165 560,170 T1120,175"/>
+        </g>
+        <g data-scene="iznik" class="v-cs5-scene">
+          <path class="v-cs5-draw-path" pathLength="100" d="M60,110 Q90,60 120,110 Q150,160 180,110 Q210,60 240,110 Q270,160 300,110 Q330,60 360,110 Q390,160 420,110 Q450,60 480,110 Q510,160 540,110 Q570,60 600,110 Q630,160 660,110 Q690,60 720,110 Q750,160 780,110 Q810,60 840,110 Q870,160 900,110 Q930,60 960,110 Q990,160 1020,110 Q1050,60 1080,110 Q1110,160 1140,110"/>
+          <path class="v-cs5-draw-path" pathLength="100" d="M120,110 L120,70 L150,55 L180,70 L180,110 M300,110 L300,70 L330,55 L360,70 L360,110 M480,110 L480,70 L510,55 L540,70 L540,110 M660,110 L660,70 L690,55 L720,70 L720,110 M840,110 L840,70 L870,55 L900,70 L900,110 M1020,110 L1020,70 L1050,55 L1080,70 L1080,110"/>
+          <path class="v-cs5-draw-path" pathLength="100" d="M40,170 L1160,170"/>
+        </g>
+        <g data-scene="tulip" class="v-cs5-scene">
+          <path class="v-cs5-draw-path" pathLength="100" d="M40,195 L1160,195"/>
+          <path class="v-cs5-draw-path" pathLength="100" d="M120,195 C110,140 110,120 150,80 C160,70 180,70 190,80 C230,120 230,140 220,195"/>
+          <path class="v-cs5-draw-path" pathLength="100" d="M250,195 C245,150 245,130 170,95"/>
+          <path class="v-cs5-draw-path" pathLength="100" d="M90,195 C95,150 95,130 170,95"/>
+          <path class="v-cs5-draw-path" pathLength="100" d="M420,195 C410,120 410,95 450,55 C460,45 480,45 490,55 C530,95 530,120 520,195"/>
+          <path class="v-cs5-draw-path" pathLength="100" d="M560,195 C555,140 555,115 470,80"/>
+          <path class="v-cs5-draw-path" pathLength="100" d="M380,195 C385,140 385,115 470,80"/>
+          <path class="v-cs5-draw-path" pathLength="100" d="M720,195 C710,150 710,130 750,95 C760,86 780,86 790,95 C830,130 830,150 820,195"/>
+          <path class="v-cs5-draw-path" pathLength="100" d="M940,195 C930,120 930,95 970,55 C980,45 1000,45 1010,55 C1050,95 1050,120 1040,195"/>
+          <path class="v-cs5-draw-path" pathLength="100" d="M1080,195 C1075,150 1075,130 990,95"/>
+        </g>
+        <g data-scene="saffron" class="v-cs5-scene">
+          <path class="v-cs5-draw-path" pathLength="100" d="M40,185 L1160,185"/>
+          <path class="v-cs5-draw-path" pathLength="100" d="M100,185 L100,120 Q160,55 220,120 L220,185 M280,185 L280,110 Q360,30 440,110 L440,185 M500,185 L500,120 Q560,55 620,120 L620,185 M680,185 L680,110 Q760,30 840,110 L840,185 M900,185 L900,120 Q960,55 1020,120 L1020,185 M1060,185 L1060,130 Q1100,85 1140,130 L1140,185"/>
+          <path class="v-cs5-draw-path" pathLength="100" d="M160,120 L160,185 M400,110 L400,185 M560,120 L560,185 M760,110 L760,185 M960,120 L960,185"/>
+        </g>
+        <g data-scene="olive" class="v-cs5-scene">
+          <path class="v-cs5-draw-path" pathLength="100" d="M70,160 Q300,60 560,100 Q820,140 1130,50"/>
+          <path class="v-cs5-draw-path" pathLength="100" d="M250,98 Q280,70 320,78 Q290,95 250,98 Z M400,86 Q435,55 475,66 Q440,88 400,86 Z M560,100 Q595,70 635,80 Q598,102 560,100 Z M720,112 Q755,82 795,92 Q758,115 720,112 Z M880,92 Q915,62 955,72 Q918,94 880,92 Z"/>
+          <path class="v-cs5-draw-path" pathLength="100" d="M330,95 a14,10 0 1,0 0.1,0 M690,106 a14,10 0 1,0 0.1,0 M1010,74 a13,9 0 1,0 0.1,0"/>
+        </g>
+      </svg>
+      <figcaption class="v-cs5-mono v-cs5-fig-caption" data-fig-caption></figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============================= NOW ============================= -->
+<section id="now" class="v-cs5-now" aria-label="Now">
+  <div class="v-cs5-wrap">
+    <svg class="v-cs5-rule v-cs5-reveal" viewBox="0 0 1200 8" preserveAspectRatio="none" aria-hidden="true"><path class="v-cs5-draw-path" pathLength="100" d="M0,4 L1200,4"/></svg>
+    <div class="v-cs5-now-row v-cs5-mono">
+      <span class="v-cs5-now-label v-cs5-upper" data-i18n="now.label"></span>
+      <span class="v-cs5-now-item">• <span data-i18n="now.item1"></span></span>
+      <span class="v-cs5-now-item">• <span data-i18n="now.item2"></span></span>
+      <span class="v-cs5-now-item">• <span data-i18n="now.item3"></span><span class="v-cs5-cursor" aria-hidden="true"></span></span>
+      <a class="v-cs5-now-item v-cs5-now-link" href="#contact" data-scroll>• <span data-i18n="now.item4"></span> →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= WORKBENCH 01 ============================= -->
+<section id="projects" class="v-cs5-section" aria-labelledby="v-cs5-projects-h">
+  <div class="v-cs5-wrap">
+    <p class="v-cs5-eyebrow v-cs5-mono"><span>§ <span data-i18n="projects.section_no"></span></span> — <span class="v-cs5-upper" data-i18n="projects.label"></span></p>
+    <div class="v-cs5-title-wrap v-cs5-reveal">
+      <h2 id="v-cs5-projects-h" class="v-cs5-h2" data-i18n="projects.title"></h2>
+      <svg class="v-cs5-underline" viewBox="0 0 500 20" preserveAspectRatio="none" aria-hidden="true"><path class="v-cs5-draw-path" pathLength="100" d="M2,12 Q130,2 250,12 T498,10"/></svg>
+    </div>
+    <p class="v-cs5-intro" data-i18n="projects.intro"></p>
+    <p class="v-cs5-note-small v-cs5-mono" data-i18n="projects.enterprise_note"></p>
+
+    <div class="v-cs5-rows">
+      <a class="v-cs5-row v-cs5-reveal" href="/models/claude-sonnet-5/projects/ai-code-reviewer/">
+        <span class="v-cs5-row-num v-cs5-mono">01</span>
+        <span class="v-cs5-row-body">
+          <span class="v-cs5-row-title" data-i18n="project.ai-code-reviewer.title"></span>
+          <span class="v-cs5-row-desc" data-i18n="project.ai-code-reviewer.oneliner"></span>
+        </span>
+        <span class="v-cs5-row-meta">
+          <span class="v-cs5-stamp v-cs5-mono" data-i18n="project.ai-code-reviewer.kind"></span>
+          <span class="v-cs5-row-status v-cs5-mono" data-i18n="project.ai-code-reviewer.status"></span>
+          <span class="v-cs5-row-year v-cs5-mono" data-i18n="project.ai-code-reviewer.year"></span>
+        </span>
+        <span class="v-cs5-row-arrow" aria-hidden="true">→</span>
+      </a>
+      <a class="v-cs5-row v-cs5-reveal" href="/models/claude-sonnet-5/projects/skill-marketplace/">
+        <span class="v-cs5-row-num v-cs5-mono">02</span>
+        <span class="v-cs5-row-body">
+          <span class="v-cs5-row-title" data-i18n="project.skill-marketplace.title"></span>
+          <span class="v-cs5-row-desc" data-i18n="project.skill-marketplace.oneliner"></span>
+        </span>
+        <span class="v-cs5-row-meta">
+          <span class="v-cs5-stamp v-cs5-mono" data-i18n="project.skill-marketplace.kind"></span>
+          <span class="v-cs5-row-status v-cs5-mono" data-i18n="project.skill-marketplace.status"></span>
+          <span class="v-cs5-row-year v-cs5-mono" data-i18n="project.skill-marketplace.year"></span>
+        </span>
+        <span class="v-cs5-row-arrow" aria-hidden="true">→</span>
+      </a>
+      <a class="v-cs5-row v-cs5-reveal" href="/models/claude-sonnet-5/projects/executive-kpi-agent/">
+        <span class="v-cs5-row-num v-cs5-mono">03</span>
+        <span class="v-cs5-row-body">
+          <span class="v-cs5-row-title" data-i18n="project.executive-kpi-agent.title"></span>
+          <span class="v-cs5-row-desc" data-i18n="project.executive-kpi-agent.oneliner"></span>
+        </span>
+        <span class="v-cs5-row-meta">
+          <span class="v-cs5-stamp v-cs5-mono" data-i18n="project.executive-kpi-agent.kind"></span>
+          <span class="v-cs5-row-status v-cs5-mono" data-i18n="project.executive-kpi-agent.status"></span>
+          <span class="v-cs5-row-year v-cs5-mono" data-i18n="project.executive-kpi-agent.year"></span>
+        </span>
+        <span class="v-cs5-row-arrow" aria-hidden="true">→</span>
+      </a>
+      <a class="v-cs5-row v-cs5-reveal" href="/models/claude-sonnet-5/projects/ai-gateway/">
+        <span class="v-cs5-row-num v-cs5-mono">04</span>
+        <span class="v-cs5-row-body">
+          <span class="v-cs5-row-title" data-i18n="project.ai-gateway.title"></span>
+          <span class="v-cs5-row-desc" data-i18n="project.ai-gateway.oneliner"></span>
+        </span>
+        <span class="v-cs5-row-meta">
+          <span class="v-cs5-stamp v-cs5-mono" data-i18n="project.ai-gateway.kind"></span>
+          <span class="v-cs5-row-status v-cs5-mono" data-i18n="project.ai-gateway.status"></span>
+          <span class="v-cs5-row-year v-cs5-mono" data-i18n="project.ai-gateway.year"></span>
+        </span>
+        <span class="v-cs5-row-arrow" aria-hidden="true">→</span>
+      </a>
+      <a class="v-cs5-row v-cs5-reveal" href="/models/claude-sonnet-5/projects/mailbox-qa/">
+        <span class="v-cs5-row-num v-cs5-mono">05</span>
+        <span class="v-cs5-row-body">
+          <span class="v-cs5-row-title" data-i18n="project.mailbox-qa.title"></span>
+          <span class="v-cs5-row-desc" data-i18n="project.mailbox-qa.oneliner"></span>
+        </span>
+        <span class="v-cs5-row-meta">
+          <span class="v-cs5-stamp v-cs5-mono" data-i18n="project.mailbox-qa.kind"></span>
+          <span class="v-cs5-row-status v-cs5-mono" data-i18n="project.mailbox-qa.status"></span>
+          <span class="v-cs5-row-year v-cs5-mono" data-i18n="project.mailbox-qa.year"></span>
+        </span>
+        <span class="v-cs5-row-arrow" aria-hidden="true">→</span>
+      </a>
+      <a class="v-cs5-row v-cs5-reveal" href="/models/claude-sonnet-5/projects/sam-ai/">
+        <span class="v-cs5-row-num v-cs5-mono">06</span>
+        <span class="v-cs5-row-body">
+          <span class="v-cs5-row-title" data-i18n="project.sam-ai.title"></span>
+          <span class="v-cs5-row-desc" data-i18n="project.sam-ai.oneliner"></span>
+        </span>
+        <span class="v-cs5-row-meta">
+          <span class="v-cs5-stamp v-cs5-mono" data-i18n="project.sam-ai.kind"></span>
+          <span class="v-cs5-row-status v-cs5-mono" data-i18n="project.sam-ai.status"></span>
+          <span class="v-cs5-row-year v-cs5-mono" data-i18n="project.sam-ai.year"></span>
+        </span>
+        <span class="v-cs5-row-arrow" aria-hidden="true">→</span>
+      </a>
+      <a class="v-cs5-row v-cs5-reveal" href="/models/claude-sonnet-5/projects/player-support-agent/">
+        <span class="v-cs5-row-num v-cs5-mono">07</span>
+        <span class="v-cs5-row-body">
+          <span class="v-cs5-row-title" data-i18n="project.player-support-agent.title"></span>
+          <span class="v-cs5-row-desc" data-i18n="project.player-support-agent.oneliner"></span>
+        </span>
+        <span class="v-cs5-row-meta">
+          <span class="v-cs5-stamp v-cs5-mono" data-i18n="project.player-support-agent.kind"></span>
+          <span class="v-cs5-row-status v-cs5-mono" data-i18n="project.player-support-agent.status"></span>
+          <span class="v-cs5-row-year v-cs5-mono" data-i18n="project.player-support-agent.year"></span>
+        </span>
+        <span class="v-cs5-row-arrow" aria-hidden="true">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= FOUNDER'S ROAD 02 ============================= -->
+<section id="founder" class="v-cs5-section v-cs5-section-alt" aria-labelledby="v-cs5-founder-h">
+  <div class="v-cs5-wrap">
+    <p class="v-cs5-eyebrow v-cs5-mono"><span>§ <span data-i18n="founder.section_no"></span></span> — <span class="v-cs5-upper" data-i18n="founder.label"></span>
+      <span class="v-cs5-stamp v-cs5-stamp-inline v-cs5-mono" data-i18n="founder.note"></span>
+    </p>
+    <div class="v-cs5-title-wrap v-cs5-reveal">
+      <h2 id="v-cs5-founder-h" class="v-cs5-h2" data-i18n="founder.title"></h2>
+      <svg class="v-cs5-underline" viewBox="0 0 500 20" preserveAspectRatio="none" aria-hidden="true"><path class="v-cs5-draw-path" pathLength="100" d="M2,10 L160,10 L164,14 L170,6 L176,14 L182,6 L188,14 L194,6 L498,10"/></svg>
+    </div>
+    <p class="v-cs5-intro" data-i18n="founder.intro"></p>
+
+    <div class="v-cs5-cases">
+      <article class="v-cs5-case v-cs5-reveal">
+        <span class="v-cs5-tape v-cs5-tape-case" aria-hidden="true"></span>
+        <p class="v-cs5-case-head v-cs5-mono"><span data-case-label></span> 01</p>
+        <p class="v-cs5-case-stat v-cs5-mono" data-i18n="founder.case1.stat"></p>
+        <svg class="v-cs5-case-chart" viewBox="0 0 220 70" preserveAspectRatio="none" aria-hidden="true">
+          <path class="v-cs5-draw-path v-cs5-chart-curve" pathLength="100" d="M10,60 C 60,58 90,55 120,42 C 155,27 170,18 210,10"/>
+          <circle class="v-cs5-chart-dot" cx="210" cy="10" r="3.5"/>
+        </svg>
+        <p class="v-cs5-case-title" data-i18n="founder.case1.title"></p>
+        <p class="v-cs5-case-desc" data-i18n="founder.case1.desc"></p>
+        <span class="v-cs5-stamp v-cs5-mono" data-i18n="founder.case1.tag"></span>
+      </article>
+
+      <article class="v-cs5-case v-cs5-reveal">
+        <span class="v-cs5-tape v-cs5-tape-case" aria-hidden="true"></span>
+        <p class="v-cs5-case-head v-cs5-mono"><span data-case-label></span> 02</p>
+        <p class="v-cs5-case-stat v-cs5-mono" data-i18n="founder.case2.stat"></p>
+        <svg class="v-cs5-case-chart" viewBox="0 0 220 70" preserveAspectRatio="none" aria-hidden="true">
+          <circle class="v-cs5-chart-dot" cx="18" cy="52" r="5"/>
+          <circle class="v-cs5-chart-dot" cx="200" cy="18" r="5"/>
+          <path class="v-cs5-draw-path" pathLength="100" d="M18,52 Q110,70 200,18"/>
+        </svg>
+        <p class="v-cs5-case-title" data-i18n="founder.case2.title"></p>
+        <p class="v-cs5-case-desc" data-i18n="founder.case2.desc"></p>
+        <span class="v-cs5-stamp v-cs5-mono" data-i18n="founder.case2.tag"></span>
+      </article>
+
+      <article class="v-cs5-case v-cs5-reveal">
+        <span class="v-cs5-tape v-cs5-tape-case" aria-hidden="true"></span>
+        <p class="v-cs5-case-head v-cs5-mono"><span data-case-label></span> 03</p>
+        <p class="v-cs5-case-stat v-cs5-mono" data-i18n="founder.case3.stat"></p>
+        <svg class="v-cs5-case-chart" viewBox="0 0 220 70" preserveAspectRatio="none" aria-hidden="true">
+          <path class="v-cs5-draw-path v-cs5-bar" pathLength="100" d="M30,60 L30,48"/>
+          <path class="v-cs5-draw-path v-cs5-bar" pathLength="100" d="M100,60 L100,32"/>
+          <path class="v-cs5-draw-path v-cs5-bar" pathLength="100" d="M170,60 L170,12"/>
+        </svg>
+        <p class="v-cs5-case-title" data-i18n="founder.case3.title"></p>
+        <p class="v-cs5-case-desc" data-i18n="founder.case3.desc"></p>
+        <span class="v-cs5-stamp v-cs5-mono" data-i18n="founder.case3.tag"></span>
+      </article>
+
+      <article class="v-cs5-case v-cs5-reveal">
+        <span class="v-cs5-tape v-cs5-tape-case" aria-hidden="true"></span>
+        <p class="v-cs5-case-head v-cs5-mono"><span data-case-label></span> 04</p>
+        <p class="v-cs5-case-stat v-cs5-mono" data-i18n="founder.case4.stat"></p>
+        <svg class="v-cs5-case-chart v-cs5-dotmatrix" viewBox="0 0 220 70" preserveAspectRatio="none" aria-hidden="true" data-dotmatrix></svg>
+        <p class="v-cs5-case-title" data-i18n="founder.case4.title"></p>
+        <p class="v-cs5-case-desc" data-i18n="founder.case4.desc"></p>
+        <span class="v-cs5-stamp v-cs5-mono" data-i18n="founder.case4.tag"></span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= TALKS 03 ============================= -->
+<section id="talks" class="v-cs5-section" aria-labelledby="v-cs5-talks-h">
+  <div class="v-cs5-wrap">
+    <p class="v-cs5-eyebrow v-cs5-mono"><span>§ <span data-i18n="talks.section_no"></span></span> — <span class="v-cs5-upper" data-i18n="talks.label"></span></p>
+    <div class="v-cs5-title-wrap v-cs5-reveal">
+      <h2 id="v-cs5-talks-h" class="v-cs5-h2" data-i18n="talks.title"></h2>
+      <svg class="v-cs5-underline" viewBox="0 0 500 20" preserveAspectRatio="none" aria-hidden="true"><path class="v-cs5-draw-path" pathLength="100" d="M2,10 Q40,2 80,10 Q120,18 160,10 Q200,2 240,10 Q280,18 320,10 Q360,2 400,10 Q440,18 480,10 L498,10"/></svg>
+    </div>
+    <p class="v-cs5-intro" data-i18n="talks.intro"></p>
+
+    <div class="v-cs5-rows">
+      <a class="v-cs5-row v-cs5-talk-row v-cs5-reveal" href="/models/claude-sonnet-5/talks/#solopreneurship">
+        <span class="v-cs5-row-num v-cs5-mono">01</span>
+        <span class="v-cs5-row-body">
+          <span class="v-cs5-row-title" data-i18n="talk.solopreneurship.title"></span>
+          <span class="v-cs5-row-desc" data-i18n="talk.solopreneurship.subtitle"></span>
+        </span>
+        <span class="v-cs5-row-meta">
+          <span class="v-cs5-stamp v-cs5-mono" data-vol-stamp="solopreneurship"></span>
+        </span>
+        <span class="v-cs5-row-arrow" aria-hidden="true">→</span>
+        <span class="v-cs5-inline-thumb"><img src="/assets/Topics_1.2.jpeg" width="64" height="64" loading="lazy" alt=""></span>
+        <span class="v-cs5-hover-pic v-cs5-duo"><img src="/assets/Topics_1.2.jpeg" width="220" height="220" loading="lazy" alt=""></span>
+      </a>
+      <a class="v-cs5-row v-cs5-talk-row v-cs5-reveal" href="/models/claude-sonnet-5/talks/#ai-agent-organizations">
+        <span class="v-cs5-row-num v-cs5-mono">02</span>
+        <span class="v-cs5-row-body">
+          <span class="v-cs5-row-title" data-i18n="talk.ai-agent-organizations.title"></span>
+          <span class="v-cs5-row-desc" data-i18n="talk.ai-agent-organizations.subtitle"></span>
+        </span>
+        <span class="v-cs5-row-meta">
+          <span class="v-cs5-stamp v-cs5-mono" data-vol-stamp="ai-agent-organizations"></span>
+        </span>
+        <span class="v-cs5-row-arrow" aria-hidden="true">→</span>
+        <span class="v-cs5-inline-thumb"><img src="/assets/Topics_1.3.jpeg" width="64" height="64" loading="lazy" alt=""></span>
+        <span class="v-cs5-hover-pic v-cs5-duo"><img src="/assets/Topics_1.3.jpeg" width="220" height="220" loading="lazy" alt=""></span>
+      </a>
+      <a class="v-cs5-row v-cs5-talk-row v-cs5-reveal" href="/models/claude-sonnet-5/talks/#ai-logistics-traceability">
+        <span class="v-cs5-row-num v-cs5-mono">03</span>
+        <span class="v-cs5-row-body">
+          <span class="v-cs5-row-title" data-i18n="talk.ai-logistics-traceability.title"></span>
+          <span class="v-cs5-row-desc" data-i18n="talk.ai-logistics-traceability.subtitle"></span>
+        </span>
+        <span class="v-cs5-row-meta">
+          <span class="v-cs5-stamp v-cs5-mono" data-vol-stamp="ai-logistics-traceability"></span>
+        </span>
+        <span class="v-cs5-row-arrow" aria-hidden="true">→</span>
+        <span class="v-cs5-inline-thumb"><img src="/assets/Topics_2.3.jpeg" width="64" height="64" loading="lazy" alt=""></span>
+        <span class="v-cs5-hover-pic v-cs5-duo"><img src="/assets/Topics_2.3.jpeg" width="220" height="220" loading="lazy" alt=""></span>
+      </a>
+      <a class="v-cs5-row v-cs5-talk-row v-cs5-reveal" href="/models/claude-sonnet-5/talks/#ai-software-development">
+        <span class="v-cs5-row-num v-cs5-mono">04</span>
+        <span class="v-cs5-row-body">
+          <span class="v-cs5-row-title" data-i18n="talk.ai-software-development.title"></span>
+          <span class="v-cs5-row-desc" data-i18n="talk.ai-software-development.subtitle"></span>
+        </span>
+        <span class="v-cs5-row-meta">
+          <span class="v-cs5-stamp v-cs5-mono" data-vol-stamp="ai-software-development"></span>
+        </span>
+        <span class="v-cs5-row-arrow" aria-hidden="true">→</span>
+        <span class="v-cs5-inline-thumb"><img src="/assets/Topics_3.2.jpeg" width="64" height="64" loading="lazy" alt=""></span>
+        <span class="v-cs5-hover-pic v-cs5-duo"><img src="/assets/Topics_3.2.jpeg" width="220" height="220" loading="lazy" alt=""></span>
+      </a>
+    </div>
+
+    <div class="v-cs5-talks-foot">
+      <a class="v-cs5-link-down" href="/models/claude-sonnet-5/talks/"><span data-i18n="talks.all"></span></a>
+      <a class="v-cs5-btn-primary v-cs5-btn-small" data-mailto="talks" href="#" data-i18n="talks.cta"></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= NEWSLETTER 04 ============================= -->
+<section id="newsletter" class="v-cs5-section v-cs5-section-alt" aria-labelledby="v-cs5-newsletter-h">
+  <div class="v-cs5-wrap">
+    <p class="v-cs5-eyebrow v-cs5-mono"><span>§ <span data-i18n="newsletter.section_no"></span></span> — <span class="v-cs5-upper" data-i18n="newsletter.label"></span></p>
+
+    <div class="v-cs5-newsletter-head">
+      <div class="v-cs5-newsletter-masthead v-cs5-reveal">
+        <h2 class="v-cs5-h2 v-cs5-masthead-name" data-i18n="newsletter.name"></h2>
+        <p class="v-cs5-intro" data-i18n="newsletter.tagline"></p>
+        <p class="v-cs5-mono v-cs5-cadence" data-i18n="newsletter.cadence"></p>
+        <div class="v-cs5-subscribe">
+          <a class="v-cs5-btn-primary v-cs5-btn-small" href="https://thenextsignalnewsletter.substack.com/" target="_blank" rel="noopener" data-i18n="newsletter.subscribe_substack"></a>
+          <a class="v-cs5-link-down" href="https://www.linkedin.com/build-relation/newsletter-follow?entityUrn=7346972552528834560" target="_blank" rel="noopener"><span data-i18n="newsletter.subscribe_linkedin"></span> ↗</a>
+        </div>
+      </div>
+      <figure class="v-cs5-signal-fig v-cs5-reveal">
+        <svg viewBox="0 0 320 110" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+          <path class="v-cs5-draw-path v-cs5-noise" pathLength="100" d="M10,55 L22,40 L30,70 L38,30 L46,75 L54,45 L62,60 L70,35 L78,65 L86,50 L94,58 L102,42 L110,55"/>
+          <path class="v-cs5-draw-path v-cs5-signal" pathLength="100" d="M140,55 C 170,55 170,15 200,15 C 230,15 230,95 260,95 C 280,95 285,55 310,55"/>
+        </svg>
+        <figcaption class="v-cs5-mono v-cs5-fig-caption" data-signal-caption></figcaption>
+      </figure>
+    </div>
+
+    <div class="v-cs5-newsletter-list">
+      <p class="v-cs5-mono v-cs5-upper v-cs5-side-label" data-i18n="newsletter.latest"></p>
+      <div data-posts class="v-cs5-posts" aria-live="polite">
+        <p class="v-cs5-posts-state v-cs5-mono" data-i18n="newsletter.loading"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= EXPERIENCE 05 ============================= -->
+<section id="experience" class="v-cs5-section" aria-labelledby="v-cs5-experience-h">
+  <div class="v-cs5-wrap">
+    <p class="v-cs5-eyebrow v-cs5-mono"><span>§ <span data-i18n="experience.section_no"></span></span> — <span class="v-cs5-upper" data-i18n="experience.label"></span></p>
+    <div class="v-cs5-title-wrap v-cs5-reveal">
+      <h2 id="v-cs5-experience-h" class="v-cs5-h2" data-i18n="experience.title"></h2>
+      <svg class="v-cs5-underline" viewBox="0 0 500 20" preserveAspectRatio="none" aria-hidden="true"><path class="v-cs5-draw-path" pathLength="100" d="M2,10 L90,10 M110,10 L198,10 M218,10 L306,10 M326,10 L414,10 M434,10 L498,10"/></svg>
+    </div>
+
+    <figure class="v-cs5-timeline-fig v-cs5-reveal">
+      <svg class="v-cs5-timeline-svg" viewBox="0 0 1000 40" preserveAspectRatio="none" aria-hidden="true" data-timeline></svg>
+      <figcaption class="v-cs5-mono v-cs5-fig-caption" data-i18n="experience.fig"></figcaption>
+    </figure>
+
+    <div class="v-cs5-exp-rows">
+      <div class="v-cs5-exp-row v-cs5-reveal v-cs5-exp-current">
+        <span class="v-cs5-exp-org" data-i18n="experience.r1.org"></span>
+        <span class="v-cs5-exp-role" data-i18n="experience.r1.role"></span>
+        <span class="v-cs5-exp-years v-cs5-mono v-cs5-circled-years" data-i18n="experience.r1.years"></span>
+      </div>
+      <div class="v-cs5-exp-row v-cs5-reveal">
+        <span class="v-cs5-exp-org" data-i18n="experience.r2.org"></span>
+        <span class="v-cs5-exp-role" data-i18n="experience.r2.role"></span>
+        <span class="v-cs5-exp-years v-cs5-mono" data-i18n="experience.r2.years"></span>
+      </div>
+      <div class="v-cs5-exp-row v-cs5-reveal">
+        <span class="v-cs5-exp-org" data-i18n="experience.r3.org"></span>
+        <span class="v-cs5-exp-role" data-i18n="experience.r3.role"></span>
+        <span class="v-cs5-exp-years v-cs5-mono" data-i18n="experience.r3.years"></span>
+      </div>
+      <div class="v-cs5-exp-row v-cs5-reveal">
+        <span class="v-cs5-exp-org" data-i18n="experience.r4.org"></span>
+        <span class="v-cs5-exp-role" data-i18n="experience.r4.role"></span>
+        <span class="v-cs5-exp-years v-cs5-mono" data-i18n="experience.r4.years"></span>
+      </div>
+      <div class="v-cs5-exp-row v-cs5-reveal">
+        <span class="v-cs5-exp-org" data-i18n="experience.r5.org"></span>
+        <span class="v-cs5-exp-role" data-i18n="experience.r5.role"></span>
+        <span class="v-cs5-exp-years v-cs5-mono" data-i18n="experience.r5.years"></span>
+      </div>
+      <div class="v-cs5-exp-row v-cs5-reveal">
+        <span class="v-cs5-exp-org" data-i18n="experience.r6.org"></span>
+        <span class="v-cs5-exp-role" data-i18n="experience.r6.role"></span>
+        <span class="v-cs5-exp-years v-cs5-mono" data-i18n="experience.r6.years"></span>
+      </div>
+      <div class="v-cs5-exp-row v-cs5-reveal">
+        <span class="v-cs5-exp-org" data-i18n="experience.r7.org"></span>
+        <span class="v-cs5-exp-role" data-i18n="experience.r7.role"></span>
+        <span class="v-cs5-exp-years v-cs5-mono" data-i18n="experience.r7.years"></span>
+      </div>
+      <div class="v-cs5-exp-row v-cs5-reveal">
+        <span class="v-cs5-exp-org" data-i18n="experience.r8.org"></span>
+        <span class="v-cs5-exp-role" data-i18n="experience.r8.role"></span>
+        <span class="v-cs5-exp-years v-cs5-mono" data-i18n="experience.r8.years"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============================= FOOTER / CONTACT ============================= -->
+<footer id="contact" class="v-cs5-footer" aria-labelledby="v-cs5-footer-h">
+  <div class="v-cs5-wrap">
+    <p class="v-cs5-mono v-cs5-upper v-cs5-side-label" data-i18n="footer.label"></p>
+    <h2 id="v-cs5-footer-h" class="v-cs5-footer-name" data-i18n="footer.name"></h2>
+    <p class="v-cs5-mono v-cs5-upper v-cs5-footer-identity" data-i18n="footer.identity"></p>
+    <p class="v-cs5-intro v-cs5-footer-contact-intro" data-i18n="footer.contact_intro"></p>
+
+    <div class="v-cs5-link-grid">
+      <div class="v-cs5-link-col">
+        <p class="v-cs5-mono v-cs5-upper v-cs5-side-label" data-i18n="footer.email_label"></p>
+        <button type="button" class="v-cs5-contact-link v-cs5-copy-email" data-copy-email>
+          <span class="v-cs5-mono v-cs5-handle" data-oz-email></span>
+          <span class="v-cs5-copy-state v-cs5-mono" data-i18n="ui.copy"></span>
+        </button>
+      </div>
+      <div class="v-cs5-link-col">
+        <p class="v-cs5-mono v-cs5-upper v-cs5-side-label" data-i18n="footer.linkedin_label"></p>
+        <a class="v-cs5-contact-link" href="https://www.linkedin.com/in/ozsert" target="_blank" rel="noopener">
+          <span class="v-cs5-mono v-cs5-handle">in/ozsert</span>
+          <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+      <div class="v-cs5-link-col">
+        <p class="v-cs5-mono v-cs5-upper v-cs5-side-label" data-i18n="footer.substack_label"></p>
+        <a class="v-cs5-contact-link" href="https://thenextsignalnewsletter.substack.com/" target="_blank" rel="noopener">
+          <span class="v-cs5-mono v-cs5-handle">thenextsignal</span>
+          <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="v-cs5-footer-bottom">
+      <p class="v-cs5-mono v-cs5-signoff" data-i18n="footer.signoff"></p>
+      <div class="v-cs5-ink-picker v-cs5-ink-picker-footer" data-ink-picker></div>
+      <a class="v-cs5-link-down" href="#top" data-scroll><span data-i18n="ui.back_to_top"></span> ↑</a>
+    </div>
+    <p class="v-cs5-colophon v-cs5-mono" data-credit></p>
+  </div>
+</footer>
+
+<canvas class="v-cs5-pentrail" aria-hidden="true"></canvas>
+
+</body>
+</html>

@@ -37,9 +37,9 @@ Release dates are approximate (one year before each model's earliest retirement 
 | 1 | Claude Opus 4.6 | `claude-opus-4-6` | ~2026-02-05 | later, if at all |
 | 2 | Claude Opus 4.7 | `claude-opus-4-7` | ~2026-04-16 | planned |
 | 3 | Claude Opus 4.8 | `claude-opus-4-8` | ~2026-05-28 | planned |
-| 4 | Claude Sonnet 5 | `claude-sonnet-5` | ~2026-06-30 | planned |
+| 4 | Claude Sonnet 5 | `claude-sonnet-5` | ~2026-06-30 | homepage live; talks building |
 | 5 | Claude Opus 5 | `claude-opus-5` | ~2026-07-24 | homepage + talks live; project pages to build |
-| 6 | Claude Sonnet 5.5 | `claude-sonnet-5-5` | ~2026-09-28 | homepage live; talks building |
+| 6 | Claude Sonnet 5.5 | `claude-sonnet-5-5` | ~2026-09-28 | homepage + talks live |
 | 7 | Claude Opus 5.5 | `claude-opus-5-5` | ~2026-09-22 | flagship, always last; live, complete; `pinned` → `/` |
 | — | Claude Haiku 5.5 | `claude-haiku-5-5` | ~2026-10-07 | later, if at all |
 | — | Claude Fable 5.2 | `claude-fable-5-2` | — | out of scope for now |
