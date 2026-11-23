@@ -14,9 +14,6 @@
       };
       var p = location.pathname.replace(/\/+$/, "") || "/";
       if (map[p] || map[location.pathname]) location.replace(map[p] || map[location.pathname]);
-      // A model that hasn't released this page yet: show the root copy (the pinned model's) instead.
-      var mp = location.pathname.match(/^\/models\/[^/]+\/((?:talks|projects\/[^/]+)\/.*)$/);
-      if (mp) location.replace("/" + mp[1] + location.search + location.hash);
     })();
   </script>
   <link rel="icon" href="/favicon.ico">
@@ -30,17 +27,40 @@
     <div class="h-kicker">404 · <span id="path"></span></div>
     <h1 class="h-title" id="t"></h1>
     <p class="h-lead" id="l"></p>
-    <p><a class="h-btn" href="/" id="b"></a></p>
+    <p><a class="h-btn" href="/" id="b"></a> <a href="/" id="alt" hidden style="margin-left:18px;display:inline-block;margin-top:10px"></a></p>
   </main>
   <script>
     (function () {
       var UI = {
-        tr: { t: "Sinyal kayboldu.", l: "Aradığın sayfa burada değil. Belki taşındı, belki hiç yoktu.", b: "Ana sayfaya dön" },
-        en: { t: "Signal lost.", l: "The page you're looking for isn't here. Maybe it moved, maybe it never existed.", b: "Back to the homepage" }
+        tr: { t: "Sinyal kayboldu.", l: "Aradığın sayfa burada değil. Belki taşındı, belki hiç yoktu.", b: "Ana sayfaya dön",
+              nt: "Henüz inşa edilmedi.", nl: "{m} bu sayfayı henüz inşa etmedi. Her model her sayfayı ayrı ayrı inşa ediyor; bu sayfa sırada.",
+              nb: "← {m} ana sayfası", na: "Bu sayfanın {p} sürümünü gör →" },
+        en: { t: "Signal lost.", l: "The page you're looking for isn't here. Maybe it moved, maybe it never existed.", b: "Back to the homepage",
+              nt: "Not built yet.", nl: "{m} hasn't built this page yet. Every model builds every page on its own; this one is still on the list.",
+              nb: "← {m} homepage", na: "See the {p} version of this page →" }
       };
-      function r() { var u = UI[OZ.lang]; ["t", "l", "b"].forEach(function (k) { document.getElementById(k).textContent = u[k]; }); }
+      // /models/<id>/talks/ or /models/<id>/projects/<slug>/ that this model hasn't released yet
+      var mp = location.pathname.match(/^\/models\/([^/]+)\/((?:talks|projects\/[^/]+)\/)/);
+      var names = {}, pinned = null;
+      function r() {
+        var u = UI[OZ.lang], set = function (id, t) { document.getElementById(id).textContent = t; };
+        if (mp) {
+          var m = names[mp[1]] || mp[1], p = names[pinned] || "";
+          set("t", u.nt); set("l", u.nl.replace("{m}", m)); set("b", u.nb.replace("{m}", m));
+          document.getElementById("b").href = "/models/" + mp[1] + "/";
+          var alt = document.getElementById("alt");
+          if (p) { alt.textContent = u.na.replace("{p}", p); alt.href = "/" + mp[2]; alt.hidden = false; }
+        } else { set("t", u.t); set("l", u.l); set("b", u.b); }
+      }
       document.getElementById("path").textContent = location.pathname;
-      OZ.ready.then(r); document.addEventListener("oz:langchange", r);
+      OZ.ready.then(function () {
+        r();
+        if (mp) OZ.models().then(function (reg) {
+          (reg.models || []).forEach(function (x) { names[x.id] = x.name; });
+          pinned = reg.pinned || null; r();
+        });
+      });
+      document.addEventListener("oz:langchange", r);
     })();
   </script>
 </body>

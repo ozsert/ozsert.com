@@ -132,7 +132,7 @@ Loop per page: build → check the log and scroll through the page → report to
    `…/projects/<slug>/`), maps only their own paths there (`tools/sitepaths.mjs`: `/talks/…`, `/projects/…`, `/#…`,
    `href="/"`; a deployment path, not an edit), adds them to `pages`, re-promotes the root copy and stops the review
    server. Must report **0 warnings**. No model ever replaces another model's pages; a page a model hasn't released
-   yet falls back to the root copy (404.html).
+   yet shows a "not built yet" page (404.html) with links to its homepage and the pinned version.
 3. Commit + push when Murad asks. Rollback: release from an older batch (`tar -xzf ../ozsert-builds/_archive/…`).
 
 ## 9. Rules
