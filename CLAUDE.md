@@ -28,7 +28,7 @@ Pure static site on GitHub Pages: no framework, no bundler.
 | Public vs internal | `specs/` is public (deployed and shown in the specs window). This file and `tools/` are not; builds live outside the repo. |
 | Fairness | Same spec, same prompt, one prompt per page, Claude Code defaults, no human edits to output. |
 
-## 3. Lineup (`order` in `content/models.json` = release order)
+## 3. Lineup (`order` in `content/models.json` = release order, flagship last)
 
 Release dates are approximate (one year before each model's earliest retirement date).
 
@@ -39,9 +39,9 @@ Release dates are approximate (one year before each model's earliest retirement 
 | 3 | Claude Opus 4.8 | `claude-opus-4-8` | ~2026-05-28 | planned |
 | 4 | Claude Sonnet 5 | `claude-sonnet-5` | ~2026-06-30 | planned |
 | 5 | Claude Opus 5 | `claude-opus-5` | ~2026-07-24 | homepage + talks live; project pages to build |
-| 6 | Claude Opus 5.5 | `claude-opus-5-5` | ~2026-09-22 | live, complete; `pinned` → `/` |
-| 7 | Claude Sonnet 5.5 | `claude-sonnet-5-5` | ~2026-09-28 | building |
-| 8 | Claude Haiku 5.5 | `claude-haiku-5-5` | ~2026-10-07 | later, if at all |
+| 6 | Claude Sonnet 5.5 | `claude-sonnet-5-5` | ~2026-09-28 | homepage live; talks building |
+| 7 | Claude Opus 5.5 | `claude-opus-5-5` | ~2026-09-22 | flagship, always last; live, complete; `pinned` → `/` |
+| — | Claude Haiku 5.5 | `claude-haiku-5-5` | ~2026-10-07 | later, if at all |
 | — | Claude Fable 5.2 | `claude-fable-5-2` | — | out of scope for now |
 
 Build order, newest first: homepage + talks for Sonnet 5.5 → Sonnet 5 → Opus 4.8 → Opus 4.7; then project pages
