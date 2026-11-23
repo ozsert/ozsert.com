@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="oz-page" content="talks">
+  <meta name="description" content="Three volumes, twelve talks on artificial intelligence.">
+  <title data-i18n="talks.page_title" data-oz-keep-title>Talks — C. Murad Özsert</title>
+  <link rel="canonical" href="https://ozsert.com/talks/">
+  <link rel="icon" href="/favicon.ico">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap&subset=latin-ext">
+
+  <script src="/shared/core.js"></script>
+  <script src="/shared/topbar.js" defer></script>
+
+  <link rel="stylesheet" href="/models/claude-opus-4-8/talks/style.css">
+  <script src="/models/claude-opus-4-8/talks/script.js" defer></script>
+</head>
+<body>
+  <oz-topbar></oz-topbar>
+
+  <!-- fixed grain + grid backdrop -->
+  <div class="vt-backdrop" aria-hidden="true"></div>
+
+  <main class="vt-main" id="top">
+
+    <!-- ============================ HERO ============================ -->
+    <header class="vt-hero">
+      <a class="vt-back" href="/models/claude-opus-4-8/#talks" data-i18n="talks.back_home">← Back to the homepage</a>
+
+      <p class="vt-crumb mono">
+        <span>§</span>
+        <span data-i18n="talks.section_no">03</span>
+        <span class="vt-crumb-dash">—</span>
+        <span data-i18n="hero.cta_talks">Talks</span>
+      </p>
+
+      <div class="vt-hero-grid">
+        <div class="vt-hero-lead-col">
+          <h1 class="vt-title" id="vt-title" data-i18n="talks.title">Thought exercises on AI.</h1>
+          <p class="vt-lead" data-i18n="talks.page_intro">Three volumes, twelve talks.</p>
+          <p class="vt-intro" data-i18n="talks.intro">Talks on what AI means.</p>
+
+          <!-- ink picker -->
+          <div class="vt-ink" role="group" aria-label="Ink">
+            <span class="vt-ink-label mono" data-i18n="ui.ink">Ink</span>
+            <span class="vt-ink-dots" id="vt-ink-dots"></span>
+            <span class="vt-ink-name mono" id="vt-ink-name"></span>
+          </div>
+        </div>
+
+        <aside class="vt-contents" aria-label="Contents">
+          <p class="vt-contents-h mono" data-i18n="ui.contents">Contents</p>
+          <ol class="vt-contents-list" id="vt-contents"></ol>
+        </aside>
+      </div>
+
+      <!-- fig. 1 — three volumes as notebooks -->
+      <figure class="vt-fig vt-herofig">
+        <div class="vt-books" id="vt-books"></div>
+        <figcaption class="vt-figcap mono" id="vt-cap-hero"></figcaption>
+      </figure>
+
+      <!-- facts / status strip -->
+      <div class="vt-facts" aria-label="Facts">
+        <span class="vt-fact"><b class="mono">3</b> <span class="vt-fact-l" data-i18n="ui.vol">Vol.</span></span>
+        <span class="vt-sep" aria-hidden="true">·</span>
+        <span class="vt-fact"><b class="mono">12</b> <span class="vt-fact-l" data-i18n="talks.label">Talks</span></span>
+        <span class="vt-sep" aria-hidden="true">·</span>
+        <span class="vt-fact mono">TR / EN</span>
+        <span class="vt-sep" aria-hidden="true">·</span>
+        <a class="vt-fact-cta" id="vt-facts-cta" href="#"><span data-i18n="talks.cta">Invite me to speak</span> →</a>
+      </div>
+    </header>
+
+    <!-- volumes get injected here -->
+    <div id="vt-volumes"></div>
+
+    <!-- ============================ CLOSING ============================ -->
+    <section class="vt-closing">
+      <p class="vt-crumb mono"><span>§</span> <span data-i18n="talks.section_no">03</span> <span class="vt-crumb-dash">—</span> <span data-i18n="talks.label">Talks</span></p>
+      <h2 class="vt-cta-title"><span class="vt-u" data-i18n="talks.cta">Invite me to speak</span></h2>
+      <p class="vt-intro" data-i18n="talks.intro">Talks on what AI means.</p>
+      <a class="vt-cta-btn" id="vt-cta-btn" href="#"><span data-i18n="talks.cta">Invite me to speak</span> →</a>
+    </section>
+
+  </main>
+
+  <footer class="vt-footer">
+    <a class="vt-back" href="/models/claude-opus-4-8/#talks" data-i18n="talks.back_home">← Back to the homepage</a>
+    <p class="vt-credit mono" id="vt-credit"></p>
+    <a class="vt-top mono" href="#top"><span data-i18n="ui.back_to_top">Back to the top</span> ↑</a>
+  </footer>
+
+</body>
+</html>
