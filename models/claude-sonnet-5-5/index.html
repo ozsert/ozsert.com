@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>C. Murad Özsert</title>
+<meta name="description" content="">
+<meta name="oz-model" content="claude-sonnet-5-5">
+<link rel="canonical" href="https://ozsert.com/">
+<script src="/shared/core.js"></script>
+<script src="/shared/topbar.js" defer></script>
+<link rel="icon" href="/favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap&subset=latin-ext" rel="stylesheet">
+<link rel="stylesheet" href="/models/claude-sonnet-5-5/style.css">
+</head>
+<body class="vs5-body">
+<oz-topbar></oz-topbar>
+<div class="vs5-grain" aria-hidden="true"></div>
+<canvas class="vs5-trail" aria-hidden="true"></canvas>
+
+<main id="main" class="vs5-main">
+
+<!-- ============ HERO ============ -->
+<section id="top" class="vs5-hero" aria-labelledby="vs5-h1">
+  <div class="vs5-wrap">
+    <div class="vs5-kicker">
+      <span data-i18n="hero.kicker"></span>
+      <span class="vs5-kicker-r">ISTANBUL · 41.01° N, 28.98° E</span>
+    </div>
+
+    <div class="vs5-headwrap">
+      <figure class="vs5-portrait">
+        <span class="vs5-tape vs5-tape-a" aria-hidden="true"></span>
+        <img src="/assets/portrait-upper.jpg" width="960" height="1200" alt="" data-i18n="[alt]hero.portrait_alt">
+        <span class="vs5-tape vs5-tape-b" aria-hidden="true"></span>
+      </figure>
+      <h1 id="vs5-h1" class="vs5-h1"></h1>
+    </div>
+
+    <div class="vs5-herogrid" id="vs5-herogrid">
+      <div class="vs5-left">
+      <div class="vs5-role-block">
+        <p class="vs5-role" id="vs5-role"></p>
+        <p class="vs5-prev"><span class="vs5-mono vs5-prev-l" data-i18n="hero.previously_label"></span> <span data-i18n="hero.previously"></span></p>
+      </div>
+
+      <div class="vs5-mani-block">
+        <p class="vs5-mani" id="vs5-mani"></p>
+        <div class="vs5-ctas">
+          <a class="vs5-btn" href="#projects" data-scroll><span data-i18n="hero.cta_work"></span><span aria-hidden="true">↓</span></a>
+          <a class="vs5-link" href="#talks" data-scroll><span data-i18n="hero.cta_talks"></span> ↓</a>
+          <a class="vs5-link" href="#newsletter" data-scroll><span data-i18n="hero.cta_newsletter"></span> ↓</a>
+        </div>
+      </div>
+
+      </div>
+      <div class="vs5-right">
+      <nav class="vs5-contents" aria-labelledby="vs5-toc-l">
+        <p class="vs5-mono vs5-label" id="vs5-toc-l" data-i18n="ui.contents"></p>
+        <ol>
+          <li><a href="#projects"><span class="vs5-mono" data-i18n="projects.section_no"></span><span data-i18n="projects.label"></span></a></li>
+          <li><a href="#founder"><span class="vs5-mono" data-i18n="founder.section_no"></span><span data-i18n="founder.label"></span></a></li>
+          <li><a href="#talks"><span class="vs5-mono" data-i18n="talks.section_no"></span><span data-i18n="talks.label"></span></a></li>
+          <li><a href="#newsletter"><span class="vs5-mono" data-i18n="newsletter.section_no"></span><span data-i18n="newsletter.label"></span></a></li>
+          <li><a href="#experience"><span class="vs5-mono" data-i18n="experience.section_no"></span><span data-i18n="experience.label"></span></a></li>
+          <li><a href="#contact"><span class="vs5-mono">06</span><span data-i18n="footer.label"></span></a></li>
+        </ol>
+      </nav>
+
+      <div class="vs5-side2">
+        <p class="vs5-note" id="vs5-note" data-i18n="hero.margin_note"></p>
+        <div class="vs5-ink-picker" data-picker></div>
+        <div class="vs5-toggles">
+          <button type="button" class="vs5-tog" data-tog="trail"></button>
+          <button type="button" class="vs5-tog" data-tog="calm"></button>
+        </div>
+      </div>
+      </div>
+      <svg class="vs5-arrow" id="vs5-arrow" aria-hidden="true"><path d=""/></svg>
+    </div>
+
+    <figure class="vs5-fig1">
+      <div class="vs5-fig1-box" id="vs5-fig1" role="img" aria-labelledby="vs5-fig1-cap"></div>
+      <figcaption class="vs5-mono vs5-cap" id="vs5-fig1-cap"></figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============ NOW ============ -->
+<section id="now" class="vs5-now" aria-label="Now">
+  <div class="vs5-wrap">
+    <svg class="vs5-wob" viewBox="0 0 400 6" preserveAspectRatio="none" aria-hidden="true"><path d="M0 3 C40 1 70 5 110 3 S180 1 230 3 S320 5 400 2"/></svg>
+    <p class="vs5-nowline">
+      <span class="vs5-mono vs5-now-l" data-i18n="now.label"></span>
+      <span class="vs5-now-i"><span data-i18n="now.item1"></span><i class="vs5-cursor" aria-hidden="true"></i></span>
+      <span class="vs5-sl" aria-hidden="true">/</span>
+      <span class="vs5-now-i" data-i18n="now.item2"></span>
+      <span class="vs5-sl" aria-hidden="true">/</span>
+      <span class="vs5-now-i" data-i18n="now.item3"></span>
+      <span class="vs5-sl" aria-hidden="true">/</span>
+      <a class="vs5-now-i vs5-ulink" href="#contact"><span data-i18n="now.item4"></span> →</a>
+    </p>
+  </div>
+</section>
+
+<!-- ============ 01 WORKBENCH ============ -->
+<section id="projects" class="vs5-sec" aria-labelledby="vs5-h-projects">
+  <div class="vs5-wrap">
+    <span class="vs5-mno" aria-hidden="true" data-i18n="projects.section_no"></span>
+    <header class="vs5-sh vs5-rv">
+      <p class="vs5-mono vs5-eyebrow">§ <span data-i18n="projects.section_no"></span> — <span data-i18n="projects.label"></span></p>
+      <h2 id="vs5-h-projects" class="vs5-h2" data-title="projects.title" data-ul="wavy"></h2>
+      <p class="vs5-intro" data-i18n="projects.intro"></p>
+      <p class="vs5-mono vs5-small" data-i18n="projects.enterprise_note"></p>
+    </header>
+    <ol class="vs5-rows" id="vs5-projects"></ol>
+  </div>
+</section>
+
+<!-- ============ 02 FOUNDER ============ -->
+<section id="founder" class="vs5-sec vs5-founder" aria-labelledby="vs5-h-founder">
+  <div class="vs5-wrap">
+    <span class="vs5-mno" aria-hidden="true" data-i18n="founder.section_no"></span>
+    <header class="vs5-sh vs5-rv">
+      <p class="vs5-mono vs5-eyebrow">§ <span data-i18n="founder.section_no"></span> — <span data-i18n="founder.label"></span></p>
+      <h2 id="vs5-h-founder" class="vs5-h2" data-title="founder.title" data-ul="straight"></h2>
+      <div class="vs5-fintro">
+        <p class="vs5-intro" data-i18n="founder.intro"></p>
+        <div class="vs5-stamp-wrap"><span class="vs5-stamp vs5-stamp-lg" aria-hidden="false">YOLDA.COM · 2020–2025</span><p class="vs5-mono vs5-small" data-i18n="founder.note"></p></div>
+      </div>
+    </header>
+
+    <div class="vs5-cases">
+      <!-- case 1 -->
+      <article class="vs5-case vs5-rv">
+        <span class="vs5-tape vs5-tape-c" aria-hidden="true"></span>
+        <p class="vs5-mono vs5-case-h"><span><span data-i18n="ui.case"></span> 01</span><span class="vs5-case-tag" data-i18n="founder.case1.tag"></span></p>
+        <p class="vs5-stat" data-stat="founder.case1.stat"></p>
+        <h3 class="vs5-case-t" data-i18n="founder.case1.title"></h3>
+        <svg class="vs5-chart" viewBox="0 0 240 90" aria-hidden="true">
+          <path class="vs5-axis" d="M10 80 H232 M10 80 V8"/>
+          <path class="vs5-area" d="M10 80 C70 78 110 70 150 45 S210 12 232 8 V80 Z"/>
+          <path class="vs5-dr" pathLength="1" d="M10 80 C70 78 110 70 150 45 S210 12 232 8"/>
+          <circle class="vs5-dot-end" cx="232" cy="8" r="4"/>
+          <text x="10" y="89">2020</text><text x="198" y="89">2025</text>
+        </svg>
+        <p class="vs5-case-d" data-i18n="founder.case1.desc"></p>
+      </article>
+      <!-- case 2 -->
+      <article class="vs5-case vs5-rv">
+        <span class="vs5-tape vs5-tape-c" aria-hidden="true"></span>
+        <p class="vs5-mono vs5-case-h"><span><span data-i18n="ui.case"></span> 02</span><span class="vs5-case-tag" data-i18n="founder.case2.tag"></span></p>
+        <p class="vs5-stat" data-stat="founder.case2.stat"></p>
+        <h3 class="vs5-case-t" data-i18n="founder.case2.title"></h3>
+        <svg class="vs5-chart" viewBox="0 0 240 90" aria-hidden="true">
+          <path class="vs5-dr vs5-dash" pathLength="1" d="M38 58 C90 8 150 90 204 34"/>
+          <circle class="vs5-node" cx="26" cy="58" r="12"/><circle class="vs5-node" cx="216" cy="30" r="12"/>
+          <text x="26" y="61" text-anchor="middle">TR</text><text x="216" y="33" text-anchor="middle">DE</text>
+          <circle class="vs5-truck" r="3.5" cx="0" cy="0"/>
+        </svg>
+        <p class="vs5-case-d" data-i18n="founder.case2.desc"></p>
+      </article>
+      <!-- case 3 -->
+      <article class="vs5-case vs5-rv">
+        <span class="vs5-tape vs5-tape-c" aria-hidden="true"></span>
+        <p class="vs5-mono vs5-case-h"><span><span data-i18n="ui.case"></span> 03</span><span class="vs5-case-tag" data-i18n="founder.case3.tag"></span></p>
+        <p class="vs5-stat" data-stat="founder.case3.stat"></p>
+        <h3 class="vs5-case-t" data-i18n="founder.case3.title"></h3>
+        <svg class="vs5-chart" viewBox="0 0 240 90" aria-hidden="true">
+          <path class="vs5-dr" pathLength="1" d="M14 80 H66 V58 H122 V36 H178 V10 H232"/>
+          <path class="vs5-axis" d="M14 80 H232"/>
+          <rect class="vs5-step" x="14" y="58" width="52" height="22"/><rect class="vs5-step" x="70" y="36" width="52" height="44"/><rect class="vs5-step" x="126" y="10" width="52" height="70"/>
+          <text x="40" y="74" text-anchor="middle">1</text><text x="96" y="74" text-anchor="middle">2</text><text x="152" y="74" text-anchor="middle">3</text>
+        </svg>
+        <p class="vs5-case-d" data-i18n="founder.case3.desc"></p>
+      </article>
+      <!-- case 4 -->
+      <article class="vs5-case vs5-rv">
+        <span class="vs5-tape vs5-tape-c" aria-hidden="true"></span>
+        <p class="vs5-mono vs5-case-h"><span><span data-i18n="ui.case"></span> 04</span><span class="vs5-case-tag" data-i18n="founder.case4.tag"></span></p>
+        <p class="vs5-stat" data-stat="founder.case4.stat"></p>
+        <h3 class="vs5-case-t" data-i18n="founder.case4.title"></h3>
+        <svg class="vs5-chart vs5-matrix" viewBox="0 0 240 90" aria-hidden="true" id="vs5-matrix"></svg>
+        <p class="vs5-case-d" data-i18n="founder.case4.desc"></p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 03 TALKS ============ -->
+<section id="talks" class="vs5-sec" aria-labelledby="vs5-h-talks">
+  <div class="vs5-wrap">
+    <span class="vs5-mno" aria-hidden="true" data-i18n="talks.section_no"></span>
+    <header class="vs5-sh vs5-rv">
+      <p class="vs5-mono vs5-eyebrow">§ <span data-i18n="talks.section_no"></span> — <span data-i18n="talks.label"></span></p>
+      <h2 id="vs5-h-talks" class="vs5-h2" data-title="talks.title" data-ul="dashed"></h2>
+      <p class="vs5-intro" data-i18n="talks.intro"></p>
+    </header>
+    <div class="vs5-peekzone" id="vs5-talkzone">
+      <ol class="vs5-rows" id="vs5-talks"></ol>
+      <figure class="vs5-peek" aria-hidden="true"><span class="vs5-tape vs5-tape-a"></span><div class="vs5-duo"><img alt="" width="400" height="300"></div></figure>
+    </div>
+    <div class="vs5-talks-foot">
+      <a class="vs5-btn" data-oz-email-subject href="#contact"><span data-i18n="talks.cta"></span> <span aria-hidden="true">→</span></a>
+      <a class="vs5-link vs5-link-big" href="/models/claude-sonnet-5-5/talks/"><span data-i18n="talks.all"></span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 04 NEWSLETTER ============ -->
+<section id="newsletter" class="vs5-sec" aria-labelledby="vs5-h-news">
+  <div class="vs5-wrap">
+    <span class="vs5-mno" aria-hidden="true" data-i18n="newsletter.section_no"></span>
+    <header class="vs5-sh vs5-rv">
+      <p class="vs5-mono vs5-eyebrow">§ <span data-i18n="newsletter.section_no"></span> — <span data-i18n="newsletter.label"></span></p>
+    </header>
+    <div class="vs5-clip vs5-rv">
+      <span class="vs5-tape vs5-tape-c" aria-hidden="true"></span>
+      <div class="vs5-clip-l">
+        <h2 id="vs5-h-news" class="vs5-h2 vs5-h2-news" data-title="newsletter.name" data-ul="wavy"></h2>
+        <p class="vs5-intro" data-i18n="newsletter.tagline"></p>
+        <p class="vs5-mono vs5-small" data-i18n="newsletter.cadence"></p>
+        <div class="vs5-ctas">
+          <a class="vs5-btn" href="https://thenextsignalnewsletter.substack.com/" target="_blank" rel="noopener"><span data-i18n="newsletter.subscribe_substack"></span> <span aria-hidden="true">↗</span></a>
+          <a class="vs5-btn vs5-btn-alt" href="https://www.linkedin.com/build-relation/newsletter-follow?entityUrn=7346972552528834560" target="_blank" rel="noopener"><span data-i18n="newsletter.subscribe_linkedin"></span> <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+      <figure class="vs5-clip-r">
+        <svg viewBox="0 0 300 110" aria-hidden="true" id="vs5-noise"></svg>
+        <figcaption class="vs5-mono vs5-cap"><span data-i18n="ui.fig"></span> 2 — <span data-i18n="newsletter.fig_caption"></span></figcaption>
+      </figure>
+    </div>
+    <p class="vs5-mono vs5-label vs5-latest" data-i18n="newsletter.latest"></p>
+    <div class="vs5-peekzone" id="vs5-newszone">
+      <ol class="vs5-rows" id="vs5-posts" aria-live="polite"></ol>
+      <figure class="vs5-peek" aria-hidden="true"><span class="vs5-tape vs5-tape-a"></span><div class="vs5-duo"><img alt="" width="400" height="300"></div></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 05 EXPERIENCE ============ -->
+<section id="experience" class="vs5-sec" aria-labelledby="vs5-h-exp">
+  <div class="vs5-wrap">
+    <span class="vs5-mno" aria-hidden="true" data-i18n="experience.section_no"></span>
+    <header class="vs5-sh vs5-rv">
+      <p class="vs5-mono vs5-eyebrow">§ <span data-i18n="experience.section_no"></span> — <span data-i18n="experience.label"></span></p>
+      <h2 id="vs5-h-exp" class="vs5-h2" data-title="experience.title" data-ul="straight"></h2>
+    </header>
+    <figure class="vs5-bar vs5-rv" id="vs5-bar">
+      <div class="vs5-bar-box" id="vs5-bar-box"></div>
+      <figcaption class="vs5-mono vs5-cap" data-i18n="experience.fig"></figcaption>
+    </figure>
+    <ol class="vs5-xrows" id="vs5-xrows"></ol>
+  </div>
+</section>
+</main>
+
+<!-- ============ CONTACT ============ -->
+<footer id="contact" class="vs5-foot" aria-labelledby="vs5-h-contact">
+  <div class="vs5-wrap">
+    <span class="vs5-mno" aria-hidden="true">06</span>
+    <p class="vs5-mono vs5-eyebrow">§ 06 — <span data-i18n="footer.label"></span></p>
+    <h2 id="vs5-h-contact" class="vs5-bigname"><span data-i18n="footer.name"></span><svg class="vs5-bigul vs5-ink" viewBox="0 0 400 14" preserveAspectRatio="none" aria-hidden="true"><path d="M3 9 C60 3 130 12 200 7 S330 4 397 8"/></svg></h2>
+    <p class="vs5-mono vs5-ident" data-i18n="footer.identity"></p>
+    <p class="vs5-intro vs5-hello" data-i18n="footer.contact_intro"></p>
+    <ul class="vs5-contacts">
+      <li>
+        <p class="vs5-mono vs5-label"><span data-i18n="footer.email_label"></span> ↗</p>
+        <p class="vs5-handle"><a class="vs5-ulink" data-oz-email href="#"></a></p>
+        <button type="button" class="vs5-copy vs5-mono" id="vs5-copy"><span data-i18n="ui.copy"></span></button>
+      </li>
+      <li>
+        <p class="vs5-mono vs5-label"><span data-i18n="footer.linkedin_label"></span> ↗</p>
+        <p class="vs5-handle"><a class="vs5-ulink vs5-mono" href="https://www.linkedin.com/in/ozsert" target="_blank" rel="noopener">in/ozsert</a></p>
+      </li>
+      <li>
+        <p class="vs5-mono vs5-label"><span data-i18n="footer.substack_label"></span> ↗</p>
+        <p class="vs5-handle"><a class="vs5-ulink vs5-mono" href="https://thenextsignalnewsletter.substack.com/" target="_blank" rel="noopener">thenextsignal</a></p>
+      </li>
+    </ul>
+    <div class="vs5-bottom">
+      <p class="vs5-mono vs5-small" data-i18n="footer.signoff"></p>
+      <div class="vs5-ink-picker" data-picker></div>
+      <a class="vs5-mono vs5-ulink vs5-top" href="#top" data-scroll><span data-i18n="ui.back_to_top"></span> ↑</a>
+    </div>
+    <p class="vs5-mono vs5-small vs5-credit" id="vs5-credit"></p>
+  </div>
+</footer>
+
+<script src="/models/claude-sonnet-5-5/script.js"></script>
+</body>
+</html>

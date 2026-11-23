@@ -34,16 +34,18 @@ Release dates are approximate (one year before each model's earliest retirement 
 
 | Order | Model | Model id = `--model` | Released | Status |
 |---|---|---|---|---|
-| 1 | Claude Opus 4.6 | `claude-opus-4-6` | ~2026-02-05 | to build |
-| 2 | Claude Opus 4.7 | `claude-opus-4-7` | ~2026-04-16 | to build |
-| 3 | Claude Opus 4.8 | `claude-opus-4-8` | ~2026-05-28 | to build |
-| 4 | Claude Opus 5 | `claude-opus-5` | ~2026-07-24 | building (`spec-v1`), page by page |
-| 5 | Claude Opus 5.5 | `claude-opus-5-5` | ~2026-09-22 | live, complete (dry run kept as its version); `pinned` → `/` |
-| 6 | Claude Sonnet 5.5 | `claude-sonnet-5-5` | ~2026-09-28 | to build |
-| 7 | Claude Haiku 5.5 | `claude-haiku-5-5` | ~2026-10-07 | to build |
+| 1 | Claude Opus 4.6 | `claude-opus-4-6` | ~2026-02-05 | later, if at all |
+| 2 | Claude Opus 4.7 | `claude-opus-4-7` | ~2026-04-16 | planned |
+| 3 | Claude Opus 4.8 | `claude-opus-4-8` | ~2026-05-28 | planned |
+| 4 | Claude Sonnet 5 | `claude-sonnet-5` | ~2026-06-30 | planned |
+| 5 | Claude Opus 5 | `claude-opus-5` | ~2026-07-24 | homepage + talks live; project pages to build |
+| 6 | Claude Opus 5.5 | `claude-opus-5-5` | ~2026-09-22 | live, complete; `pinned` → `/` |
+| 7 | Claude Sonnet 5.5 | `claude-sonnet-5-5` | ~2026-09-28 | building |
+| 8 | Claude Haiku 5.5 | `claude-haiku-5-5` | ~2026-10-07 | later, if at all |
 | — | Claude Fable 5.2 | `claude-fable-5-2` | — | out of scope for now |
 
-Build order: Opus 5 → Opus 4.8 → Opus 4.7 → Opus 4.6 → Sonnet 5.5 → Haiku 5.5.
+Build order, newest first: homepage + talks for Sonnet 5.5 → Sonnet 5 → Opus 4.8 → Opus 4.7; then project pages
+for every model (Opus 5 first). New models get `released` (`YYYY-MM`) in the registry; the timeline shows it.
 
 Dropped: Sonnet 4.5 and Opus 4.5 (not available in Claude Code). Rival labs are out of scope. Never fake a model.
 
@@ -183,6 +185,6 @@ Content is anonymized: no client, person, brand, host or real module names, no f
 
 - Live: Opus 5.5, complete (homepage, talks, 7 projects; dry run with small hand fixes, kept as its version).
   Opus 5: homepage live from an earlier run; rebuilding all pages from scratch in the clean layout.
-- Next: Opus 5 page by page → release → Opus 4.8 → 4.7 → 4.6 → Sonnet 5.5 → Haiku 5.5.
+- Next: homepage + talks, newest first: Sonnet 5.5 → Sonnet 5 → Opus 4.8 → Opus 4.7; then project pages.
 - Later (discussed): a deterministic QA script (not an agent, never fixes pages) giving a scorecard per page.
 - Deploy: GitHub Pages via `.github/workflows/static.yml` on push to `main`, domain `www.ozsert.com`.

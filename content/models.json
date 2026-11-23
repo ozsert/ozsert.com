@@ -6,7 +6,7 @@
       "name": "Claude Opus 5",
       "lab": "Anthropic",
       "family": "claude",
-      "order": 4,
+      "order": 5,
       "released": "2026-07",
       "builtOn": "2026-11-21",
       "harness": "Claude Code",
@@ -29,7 +29,7 @@
       "name": "Claude Opus 5.5",
       "lab": "Anthropic",
       "family": "claude",
-      "order": 5,
+      "order": 6,
       "released": "2026-09",
       "builtOn": "2026-11-18",
       "harness": "Claude Code",
@@ -53,6 +53,28 @@
         "skill-marketplace",
         "talks"
       ]
+    },
+    {
+      "id": "claude-sonnet-5-5",
+      "name": "Claude Sonnet 5.5",
+      "lab": "Anthropic",
+      "family": "claude",
+      "order": 7,
+      "released": "2026-09",
+      "builtOn": "2026-11-23",
+      "harness": "Claude Code",
+      "defaults": "default settings",
+      "specVersion": "spec-v1",
+      "status": "ok",
+      "path": "/models/claude-sonnet-5-5/",
+      "note": {
+        "tr": "spec-v1 üzerinden tek seferde inşa edildi.",
+        "en": "Built one-shot from spec-v1."
+      },
+      "pages": [
+        "homepage"
+      ],
+      "release": "claude-sonnet-5-5_spec-v1"
     }
   ]
 }
