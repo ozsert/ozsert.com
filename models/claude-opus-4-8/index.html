@@ -1,0 +1,419 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>C. Murad Özsert</title>
+  <meta name="description" content="">
+
+  <meta name="oz-model" content="claude-opus-4-8">
+  <link rel="canonical" href="https://ozsert.com/">
+  <script src="/shared/core.js"></script>            <!-- NOT deferred: sets theme/lang before paint -->
+  <script src="/shared/topbar.js" defer></script>
+
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/models/claude-opus-4-8/style.css">
+  <script src="/models/claude-opus-4-8/script.js" defer></script>
+</head>
+<body>
+  <oz-topbar></oz-topbar>
+
+  <!-- fixed decorative layers -->
+  <div class="vo48-grain" aria-hidden="true"></div>
+  <canvas class="vo48-pentrail" aria-hidden="true"></canvas>
+
+  <main class="vo48-page" id="main">
+
+    <!-- ============ HERO / #top ============ -->
+    <header class="vo48-hero" id="top">
+      <div class="vo48-kicker">
+        <span class="vo48-mono" data-i18n="hero.kicker"></span>
+        <span class="vo48-mono vo48-coords" aria-hidden="true">41.01° N · 28.98° E</span>
+      </div>
+
+      <div class="vo48-hero-grid">
+        <div class="vo48-hero-main">
+          <div class="vo48-headline-wrap">
+            <h1 class="vo48-headline" data-i18n="hero.headline" data-decorate="headline"></h1>
+          </div>
+
+          <p class="vo48-role" data-i18n="hero.role" data-decorate="role"></p>
+
+          <p class="vo48-previously">
+            <span class="vo48-mono vo48-prev-label" data-i18n="hero.previously_label"></span>
+            <span class="vo48-prev-text" data-i18n="hero.previously"></span>
+          </p>
+
+          <p class="vo48-manifesto" data-i18n="hero.manifesto" data-decorate="manifesto"></p>
+
+          <div class="vo48-cta-row">
+            <a class="vo48-btn vo48-btn-primary" href="#projects" data-i18n="hero.cta_work"></a>
+            <a class="vo48-btn vo48-btn-ghost" href="#talks"><span data-i18n="hero.cta_talks"></span> <span aria-hidden="true">↓</span></a>
+            <a class="vo48-btn vo48-btn-ghost" href="#newsletter"><span data-i18n="hero.cta_newsletter"></span> <span aria-hidden="true">↓</span></a>
+          </div>
+        </div>
+
+        <aside class="vo48-hero-side">
+          <figure class="vo48-portrait">
+            <span class="vo48-tape vo48-tape-a" aria-hidden="true"></span>
+            <span class="vo48-tape vo48-tape-b" aria-hidden="true"></span>
+            <img src="/assets/portrait-upper.jpg" width="960" height="1200" data-i18n="[alt]hero.portrait_alt" alt="">
+            <svg class="vo48-portrait-frame" viewBox="0 0 200 250" preserveAspectRatio="none" aria-hidden="true">
+              <path pathLength="1" d="M6,8 Q100,2 194,7 Q198,125 193,243 Q100,248 7,242 Q3,125 6,8 Z" fill="none"/>
+            </svg>
+          </figure>
+
+          <nav class="vo48-contents" aria-label="Contents">
+            <p class="vo48-mono vo48-contents-title" data-i18n="ui.contents"></p>
+            <ol class="vo48-toc">
+              <li><a href="#now"><span class="vo48-mono vo48-toc-n">·</span><span data-i18n="now.label"></span></a></li>
+              <li><a href="#projects"><span class="vo48-mono vo48-toc-n">01</span><span data-i18n="projects.label"></span></a></li>
+              <li><a href="#founder"><span class="vo48-mono vo48-toc-n">02</span><span data-i18n="founder.label"></span></a></li>
+              <li><a href="#talks"><span class="vo48-mono vo48-toc-n">03</span><span data-i18n="talks.label"></span></a></li>
+              <li><a href="#newsletter"><span class="vo48-mono vo48-toc-n">04</span><span data-i18n="newsletter.label"></span></a></li>
+              <li><a href="#experience"><span class="vo48-mono vo48-toc-n">05</span><span data-i18n="experience.label"></span></a></li>
+              <li><a href="#contact"><span class="vo48-mono vo48-toc-n">→</span><span data-i18n="footer.label"></span></a></li>
+            </ol>
+          </nav>
+
+          <div class="vo48-margin-note" id="vo48-margin-note">
+            <svg class="vo48-note-arrow" viewBox="0 0 120 70" aria-hidden="true">
+              <path pathLength="1" class="vo48-arrow-line" d="M6,60 C30,58 44,30 70,20 C88,13 100,14 112,16" fill="none"/>
+              <path pathLength="1" class="vo48-arrow-head" d="M112,16 l-14,-2 M112,16 l-9,11" fill="none"/>
+            </svg>
+            <p class="vo48-mono" data-i18n="hero.margin_note"></p>
+          </div>
+        </aside>
+      </div>
+
+      <!-- controls: ink picker + toggles -->
+      <div class="vo48-controls">
+        <div class="vo48-ink">
+          <span class="vo48-mono vo48-ink-label" data-i18n="ui.ink"></span>
+          <div class="vo48-ink-dots" id="vo48-ink-dots" role="radiogroup" aria-label="Ink"></div>
+          <span class="vo48-mono vo48-ink-name" id="vo48-ink-name"></span>
+        </div>
+        <div class="vo48-toggles">
+          <button class="vo48-toggle vo48-mono" id="vo48-pen-toggle" type="button" aria-pressed="true">
+            <span data-i18n="ui.pen_trail"></span> <b class="vo48-toggle-state"></b>
+          </button>
+          <button class="vo48-toggle vo48-mono" id="vo48-calm-toggle" type="button" aria-pressed="false">
+            <span data-i18n="ui.calm_motion"></span> <b class="vo48-toggle-state"></b>
+          </button>
+        </div>
+      </div>
+
+      <!-- fig. 1 : accent scene -->
+      <figure class="vo48-fig1">
+        <div class="vo48-scene-stack" id="vo48-scene-stack" aria-hidden="true">
+          <!-- bosphorus -->
+          <svg class="vo48-scene" data-accent="bosphorus" viewBox="0 0 1200 180" preserveAspectRatio="xMidYMid meet">
+            <path pathLength="1" class="vo48-s" d="M40,150 H1160"/>
+            <path pathLength="1" class="vo48-s" d="M300,150 V58 M900,150 V58"/>
+            <path pathLength="1" class="vo48-s" d="M300,58 C480,8 720,8 900,58"/>
+            <path pathLength="1" class="vo48-s" d="M40,110 C170,70 230,70 300,78 M900,78 C970,70 1030,70 1160,110"/>
+            <path pathLength="1" class="vo48-s vo48-s-thin" d="M330,150 V66 M370,150 V74 M410,150 V82 M450,150 V88 M490,150 V92 M530,150 V94 M570,150 V95 M610,150 V95 M650,150 V95 M690,150 V94 M730,150 V92 M770,150 V88 M810,150 V82 M850,150 V74 M880,150 V68"/>
+            <path pathLength="1" class="vo48-s vo48-s-wave" d="M60,168 q30,-10 60,0 t60,0 t60,0 t60,0 t60,0 t60,0 t60,0 t60,0 t60,0 t60,0 t60,0 t60,0 t60,0 t60,0 t60,0 t60,0 t60,0"/>
+            <path pathLength="1" class="vo48-s" d="M620,164 h70 l-8,-16 h-54 z M632,148 v-10 h40 v10"/>
+          </svg>
+          <!-- galata -->
+          <svg class="vo48-scene" data-accent="galata" viewBox="0 0 1200 180" preserveAspectRatio="xMidYMid meet">
+            <path pathLength="1" class="vo48-s" d="M40,158 H1160"/>
+            <path pathLength="1" class="vo48-s" d="M520,158 V60 M660,158 V60"/>
+            <path pathLength="1" class="vo48-s" d="M520,60 H660 M512,60 h156"/>
+            <path pathLength="1" class="vo48-s" d="M512,60 L590,18 L668,60"/>
+            <path pathLength="1" class="vo48-s" d="M590,18 V6"/>
+            <path pathLength="1" class="vo48-s vo48-s-thin" d="M548,158 V92 h0 M548,92 h12 M580,158 V92 M612,158 V92 M548,124 h64"/>
+            <path pathLength="1" class="vo48-s" d="M60,158 V120 h40 V100 h40 V128 h50 V110 h40 V158 M300,158 V116 h44 V96 h40 V126 h40 V158"/>
+            <path pathLength="1" class="vo48-s" d="M760,158 V118 h44 V100 h40 V126 h40 V158 M980,158 V112 h40 V92 h44 V128 h42 V158"/>
+            <path pathLength="1" class="vo48-s vo48-s-wave" d="M60,172 q30,-9 60,0 t60,0 t60,0 t60,0 t60,0 t60,0 t60,0 t60,0 t60,0 t60,0 t60,0 t60,0 t60,0 t60,0 t60,0 t60,0 t60,0"/>
+          </svg>
+          <!-- iznik -->
+          <svg class="vo48-scene" data-accent="iznik" viewBox="0 0 1200 180" preserveAspectRatio="xMidYMid meet">
+            <path pathLength="1" class="vo48-s" d="M40,30 H1160 M40,150 H1160"/>
+            <g class="vo48-iznik-rep"></g>
+          </svg>
+          <!-- tulip -->
+          <svg class="vo48-scene" data-accent="tulip" viewBox="0 0 1200 180" preserveAspectRatio="xMidYMid meet">
+            <path pathLength="1" class="vo48-s" d="M40,158 H1160"/>
+            <g class="vo48-tulips">
+              <path pathLength="1" class="vo48-s" d="M160,158 V86 M160,86 C146,86 136,70 140,52 C150,62 156,66 160,66 C164,66 170,62 180,52 C184,70 174,86 160,86 M160,66 V52"/>
+              <path pathLength="1" class="vo48-s vo48-s-thin" d="M160,120 C140,116 128,104 128,92 M160,134 C182,130 196,118 196,106"/>
+              <path pathLength="1" class="vo48-s" d="M360,158 V78 M360,78 C344,78 332,60 337,40 C348,51 355,55 360,55 C365,55 372,51 383,40 C388,60 376,78 360,78 M360,55 V40"/>
+              <path pathLength="1" class="vo48-s vo48-s-thin" d="M360,116 C338,112 324,100 324,86"/>
+              <path pathLength="1" class="vo48-s" d="M560,158 V90 M560,90 C546,90 536,74 540,56 C550,66 556,70 560,70 C564,70 570,66 580,56 C584,74 574,90 560,90 M560,70 V56"/>
+              <path pathLength="1" class="vo48-s vo48-s-thin" d="M560,128 C582,124 596,112 596,98"/>
+              <path pathLength="1" class="vo48-s" d="M760,158 V80 M760,80 C744,80 732,62 737,42 C748,53 755,57 760,57 C765,57 772,53 783,42 C788,62 776,80 760,80 M760,57 V42"/>
+              <path pathLength="1" class="vo48-s vo48-s-thin" d="M760,118 C738,114 724,102 724,88"/>
+              <path pathLength="1" class="vo48-s" d="M960,158 V88 M960,88 C946,88 936,72 940,54 C950,64 956,68 960,68 C964,68 970,64 980,54 C984,72 974,88 960,88 M960,68 V54"/>
+              <path pathLength="1" class="vo48-s vo48-s-thin" d="M960,124 C982,120 996,108 996,94"/>
+            </g>
+          </svg>
+          <!-- saffron -->
+          <svg class="vo48-scene" data-accent="saffron" viewBox="0 0 1200 180" preserveAspectRatio="xMidYMid meet">
+            <path pathLength="1" class="vo48-s" d="M40,150 H1160"/>
+            <path pathLength="1" class="vo48-s" d="M160,150 V92 C160,60 200,60 200,92 V150 M360,150 V84 C360,48 410,48 410,84 V150 M600,150 V78 C600,38 660,38 660,78 V150 M860,150 V84 C860,48 910,48 910,84 V150 M1040,150 V92 C1040,60 1080,60 1080,92 V150"/>
+            <path pathLength="1" class="vo48-s vo48-s-thin" d="M180,60 V46 M385,52 V36 M630,42 V24 M885,52 V36 M1060,60 V46"/>
+            <path pathLength="1" class="vo48-s" d="M120,150 C140,124 220,124 240,150 M330,150 C350,128 420,128 440,150 M560,150 C590,118 670,118 700,150 M830,150 C850,128 920,128 940,150"/>
+            <path pathLength="1" class="vo48-s vo48-s-dot" d="M150,146 h0 M180,142 h0 M210,146 h0 M360,146 h0 M390,140 h0 M420,146 h0 M600,144 h0 M630,136 h0 M660,144 h0"/>
+          </svg>
+          <!-- olive -->
+          <svg class="vo48-scene" data-accent="olive" viewBox="0 0 1200 180" preserveAspectRatio="xMidYMid meet">
+            <path pathLength="1" class="vo48-s" d="M60,120 C260,96 520,92 760,100 C920,105 1060,108 1150,96"/>
+            <path pathLength="1" class="vo48-s vo48-s-thin" d="M250,106 C240,86 250,70 270,64 C268,86 262,98 251,106 M250,106 C236,100 228,86 230,72 C244,80 250,92 250,106"/>
+            <path pathLength="1" class="vo48-s vo48-s-thin" d="M470,100 C460,80 470,64 490,58 C488,80 482,92 471,100 M470,100 C456,94 448,80 450,66 C464,74 470,86 470,100"/>
+            <path pathLength="1" class="vo48-s vo48-s-thin" d="M690,100 C680,80 690,64 710,58 C708,80 702,92 691,100 M690,100 C676,94 668,80 670,66 C684,74 690,86 690,100"/>
+            <path pathLength="1" class="vo48-s vo48-s-thin" d="M910,104 C900,84 910,68 930,62 C928,84 922,96 911,104 M910,104 C896,98 888,84 890,70 C904,78 910,90 910,104"/>
+            <ellipse pathLength="1" class="vo48-s vo48-s-thin" cx="360" cy="126" rx="11" ry="16" fill="none"/>
+            <ellipse pathLength="1" class="vo48-s vo48-s-thin" cx="580" cy="128" rx="11" ry="16" fill="none"/>
+            <ellipse pathLength="1" class="vo48-s vo48-s-thin" cx="800" cy="128" rx="11" ry="16" fill="none"/>
+            <ellipse pathLength="1" class="vo48-s vo48-s-thin" cx="1010" cy="126" rx="11" ry="16" fill="none"/>
+          </svg>
+        </div>
+        <figcaption class="vo48-mono vo48-fig-cap">
+          <span data-i18n="ui.fig"></span> 1 — <span id="vo48-scene-caption"></span>
+        </figcaption>
+      </figure>
+    </header>
+
+    <!-- ============ NOW / #now ============ -->
+    <section class="vo48-now" id="now" aria-label="Now">
+      <svg class="vo48-now-rule" viewBox="0 0 1200 12" preserveAspectRatio="none" aria-hidden="true">
+        <path pathLength="1" d="M2,7 C160,2 260,10 420,6 C600,1 760,11 940,6 C1060,3 1140,8 1198,5" fill="none"/>
+      </svg>
+      <div class="vo48-now-inner">
+        <span class="vo48-mono vo48-now-label" data-i18n="now.label"></span>
+        <span class="vo48-now-item"><span data-i18n="now.item1"></span><b class="vo48-cursor" aria-hidden="true"></b></span>
+        <span class="vo48-now-sep" aria-hidden="true">/</span>
+        <span class="vo48-now-item" data-i18n="now.item2"></span>
+        <span class="vo48-now-sep" aria-hidden="true">/</span>
+        <span class="vo48-now-item" data-i18n="now.item3"></span>
+        <span class="vo48-now-sep" aria-hidden="true">/</span>
+        <a class="vo48-now-item vo48-now-link" href="#contact"><span data-i18n="now.item4"></span> <span aria-hidden="true">→</span></a>
+      </div>
+    </section>
+
+    <!-- ============ 01 WORKBENCH / #projects ============ -->
+    <section class="vo48-section vo48-workbench" id="projects" aria-labelledby="vo48-projects-title">
+      <div class="vo48-sec-head">
+        <span class="vo48-mono vo48-sec-no" data-i18n="projects.section_no"></span>
+        <div class="vo48-sec-headings">
+          <p class="vo48-mono vo48-sec-label">§ <span data-i18n="projects.section_no"></span> — <span data-i18n="projects.label"></span></p>
+          <h2 class="vo48-sec-title" id="vo48-projects-title" data-i18n="projects.title" data-decorate="uline-last"></h2>
+          <p class="vo48-sec-intro" data-i18n="projects.intro"></p>
+          <p class="vo48-mono vo48-sec-note" data-i18n="projects.enterprise_note"></p>
+        </div>
+      </div>
+      <ol class="vo48-rows" id="vo48-project-rows"></ol>
+    </section>
+
+    <!-- ============ 02 FOUNDER'S ROAD / #founder ============ -->
+    <section class="vo48-section vo48-founder" id="founder" aria-labelledby="vo48-founder-title">
+      <div class="vo48-sec-head">
+        <span class="vo48-mono vo48-sec-no" data-i18n="founder.section_no"></span>
+        <div class="vo48-sec-headings">
+          <p class="vo48-mono vo48-sec-label">§ <span data-i18n="founder.section_no"></span> — <span data-i18n="founder.label"></span></p>
+          <h2 class="vo48-sec-title" id="vo48-founder-title" data-i18n="founder.title" data-decorate="uline-last"></h2>
+          <p class="vo48-sec-intro" data-i18n="founder.intro"></p>
+          <p class="vo48-stamp vo48-stamp-inline" aria-hidden="true">YOLDA.COM · 2020–2025</p>
+          <p class="vo48-mono vo48-sec-note" data-i18n="founder.note"></p>
+        </div>
+      </div>
+
+      <div class="vo48-cases">
+        <!-- case 1 : growth curve -->
+        <article class="vo48-case">
+          <span class="vo48-tape vo48-tape-c" aria-hidden="true"></span>
+          <svg class="vo48-case-border" viewBox="0 0 300 220" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M8,10 Q150,4 292,9 Q296,110 291,211 Q150,216 9,210 Q4,110 8,10 Z" fill="none"/></svg>
+          <div class="vo48-case-head">
+            <span class="vo48-mono"><span data-i18n="ui.case"></span> 01</span>
+            <span class="vo48-mono vo48-case-tag" data-i18n="founder.case1.tag"></span>
+          </div>
+          <h3 class="vo48-case-title" data-i18n="founder.case1.title"></h3>
+          <p class="vo48-stat" data-i18n="founder.case1.stat"></p>
+          <svg class="vo48-chart" viewBox="0 0 220 90" aria-hidden="true">
+            <path pathLength="1" class="vo48-chart-axis" d="M14,78 H206 M14,78 V8"/>
+            <path pathLength="1" class="vo48-chart-line" d="M16,76 C70,74 110,60 140,42 C168,26 184,16 204,10"/>
+            <circle class="vo48-chart-dot" cx="16" cy="76" r="3"/>
+            <circle class="vo48-chart-dot vo48-chart-dot-end" cx="204" cy="10" r="4"/>
+          </svg>
+          <p class="vo48-case-desc" data-i18n="founder.case1.desc"></p>
+        </article>
+
+        <!-- case 2 : route line TR -> DE -->
+        <article class="vo48-case">
+          <span class="vo48-tape vo48-tape-c" aria-hidden="true"></span>
+          <svg class="vo48-case-border" viewBox="0 0 300 220" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M8,10 Q150,4 292,9 Q296,110 291,211 Q150,216 9,210 Q4,110 8,10 Z" fill="none"/></svg>
+          <div class="vo48-case-head">
+            <span class="vo48-mono"><span data-i18n="ui.case"></span> 02</span>
+            <span class="vo48-mono vo48-case-tag" data-i18n="founder.case2.tag"></span>
+          </div>
+          <h3 class="vo48-case-title" data-i18n="founder.case2.title"></h3>
+          <p class="vo48-stat" data-i18n="founder.case2.stat"></p>
+          <svg class="vo48-chart" viewBox="0 0 220 90" aria-hidden="true">
+            <path pathLength="1" class="vo48-chart-route" d="M20,64 C70,30 110,70 150,40 C170,26 184,26 198,30" stroke-dasharray="6 6"/>
+            <circle class="vo48-chart-dot" cx="20" cy="64" r="4"/>
+            <circle class="vo48-chart-dot vo48-chart-dot-end" cx="198" cy="30" r="4"/>
+            <text class="vo48-chart-tx" x="20" y="82">TR</text>
+            <text class="vo48-chart-tx" x="188" y="22">DE</text>
+          </svg>
+          <p class="vo48-case-desc" data-i18n="founder.case2.desc"></p>
+        </article>
+
+        <!-- case 3 : three steps -->
+        <article class="vo48-case">
+          <span class="vo48-tape vo48-tape-c" aria-hidden="true"></span>
+          <svg class="vo48-case-border" viewBox="0 0 300 220" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M8,10 Q150,4 292,9 Q296,110 291,211 Q150,216 9,210 Q4,110 8,10 Z" fill="none"/></svg>
+          <div class="vo48-case-head">
+            <span class="vo48-mono"><span data-i18n="ui.case"></span> 03</span>
+            <span class="vo48-mono vo48-case-tag" data-i18n="founder.case3.tag"></span>
+          </div>
+          <h3 class="vo48-case-title" data-i18n="founder.case3.title"></h3>
+          <p class="vo48-stat" data-i18n="founder.case3.stat"></p>
+          <svg class="vo48-chart" viewBox="0 0 220 90" aria-hidden="true">
+            <path pathLength="1" class="vo48-chart-axis" d="M14,80 H206"/>
+            <path pathLength="1" class="vo48-chart-step" d="M20,74 H76 V54 H132 V32 H190 V14"/>
+            <circle class="vo48-chart-dot" cx="76" cy="54" r="3"/>
+            <circle class="vo48-chart-dot" cx="132" cy="32" r="3"/>
+            <circle class="vo48-chart-dot vo48-chart-dot-end" cx="190" cy="14" r="4"/>
+          </svg>
+          <p class="vo48-case-desc" data-i18n="founder.case3.desc"></p>
+        </article>
+
+        <!-- case 4 : dot matrix -->
+        <article class="vo48-case">
+          <span class="vo48-tape vo48-tape-c" aria-hidden="true"></span>
+          <svg class="vo48-case-border" viewBox="0 0 300 220" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M8,10 Q150,4 292,9 Q296,110 291,211 Q150,216 9,210 Q4,110 8,10 Z" fill="none"/></svg>
+          <div class="vo48-case-head">
+            <span class="vo48-mono"><span data-i18n="ui.case"></span> 04</span>
+            <span class="vo48-mono vo48-case-tag" data-i18n="founder.case4.tag"></span>
+          </div>
+          <h3 class="vo48-case-title" data-i18n="founder.case4.title"></h3>
+          <p class="vo48-stat" data-i18n="founder.case4.stat"></p>
+          <svg class="vo48-chart vo48-chart-matrix" viewBox="0 0 220 90" aria-hidden="true"></svg>
+          <p class="vo48-case-desc" data-i18n="founder.case4.desc"></p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ 03 TALKS / #talks ============ -->
+    <section class="vo48-section vo48-talks" id="talks" aria-labelledby="vo48-talks-title">
+      <div class="vo48-sec-head">
+        <span class="vo48-mono vo48-sec-no" data-i18n="talks.section_no"></span>
+        <div class="vo48-sec-headings">
+          <p class="vo48-mono vo48-sec-label">§ <span data-i18n="talks.section_no"></span> — <span data-i18n="talks.label"></span></p>
+          <h2 class="vo48-sec-title" id="vo48-talks-title" data-i18n="talks.title" data-decorate="uline-last"></h2>
+          <p class="vo48-sec-intro" data-i18n="talks.intro"></p>
+        </div>
+      </div>
+      <ol class="vo48-rows" id="vo48-talk-rows"></ol>
+      <div class="vo48-talks-foot">
+        <a class="vo48-link-arrow" href="/models/claude-opus-4-8/talks/" data-i18n="talks.all"></a>
+        <a class="vo48-btn vo48-btn-ghost" href="#contact" data-oz-email data-i18n="[html]talks.cta" id="vo48-talks-cta"></a>
+      </div>
+    </section>
+
+    <!-- ============ 04 NEWSLETTER / #newsletter ============ -->
+    <section class="vo48-section vo48-news" id="newsletter" aria-labelledby="vo48-news-title">
+      <div class="vo48-sec-head">
+        <span class="vo48-mono vo48-sec-no" data-i18n="newsletter.section_no"></span>
+        <div class="vo48-sec-headings">
+          <p class="vo48-mono vo48-sec-label">§ <span data-i18n="newsletter.section_no"></span> — <span data-i18n="newsletter.label"></span></p>
+          <h2 class="vo48-sec-title" id="vo48-news-title" data-i18n="newsletter.name"></h2>
+          <p class="vo48-sec-intro" data-i18n="newsletter.tagline"></p>
+          <p class="vo48-mono vo48-sec-note" data-i18n="newsletter.cadence"></p>
+        </div>
+      </div>
+
+      <div class="vo48-news-grid">
+        <div class="vo48-news-left">
+          <figure class="vo48-fig2">
+            <svg class="vo48-noise-sig" viewBox="0 0 320 120" aria-hidden="true">
+              <path pathLength="1" class="vo48-noise" d="M6,60 l8,-22 l8,34 l8,-30 l8,26 l8,-34 l8,30 l8,-18 l8,24 l8,-28 l8,20 l8,-10 l8,14 l8,-8"/>
+              <path pathLength="1" class="vo48-sig" d="M150,60 q14,-40 28,0 t28,0 q14,-40 28,0 t28,0 q14,-30 28,0"/>
+              <path pathLength="1" class="vo48-noise-arrow" d="M130,60 h20 M150,60 l-7,-5 M150,60 l-7,5"/>
+            </svg>
+            <figcaption class="vo48-mono vo48-fig-cap"><span data-i18n="ui.fig"></span> 2 — <span data-i18n="newsletter.fig_caption"></span></figcaption>
+          </figure>
+          <div class="vo48-subs">
+            <a class="vo48-btn vo48-btn-primary" href="https://thenextsignalnewsletter.substack.com/" target="_blank" rel="noopener" data-i18n="newsletter.subscribe_substack"></a>
+            <a class="vo48-btn vo48-btn-ghost" href="https://www.linkedin.com/build-relation/newsletter-follow?entityUrn=7346972552528834560" target="_blank" rel="noopener" data-i18n="newsletter.subscribe_linkedin"></a>
+          </div>
+        </div>
+
+        <div class="vo48-news-right">
+          <p class="vo48-mono vo48-latest-label" data-i18n="newsletter.latest"></p>
+          <div id="vo48-posts" class="vo48-posts" aria-live="polite">
+            <p class="vo48-mono vo48-posts-msg" data-i18n="newsletter.loading"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 05 EXPERIENCE / #experience ============ -->
+    <section class="vo48-section vo48-exp" id="experience" aria-labelledby="vo48-exp-title">
+      <div class="vo48-sec-head">
+        <span class="vo48-mono vo48-sec-no" data-i18n="experience.section_no"></span>
+        <div class="vo48-sec-headings">
+          <p class="vo48-mono vo48-sec-label">§ <span data-i18n="experience.section_no"></span> — <span data-i18n="experience.label"></span></p>
+          <h2 class="vo48-sec-title" id="vo48-exp-title" data-i18n="experience.title" data-decorate="uline-last"></h2>
+          <figcaption class="vo48-mono vo48-fig-cap vo48-exp-figcap" data-i18n="experience.fig"></figcaption>
+        </div>
+      </div>
+
+      <svg class="vo48-timeline-bar" viewBox="0 0 1200 40" preserveAspectRatio="none" aria-hidden="true">
+        <path pathLength="1" class="vo48-tl-line" d="M8,20 H1192"/>
+        <g class="vo48-tl-ticks"></g>
+      </svg>
+
+      <ol class="vo48-exp-rows" id="vo48-exp-rows"></ol>
+    </section>
+
+    <!-- ============ CONTACT / #contact ============ -->
+    <footer class="vo48-footer" id="contact" aria-labelledby="vo48-footer-name">
+      <p class="vo48-mono vo48-sec-label vo48-footer-kick">§ — <span data-i18n="footer.label"></span></p>
+      <h2 class="vo48-footer-name" id="vo48-footer-name" data-i18n="footer.name"></h2>
+      <p class="vo48-mono vo48-footer-identity" data-i18n="footer.identity"></p>
+      <p class="vo48-footer-intro" data-i18n="footer.contact_intro"></p>
+
+      <div class="vo48-contact-grid">
+        <div class="vo48-contact-cell">
+          <span class="vo48-mono vo48-contact-label"><span data-i18n="footer.email_label"></span> <span aria-hidden="true">↗</span></span>
+          <a class="vo48-contact-handle" data-oz-email href="#"></a>
+          <button class="vo48-copy vo48-mono" id="vo48-copy-email" type="button">
+            <span data-i18n="ui.copy"></span>
+          </button>
+        </div>
+        <div class="vo48-contact-cell">
+          <span class="vo48-mono vo48-contact-label"><span data-i18n="footer.linkedin_label"></span> <span aria-hidden="true">↗</span></span>
+          <a class="vo48-contact-handle" href="https://www.linkedin.com/in/ozsert" target="_blank" rel="noopener">in/ozsert</a>
+        </div>
+        <div class="vo48-contact-cell">
+          <span class="vo48-mono vo48-contact-label"><span data-i18n="footer.substack_label"></span> <span aria-hidden="true">↗</span></span>
+          <a class="vo48-contact-handle" href="https://thenextsignalnewsletter.substack.com/" target="_blank" rel="noopener">thenextsignal</a>
+        </div>
+      </div>
+
+      <div class="vo48-footer-bottom">
+        <p class="vo48-mono vo48-signoff" data-i18n="footer.signoff"></p>
+        <div class="vo48-footer-ink">
+          <span class="vo48-mono vo48-ink-label" data-i18n="ui.ink"></span>
+          <div class="vo48-ink-dots" id="vo48-ink-dots-2" role="radiogroup" aria-label="Ink"></div>
+        </div>
+        <a class="vo48-mono vo48-link-arrow vo48-back-top" href="#top"><span data-i18n="ui.back_to_top"></span> <span aria-hidden="true">↑</span></a>
+      </div>
+      <p class="vo48-mono vo48-colophon" id="vo48-credit"></p>
+    </footer>
+  </main>
+
+  <!-- floating hover picture (talks + newsletter) -->
+  <figure class="vo48-hover-pic" id="vo48-hover-pic" aria-hidden="true">
+    <span class="vo48-tape vo48-tape-a" aria-hidden="true"></span>
+    <img id="vo48-hover-img" alt="" width="220" height="150">
+  </figure>
+</body>
+</html>

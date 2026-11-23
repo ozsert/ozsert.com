@@ -2,6 +2,28 @@
   "pinned": "claude-opus-5-5",
   "models": [
     {
+      "id": "claude-opus-4-8",
+      "name": "Claude Opus 4.8",
+      "lab": "Anthropic",
+      "family": "claude",
+      "order": 3,
+      "released": "2026-05",
+      "builtOn": "2026-11-23",
+      "harness": "Claude Code",
+      "defaults": "default settings",
+      "specVersion": "spec-v1",
+      "status": "ok",
+      "path": "/models/claude-opus-4-8/",
+      "note": {
+        "tr": "spec-v1 üzerinden tek seferde inşa edildi.",
+        "en": "Built one-shot from spec-v1."
+      },
+      "pages": [
+        "homepage"
+      ],
+      "release": "claude-opus-4-8_spec-v1"
+    },
+    {
       "id": "claude-sonnet-5",
       "name": "Claude Sonnet 5",
       "lab": "Anthropic",
